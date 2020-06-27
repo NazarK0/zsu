@@ -1,0 +1,1 @@
+"use strict";const t=require("mongoose"),e=t.Schema,o=new e({title:String,contact:String,user_id:String});module.exports=t.model("contacts",o);

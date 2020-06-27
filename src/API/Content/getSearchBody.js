@@ -1,0 +1,1 @@
+"use strict";const t=require("../../Models/Content");module.exports.getBodyForContent=async e=>{const n=await t.findById(e);return JSON.parse(JSON.stringify(n))};

@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),t=e.Schema,n=new t({title:String,content_id:String,lang:String,user_id:String});module.exports=e.model("sidemenus",n);

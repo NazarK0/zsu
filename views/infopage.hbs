@@ -1,0 +1,30 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+    body{
+        background-color: #2f2f2f;
+        font-family: 'Montserrat';
+    }
+    .info-container{
+        text-align: center;
+    }
+    .info{
+        display: inline-block;
+        margin-top: 10%;
+    }
+
+    .info-sign{
+        font-size: 48px;
+    }
+
+</style>
+
+<body>
+    <div class="info-container">
+        <div class="info">
+            <img src="/images/mo.png" height="128" width="128">
+            <p id="info-sign" style="font-size: 48px; color:#7c7c7c; font-weight:bold;">{{info}}</p>
+            <p id="info-link"><a style="color: cornsilk;" href={{url}}>{{url_text}}</a></p>
+        </div>
+    </div>
+</body>

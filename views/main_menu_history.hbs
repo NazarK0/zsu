@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/sidemenu.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="sidebar">
+            <h2>
+              <a href="/admin/{{user}}/main">
+                <img src="/css/logo.png" alt="" srcset="" style="width: 45px; height: 45px;">
+              </a>
+            </h2>
+            <ul>
+              <li style="border-top: 1px solid rgb(76, 79, 63);"><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{user}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
+              <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{user}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
+              <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{user}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
+              <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{user}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
+              <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{user}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
+              <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{user}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>
+              <li><form action="/admin/{{user}}/create-content-folder" method="GET"><a href="/admin/{{user}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
+              <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+              <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+              <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
+              <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
+            </ul>
+            <div class="version">Версія 1.0</div>
+        </div>
+        <div class="header">
+          Історія
+          <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
+        <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
+      </form>
+        </div>        
+      </div>
+     
+      <div class="table_container">
+        {{#if status}}
+        <a style="color: white;" href="/admin/{{user}}/history/xlsx">Завантажити на комп'ютер в Excel-форматі
+        </a>
+        <div style="position:absolute; right: 8px;">
+          <form method="POST" action="/admin/{{user}}/history/delete">
+            <button id="delete-history">Очистити історію</button>
+        </form>
+        </div>
+        {{/if}}
+        <table class="table-fill">
+        <thead>
+          <tr>
+            <th class="text-left">Тип</th>
+            <th class="text-left">Операція</th>
+            <th class="text-left">Користувач</th>
+            <th class="text-left">Дата створення</th>
+          </tr>
+        </thead>
+          <tbody class="table-hover">
+            {{#each history}}
+            <tr>
+              <td class="text-left">{{type_content}}</td>
+              <td class="text-left">{{operation}}</td>
+              <td class="text-left">{{user}}</td>
+              <td class="text-left">{{create_date}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+      </table>
+      <ul>
+        {{#loop 1 pages 1}}
+          <li id="pages-container">
+            <a id="counter" href="./{{this}}">  {{this}}  </a>
+          </li>
+        {{/loop}}
+      </ul>
+      </div>     
+     
+  </body>
+</html>

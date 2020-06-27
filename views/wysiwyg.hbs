@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+{{!--  --}}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Редактор контенту</title>
+  <script src="/tinymce/tinymce.min.js"></script>
+  <script src="/tinymce/js/settings.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/checkbox_style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" type="text/css" href="/tinymce/css/styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js">
+</head>
+{{!--  --}}
+<body style = "background-color: #2f2f2f">
+  <nav class="menu">
+    <ul>
+          <li><form action="/admin/{{userid}}/mainmenu" method="GET"><a type="submit" href="/admin/{{userid}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li><li>
+          <form action="/admin/{{user}}/news" method="GET"><a href="/admin/{{userid}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
+          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
+          <li><form action="/admin/{{user}}/sidemenu" method="GET"><a href="/admin/{{userid}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
+          <li><form action="/admin/{{user}}/links" method="GET"><a href="/admin/{{userid}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
+          <li><form action="/admin/{{user}}/user" method="GET"><a href="/admin/{{userid}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>  
+          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
+          <li><form action="/admin/{{user}}/contact" method="GET"><a href="/admin/{{userid}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+          <li><form action="/admin/{{user}}/corps" method="GET"><a href="/admin/{{userid}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
+    </ul>
+</nav> 
+<div class="editor-container">
+  <div>
+    <form id="send-picture_form" class="file-form send-picture_form" action="/admin/{{userid}}/send-image" method="post"
+    enctype="multipart/form-data">
+    <p style="color: white;">Завантажити Головне Зображення</p>
+    <input style="color: white;" type="file" id="main_photo" name="main_photo" accept="image/*">
+    <input name="folder_path" value="{{folder_path}}" type="hidden">
+    <input name="folder_name" value="{{folder_name}}" type="hidden">
+    <button id="ok_button" type="submit">OK</button>
+  </form>
+  <form id="send-slider-photos_form" class="file-form send-slider-photos_form"
+    action="/admin/{{userid}}/send-slider-photos" method="post" enctype="multipart/form-data">
+    <p style="color: white;">Завантажити Зображення Для Слайдера</p>
+    <input style="color: white;" type="file" id="slider_photos" name="slider_photos" accept="image/*" multiple>
+    <input name="folder_path" value="{{folder_path}}" type="hidden">
+    <input name="folder_name" value="{{folder_name}}" type="hidden">
+    <button id="ok_button" type="submit">OK</button>
+  </form>
+  <form id="send-files_form" class="file-form send-files_form" action="/admin/{{userid}}/send-page-files"
+    method="post" enctype="multipart/form-data">
+    <p style="color: white;">Завантажити файли на сторінку</p>
+    <input style="color: white;" type="file" id="page_files" name="page_files" multiple>
+    <input name="folder_path" value="{{folder_path}}" type="hidden">
+    <input name="folder_name" value="{{folder_name}}" type="hidden">
+    <button id="ok_button" type="submit">OK</button>
+  </form>  
+  </div>
+  <div>
+    <form id="tiny-form" method="post" action="/admin/{{userid}}/{{operation}}-content">
+    <div id="tiny-control-panel" class="tiny-control-panel">
+      <div id="radio_controlls-news">
+        <p style="color: white;"><B>Тип</B></p>
+        <div>
+          <input id="page-type_news" type="radio" name="page_type" value="news" onchange="showHideNewsTypes(this)"
+            required>
+          <label id="page-type_news__label" for="page_type-news">Новина</label>
+        </div>
+        <div>
+          <input id="page-type_content-page" type="radio" name="page_type" value="content_page"
+            onchange="showHideNewsTypes(this)" required>
+          <label id="page-type_content-page__label" for="page-type_content-page">Сторінка</label>
+        </div>
+      </div>
+      <div id="news_controls-group" style="display: none;">
+        <span>
+          <input id="news-type-casual" type="radio" name="news_type" value="casual"
+            onchange="showHideNewsMainPhoto(this)">
+          <label id="news-type-casual__label" for="news-type-casual">Звичайна</label>
+        </span>
+        <span>
+          <input id="news-type-current" type="radio" name="news_type" value="current"
+            onchange="showHideNewsMainPhoto(this)">
+          <label id="news-type-current__label" for="news-type-current">Актуальна</label>
+        </span>
+        <span>
+          <input id="news-type-main" type="radio" name="news_type" value="main" onchange="showHideNewsMainPhoto(this)">
+          <label id="news-type-main__label" for="news-type-main">Головна</label>
+        </span>
+      </div>
+      <div id="content-page_controls-group" style="display: none;">
+        <div>
+          <input type="checkbox" id="add-link-to-main_menu" name="mainmenu_checkbox"
+            onchange="showHideLinkToMainMenu(this)">
+          <label id="add-link-to-main_menu__label" for="add-link-to-main_menu">Меню</label>
+          <div>
+            {{#MenuList menu}}
+            {{/MenuList}}
+          </div>
+        </div>
+        <div>
+          <input type="checkbox" id="add-link-to-side_menu" name="sidemenu_checkbox"
+            onchange="showHideLinkToSideMenu(this)">
+          <label id="add-link-to-side_menu__label" for="add-link-to-side_menu">Бокове Меню</label>
+          <div>
+            <div>
+              {{#SidemenuList sidemenu}}
+              {{/SidemenuList}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="language-group" style="margin: 0; margin-top: 20px;">
+        <label id="dropdown-language__label" for="dropdown-language">Мова:</label>
+        <select id="dropdown" name="lang" class="form-controll">
+          <option value="ua">Українська</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <div style="display: grid; padding-top: 2%; width: 85%;">
+        <label id="page_title__label" for="page-title">Назва:</label>
+        <input id="page_title" name="page_title" value="{{page_title}}" required>
+      </div>
+      <div style="display: grid; margin-top: 10px; width: 85%;">
+        <label id="description__label" for="description">Короткий опис:</label>
+        <textarea id="description" name="description" required>{{description}}</textarea>
+      </div>
+      <div style="display:grid; margin-top: 10px; width: 85%;">
+        <label id="tiny-keywords__label" for="tiny-keywords">#Ключові слова</label>
+        <textarea id="tiny-keywords" class="tiny-keywords" name="keywords" required>{{keywords}}</textarea>
+      </div>
+    </div>
+    <h2 style="margin-left: 58%; color: white;">Конструктор</h2>
+    <main class="main">
+      <div id="html_body" class="html_body">{{{ html_body }}}</div>
+      <div class="tiny-submit-buttons">
+        <button id="ok_button" type="submit"><i class="fas fa-check-circle"></i>Зберегти все</button>
+        <button id="reset_btn" type="reset">Відкинути усі зміни</button>
+      </div>
+    </main>
+    <input name="content_folder" value="{{content_folder_title}}" type="hidden">
+    <input name="content_id" value="{{content_id}}" type="hidden">
+  </form> 
+  </div>
+  {{!--  --}}
+</div>
+<script src="/js/editor.js"></script>
+</body>
+</html>

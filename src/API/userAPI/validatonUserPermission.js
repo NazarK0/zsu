@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/User");module.exports.checkEditPermission=async(i,t)=>{const r=await e.findById(i),s=await e.findById(t);return r.id===s.id||s.id===String(r.creator.id)||"system_user"===s.type},module.exports.checkNameMatching=async i=>{const t=JSON.parse(JSON.stringify(await e.find()));let r=!1;return t.forEach(e=>{e.login===i&&(r=!0)}),r};

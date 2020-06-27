@@ -1,0 +1,1 @@
+"use strict";const e=require("./app"),s=require("./settings.json");e.listen(s.port||process.env.port,()=>{console.log("Server has been started!")});

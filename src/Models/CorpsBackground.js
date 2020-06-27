@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),r=e.Schema,o=new r({name:String,url:String,base64:String});module.exports=e.model("corps_background",o);

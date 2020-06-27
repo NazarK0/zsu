@@ -1,0 +1,1 @@
+"use strict";const t=require("express"),e=require("../Controllers/contact_controller"),o=t.Router();o.get("/contact/:page([0-9]+)",e.getContactList),o.route("/contact/edit/:id").get(e.getEditContact).post(e.postEditedContact),o.route("/contact/add").get(e.getAddContact).post(e.postAddedContact),o.post("/contact/delete/:id",e.deleteContact),module.exports=o;

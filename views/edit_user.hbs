@@ -1,0 +1,132 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/input_form.css">
+    <link rel="stylesheet" href="/css/checkbox_style.css">
+    <link rel="stylesheet" href="/css/menu.css">
+</head>
+<body style = "background-color: #2f2f2f">
+<nav class="menu">
+    <ul>
+          <li><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{userid}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
+          <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{userid}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
+          <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{userid}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
+          <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{userid}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
+          <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{userid}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
+          <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{userid}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>  
+          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
+          <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{userid}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+          <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{userid}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+          <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{userid}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
+          <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{userid}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
+    </ul>
+</nav> 
+<div class="container">
+  <form method="POST" action="/admin/{{userid}}/user/{{action_type}}" autocomplete="off">
+    
+    <div class="row">
+      {{#ifCond action_type '===' "add"}}
+       
+        <div class="row">
+      <div class="col-25">
+        <label for="login"><B>Логін</B></label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="name" name="login" placeholder="Логін" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="email"><B>Електронна пошта</B></label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="email" name="email" placeholder="Електронна пошта" >
+      </div>
+       <div class="col-25">
+          <label for="password"><B>Пароль</B></label>
+        </div>
+        <div class="col-75">
+          <input type="password" id="password" name="password" placeholder="Пароль">
+        </div>
+    </div>
+      {{else}}
+      <div class="row">
+      <div class="col-25">
+        <label for="login"><B>Логін</B></label>
+      </div>
+      <div class="col-75">
+        
+        <input type="text" id="name" name="login" placeholder="Логін" value={{login}}>
+      
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="email"><B>Електронна пошта</B></label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="email" name="email" placeholder="Електронна пошта" value="{{email}}">
+      </div>
+    </div>
+         <a id="edit_password" href="./{{userid}}/password">Змінити пароль</a>
+         
+      {{/ifCond}}
+    </div>
+    {{#if edit}}
+    <div class="row">
+        <div class="col-25-checks">
+            <h4 id="name_component">Доступні категорії для опрацювання</h4>
+            <label class="check" style="color: brown;">Усі категорії
+                <input id="ALL" type="checkbox" name="ALL">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Статті
+                <input type="checkbox" name="PAGES" {{PAGES}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Історія
+                <input type="checkbox" name="HISTORY"{{HISTORY}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Новини
+                <input type="checkbox" name="NEWS"{{NEWS}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Користувачі
+                <input type="checkbox" name="USER"{{USER}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Бокове Меню
+                <input type="checkbox" name="SIDEMENU"{{SIDEMENU}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Головне меню
+                <input type="checkbox" name="MAIN_MENU"{{MAIN_MENU}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Створення контенту
+                <input type="checkbox" name="CONTENT" {{CONTENT}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Посилання на сторонні ресурси
+                <input type="checkbox" name="LINKS"{{LINKS}}>
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">Види/Роди військ
+                <input type="checkbox" name="CORPS"{{CORPS}}>
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+    {{/if}}
+    <div class="row">
+      <button id="save">Зберегти</button>
+    </div>
+  </form>
+  {{#ifCond action_type '!=='"add"}}
+    <form method="POST" action="/admin/{{userid}}/user/delete/{{edited_userid}}">
+        <button id="delete">Видалити</button>
+    </form>
+  {{/ifCond}}
+</div>
+</body>
+</html>

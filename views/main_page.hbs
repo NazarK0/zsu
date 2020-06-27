@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="/css/sidemenu.css">
+  <link rel="stylesheet" href="/css/table.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2>
+        <a href="/admin/{{user}}/main">
+          <img src="/css/logo.png" alt="" srcset="" style="width: 45px; height: 45px;">
+        </a>
+      </h2>
+      <ul>
+        <li style="border-top: 1px solid rgb(76, 79, 63);">
+          <form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{user}}/mainmenu"><i
+                class="fas fa-bars"></i>Головне меню</a></form>
+        </li>
+        <li>
+          <form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{user}}/news/1"><i
+                class="fas fa-newspaper"></i>Новини</a></form>
+        </li>
+        <li>
+          <form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{user}}/pages/1"><i
+                class="fas fa-file"></i>Сторінки</a></form>
+        </li>
+        <li>
+          <form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{user}}/sidemenu/1"><i
+                class="fas fa-sliders-h"></i>Бокове меню</a></form>
+        </li>
+        <li>
+          <form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{user}}/links/1"><i
+                class="fas fa-share-alt"></i>Посилання</a></form>
+        </li>
+        <li>
+          <form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{user}}/user/1"><i
+                class="fas fa-user-shield"></i>Адміністратори</a></form>
+        </li>
+
+        <li>
+          <form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{user}}/create-content-folder"><i
+                class="fas fa-keyboard"></i>Редактор</a></form>
+        </li>
+        <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+        <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+        <li>
+          <form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i
+                class="fas fa-history"></i>Історія редагувань</a></form>
+        </li>
+        <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
+      </ul>
+      <div class="version">Версія 1.0</div>
+    </div>
+    <div class="header">
+      Всі доступні сторінки
+      <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
+        <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
+      </form>
+    </div>
+  </div>
+  <div class="table_container" style="overflow-y:scroll">
+    <table class="table-fill">
+      <thead>
+        <tr>
+          <th class="text-left">Назва Сторінки</th>
+          <th class="text-left">Приналежність до Головного Меню</th>
+          <th class="text-left">Назва Пункту Головного Меню</th>
+          <th class="text-left">Приналежність до Бокового Меню</th>
+          <th class="text-left">Назва Пункту Бокового Меню</th>
+          <th class="text-left">Мова</th>
+          <th class="text-left">Ключові слова</th>
+          <th class="text-left">Видалення сторінки</th>
+
+        </tr>
+      </thead>
+      <tbody class="table-hover">
+        {{#each contentPages}}
+        <tr>
+          <td class="text-left">{{page_title}}</td>
+          <td class="text-left">{{dependense_main}}</td>
+          <td class="text-left">{{dependense_main_title}}</td>
+          <td class="text-left">{{dependense_side}}</td>
+          <td class="text-left">{{dependense_side_title}}</td>
+          <td class="text-left">{{lang}}</td>
+          <td class="text-left">{{keywords}}</td>
+          <td class="left-text">
+            <form method="POST" action="/admin/{{../user}}/pages/delete/{{_id}}">
+              <button id="delete"><i class="fas fa-trash-alt"></i>Видалити</button>
+            </form>
+            <form method="GET" action="/admin/{{../user}}/edit-content/{{_id}}">
+              <button id="remake"><i class="fas fa-pencil-alt"></i>Редагувати</button>
+            </form>
+          </td>
+
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <ul>
+        {{#loop 1 pages 1}}
+          <li id="pages-container">
+            <a id="counter" href="./{{this}}"> {{this}} </a>
+          </li>
+        {{/loop}}
+      </ul>
+
+  </div>
+
+</body>
+
+</html>

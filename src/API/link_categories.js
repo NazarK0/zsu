@@ -1,0 +1,1 @@
+"use strict";const A="SOCIAL",E="USEFUL",I="QUALITY",L="PARTNER",U="MEDIA";module.exports={SOCIAL:A,USEFUL:E,QUALITY:I,PARTNER:L,MEDIA:U};

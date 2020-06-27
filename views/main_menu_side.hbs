@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/sidemenu.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="sidebar">
+            <h2>
+              <a href="/admin/{{user}}/main">
+                <img src="/css/logo.png" alt="" srcset="" style="width: 45px; height: 45px;">
+              </a>
+            </h2>
+            <ul>
+              <li style="border-top: 1px solid rgb(76, 79, 63);"><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{user}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
+              <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{user}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
+              <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{user}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
+              <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{user}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
+              <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{user}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
+              <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{user}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>
+              <li><form action="/admin/{{user}}/create-content-folder" method="GET"><a href="/admin/{{user}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
+              <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+              <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+              <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
+              <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
+            </ul>
+            <div class="version">Версія 1.0</div>
+        </div>
+        <div class="header">
+          Редагування бокового меню
+          <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
+            <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
+          </form>
+        </div>        
+      </div>
+      <div class="table_container">
+        <table class="table-fill">
+        <thead>
+          <tr>
+            <th class="text-left">Заголовок</th>
+            <th class="text-left">Контент</th>
+            <th class="text-left">Мова</th>
+            <th class="text-left">Редагування</th>
+          </tr>
+        </thead>
+          <tbody class="table-hover">
+            {{#each sidemenu}}
+            <tr>
+              <td class="text-left">{{title}}</td>
+              <td class="text-left">{{content_title}}</td>
+              <td class="text-left">{{lang}}</td>
+              <td class="left-text">
+                <form method="GET" action="/admin/{{../user}}/sidemenu/edit/{{_id}}">
+                <button id="remake"><i class="fas fa-pencil-alt"></i>Редагувати</button>
+                </form>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <ul>
+          {{#loop 1 pages 1}}
+            <li>
+              <a id="counter" href="./{{this}}">{{this}}</a>
+            </li>
+          {{/loop}}
+        </ul>
+  <form action="/admin/{{user}}/sidemenu/add" method="GET">
+      <button type="submit" id="adding_btn"><i class="fas fa-plus-square"></i> Додати пункт бокового меню</button>
+  </form>
+      </div>     
+  </body>
+</html>

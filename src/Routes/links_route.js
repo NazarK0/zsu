@@ -1,0 +1,1 @@
+"use strict";const e=require("express"),t=e.Router(),r=require("../Controllers/link_controller"),i=require("passport");t.get("/links/:page([0-9]+)",r.getLinks),t.route("/links/add").get(r.AddingForm).post(r.Addlink),t.route("/links/edit/:id").get(r.EditForm).post(r.EditLinks),t.post("/links/delete/:id",r.removeLink),module.exports=t;

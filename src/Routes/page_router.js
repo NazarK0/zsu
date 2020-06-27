@@ -1,0 +1,1 @@
+"use strict";const e=require("express"),r=require("../Controllers/page_controller"),t=e.Router();t.get("/pages/:page([0-9]+)",r.getAllPages),t.post("/pages/delete/:id",r.deletePage),module.exports=t;

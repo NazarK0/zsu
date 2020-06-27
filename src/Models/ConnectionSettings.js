@@ -1,0 +1,1 @@
+"use strict";class t{constructor(t,r){this.ip_db=t,this.running_port=r}getJSON(){return{db:this.ip_db,port:this.running_port}}}module.exports=t;

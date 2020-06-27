@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/Submenu"),n=require("../../Models/Main_Menu");module.exports.update_Child_Of_MainMenu=async a=>{const{mainmenu_id:i}=a.params,u=await e.find({parent_main:i});await n.findByIdAndUpdate(i,{submenu_item:u})};

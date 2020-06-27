@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/User");module.exports.userFind=async s=>await e.findById(s);

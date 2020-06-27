@@ -1,0 +1,1 @@
+"use strict";module.exports.getId=e=>e.baseUrl.substr(7),module.exports.getIDfromFullURL=e=>e.originalUrl.slice(7,31);

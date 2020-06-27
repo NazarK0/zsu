@@ -1,0 +1,1 @@
+"use strict";const e=require("moment"),t=e();module.exports.Date=()=>t.format("DD-MM-YYYY");

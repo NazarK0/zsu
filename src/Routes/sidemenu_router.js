@@ -1,0 +1,1 @@
+"use strict";const e=require("express"),d=require("../Controllers/sidemenu_controller"),t=e.Router();t.get("/sidemenu/:page([0-9]+)",d.getSidemenuList),t.route("/sidemenu/edit/:id").get(d.getEditSidemenu).post(d.postEditedSidemenu),t.route("/sidemenu/add").get(d.getAddSidemenu).post(d.postAddedSidemenu),t.post("/sidemenu/delete/:id",d.deleteSidemenu),module.exports=t;

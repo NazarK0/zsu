@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/Submenu");module.exports.updateContentForChildSub=async(t,d)=>{await e.findByIdAndUpdate({_id:t},{$set:{content:d}})};

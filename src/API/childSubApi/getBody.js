@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/Submenu"),d=require("../../Models/ChildSub");module.exports.getBody=async e=>await d.findById(e);

@@ -1,0 +1,77 @@
+<head>
+    <link rel="stylesheet" href="/css/input_form.css">
+    <link rel="stylesheet" href="/css/checkbox_style.css">
+    <link rel="stylesheet" href="/css/menu.css">
+</head>
+<body style = "background-color: #2f2f2f">
+    {{!-- <form method="POST" action="/admin/{{userid}}/all/submenu/{{submenu_id}}/child/{{action_type}}">    
+        Назва<br/>
+        <input name="title" type="text" value="{{title}}"/><br/>
+        Мова<br/>
+        <select id="dropdown" name="lang">
+      <option value="ua">Українська</option>
+      <option value="en">English</option>
+    </select>
+       <button><i class="fas fa-check-circle"></i>Зберегти</button>
+     <div style="visibility: {{vis}};">
+        {{#ContentList content_page_list}}
+        {{/ContentList}}  
+
+     </div>  
+    
+    </form>
+    <form method="POST" action="/admin/{{userid}}/all/submenu/{{submenu_id}}/child/remove/{{id}}">
+        <button   style="visibility:{{parameter}}">Del</button>
+    </form> --}}
+<nav class="menu">
+    <ul>
+          <li><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{userid}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
+          <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{userid}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
+          <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{userid}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
+          <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{userid}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
+          <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{userid}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
+          <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{userid}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>  
+          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
+          <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{userid}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+          <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{userid}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+          <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{userid}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
+          <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{userid}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
+    </ul>
+</nav> 
+
+<div class="container">
+    <form method="POST" action="/admin/{{userid}}/all/submenu/{{submenu_id}}/child/{{action_type}}">
+        <div class="row">
+      <div class="col-25">
+        <label for="login"><B>Назва</B></label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="title" placeholder="Назва" value="{{title}}" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="dropdown"><B>Мова</B></label>
+      </div>
+      <div class="col-75">
+        <select id="dropdown" name="lang">
+          <option value="ua">Українська</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-75" style="text-align: center;">
+            <h4>Доступні сторінки для додавання  контенту до пункту Меню</h4>
+            {{#ContentList content_page_list}}
+            {{/ContentList}}
+        </div>
+    </div>
+    <button id="save">Зберегти</button>
+    </form>
+    <form method="POST" action="/admin/{{userid}}/all/submenu/{{submenu_id}}/child/remove/{{id}}">
+      <button id="delete" style="visibility:{{parameter}}">Видалити</button>
+    </form>
+</div>    
+</body>
+</html>

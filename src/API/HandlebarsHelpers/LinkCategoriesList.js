@@ -1,0 +1,1 @@
+"use strict";const t=t=>t.length>0?e(t):"<p>Список порожній</p>";function e(t){return`<select id='link-type-dropdown' name='type' style="text-align: center; width: 50%;">${t.map(t=>`<option value='${t}'>${t}</option>`)}</select>`}module.exports=t;

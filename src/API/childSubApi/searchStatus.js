@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/ChildSub");module.exports.getSearchStatusChildSub=async t=>{const s=await e.findById(t);return Boolean(s)};
