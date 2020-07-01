@@ -10,7 +10,6 @@
   "author": "223 Teams (Rudyak and Vanivskiy)",
   "license": "ISC",
   "dependencies": {
-    "@babel/preset-env": "^7.9.6",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
