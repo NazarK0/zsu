@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Офіційний портал ЗСУ</title>
+    <link>http://zsu.mil.gov.ua/</link>
+    <description>Збройні сили України</description>
+    <language>uk-ua</language>
+    <image>
+      <url>http://zsu.mil.gov.ua:1337/css/logo.png</url>
+      <title>Збройні сили України</title>
+      <link>http://zsu.mil.gov.ua/</link>
+    </image>
+    <item>
+        <title>Зима 2014–2015 років</title>
+        <link>http://zsu.mil.gov.ua</link>
+        <description>ffdfdf</description>
+        <guid>1593868855919</guid>
+      </item>
+    </channel>
+  </rss>
+      

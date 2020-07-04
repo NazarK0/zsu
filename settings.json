@@ -1,5 +1,5 @@
 {
     "db_connect": "mongodb://localhost:27017/CMS",
-    "port": "1337"
-    
+    "port": "1337",
+    "host": "zsu.mil.gov.ua"
 }
