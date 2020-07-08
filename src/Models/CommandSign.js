@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),n=e.Schema,o=new n({name:String,url:String,base64:String});module.exports=e.model("command_sign",o);

@@ -1,1 +1,1 @@
-"use strict";const d=require("../../Models/ChildSub"),e=require("../../Models/Submenu");module.exports.updateChildOfChild=async e=>{const i=await d.find({parent_childSub:e});await d.findByIdAndUpdate(e,{child:i})};
+"use strict";const d=require("../../Models/ChildSub"),t=require("../../Models/Submenu");module.exports.updateChildOfChild=async t=>{const e=await d.find({parent_childSub:t});await d.findByIdAndUpdate(t,{child:e})},module.exports.updateContent=async(e,n)=>{await d.findByIdAndUpdate({_id:e},{$set:{content:n}}),await t.findByIdAndUpdate({_id:e},{$set:{content:n}})};

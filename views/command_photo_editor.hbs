@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/sidemenu.css">
+    <link rel="stylesheet" href="/css/input_form.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="sidebar">
+            <h2>
+              <a href="/admin/{{user}}/main">
+                <img src="/css/logo.png" alt="" srcset="" style="width: 45px; height: 45px;">
+              </a>
+            </h2>
+            <ul>
+              <li style="border-top: 1px solid rgb(76, 79, 63);"><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{user}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
+              <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{user}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
+              <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{user}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
+              <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{user}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
+              <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{user}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
+              <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{user}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>
+              <li><form action="/admin/{{user}}/create-content-folder" method="GET"><a href="/admin/{{user}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
+              <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+              <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+              <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
+              <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
+              <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
+            </ul>
+            <div class="version">Версія 1.0</div>
+        </div>
+        <div class="header">
+          Зображення для командувань ЗСУ
+          <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
+            <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
+          </form>
+        </div>        
+      </div>
+      <div class="table_container">
+        <table class="table-fill">
+          <thead>
+            <tr>
+              <th class="text-left">Зображення</th>
+              <th class="text-left">Видалити</th>
+            </tr>
+          </thead>
+          <tbody class="table-hover">
+            <tr>
+              <td colspan="2" style="text-align: center;">Фон</td>
+            </tr>
+            {{#each backgrounds}}
+            <tr>
+              <td class="text-left"><img src="data:image/jpeg;base64,{{base64}}" alt="{{name}}" height="90px"></td>
+              <td class="left-text">
+                <form method="POST" action="/admin/{{../user}}/command/bg/delete/{{_id}}">
+                  <button id="remake"><i class="fas fa-trash-alt"></i>Видалити</button>
+                </form>
+              </td>
+            </tr>
+            {{/each}}
+            <tr>
+              <td colspan="2" style="text-align: center;">Емблеми</td>
+            </tr>
+             {{#each signs}}
+            <tr>
+              <td class="text-left"><img src="data:image/jpeg;base64,{{base64}}" alt="{{name}}" height="60px"></td>
+              <td class="left-text">
+                <form method="POST" action="/admin/{{../user}}/command/sign/delete/{{_id}}">
+                  <button id="remake"><i class="fas fa-trash-alt"></i>Видалити</button>
+                </form>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <form id="send-bg_form" class="file-form send-bg_form" action="/admin/{{user}}/send-command-bg" method="post"
+                    enctype="multipart/form-data">
+            <p style="color: white;">Завантажити фонове зображення</p>
+            <input type="file" id="sign_photo" name="background_imgs" accept="image/*" multiple>
+            <button id="save_up" type="submit">Зберегти</button>
+        </form>
+        <form id="send-sign-photo_form" class="file-form send-sign-photo_form" action="/admin/{{user}}/send-command-sign"
+            method="post" enctype="multipart/form-data">
+            <p style="color: white;">Завантажити емблему</p>
+            <input type="file" id="sign_photo" name="sign_imgs" accept="image/*" multiple>
+            <button id="save_up" type="submit">Зберегти</button>
+        </form>
+        <form action="/admin/{{user}}/command/sign/delete" method="POST">
+            <button id="flush_em" type="submit">Очистити список емблем</button>
+        </form>
+            <form action="/admin/{{user}}/command/bg/delete" method="POST">
+            <button id="flush_bg" type="submit">Очистити список фонових зображень</button>
+        </form>
+      </div>     
+  </body>
+</html>
