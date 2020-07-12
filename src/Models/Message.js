@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),t=e.Schema,o=new t({email:String,text:String,date:String});module.exports=e.model("Message",o);

@@ -26,6 +26,7 @@
               <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
               <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
               <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
+              <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
               <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
               <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
             </ul>
@@ -83,6 +84,11 @@
         <form action="/admin/{{user}}/settings/rpp/command" method="POST">
             <label for="set_rpp_users">Командування (від 3 до 100):</label>
             <input type="number" name="set_rpp_command" min="3" max="100" value="{{command}}" id="set_rpp_command">
+            <button id="adding_btn"><i class="fas fa-save"></i> Зберегти</button>
+        </form>
+        <form action="/admin/{{user}}/settings/rpp/message" method="POST">
+            <label for="set_rpp_users">Повідомлення (від 3 до 100):</label>
+            <input type="number" name="set_rpp_message" min="3" max="100" value="{{message}}" id="set_rpp_message">
             <button id="adding_btn"><i class="fas fa-save"></i> Зберегти</button>
         </form>
       </div>     

@@ -10,6 +10,12 @@
       <title>Збройні сили України</title>
       <link>http://zsu.mil.gov.ua/</link>
     </image>
+    <item>
+        <title>Test News</title>
+        <link>http://zsu.mil.gov.ua</link>
+        <description>test</description>
+        <guid>1594472799009</guid>
+      </item>
     </channel>
   </rss>
       
