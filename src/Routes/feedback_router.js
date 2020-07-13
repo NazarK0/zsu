@@ -1,0 +1,1 @@
+"use strict";const e=require("express"),s=e.Router(),r=require("../Controllers/feedback_controller");s.get("/message/:page([0-9]+)",r.getAllMessage),s.get("/message/view/:id",r.ViewMessage),module.exports=s;
