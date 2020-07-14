@@ -1,1 +1,1 @@
-"use strict";const e=require("express"),s=e.Router(),r=require("../Controllers/feedback_controller");s.get("/message/:page([0-9]+)",r.getAllMessage),s.get("/message/view/:id",r.ViewMessage),module.exports=s;
+"use strict";const e=require("express"),s=e.Router(),t=require("../Controllers/feedback_controller");s.get("/message/:page([0-9]+)",t.getAllMessage),s.get("/message/view/:id",t.ViewMessage),s.post("/message/:id/send",t.postSendMessage),s.route("/email/add").get(t.getEmailAdd),module.exports=s;

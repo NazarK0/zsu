@@ -27,18 +27,19 @@
     </ul>
 </nav> 
     <div class="container">
-        <form action="/admin/{{userid}}/create-content-folder" method="post">
-        <div>
-            <h2 style="color: white;">Створити папку для контенту</h2>
-            <label id="content_folder_title__label" for="content_folder_title">
-                Назва, що складається з символів латинського
-                алфавіту та цифр, дефісу та нижнього підкреслення
-                не більше 35 символів
-            </label>
-            <input type="text" id="content_folder_title" name="content_folder_title" value="{{content_folder_title}}" maxlength="35" pattern="^[A-Za-z\d_-]+$" placeholder="Назва папки">
-        </div>
-        <button id="save">Зберегти</button>
-    </form>
+        <form id="send-files_form" class="file-form send-files_form" action="/admin/{{userid}}/send-page-files"
+          method="post" enctype="multipart/form-data">
+          <p style="color: white;">Завантажити файли на сторінку</p>
+          <input style="color: white;" type="file" id="page_files" name="page_files" multiple>
+          <input name="folder_path" value="{{folder_path}}" type="hidden">
+          <input name="folder_name" value="{{folder_name}}" type="hidden">
+          <button id="ok_button" type="submit">OK</button>
+        </form>  
+         <form id="redirect-editor_form" action="/admin/{{userid}}/redirect-editor" method="post">
+          <input name="folder_path" value="{{folder_path}}" type="hidden">
+          <input name="folder_name" value="{{folder_name}}" type="hidden">
+          <button id="ok_button" type="submit">Пропустити</button>
+        </form>
     </div>
 </body>
 </html>
