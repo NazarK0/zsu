@@ -33,12 +33,40 @@
           <input style="color: white;" type="file" id="main_photo" name="main_photo" accept="image/*">
           <input name="folder_path" value="{{folder_path}}" type="hidden">
           <input name="folder_name" value="{{folder_name}}" type="hidden">
-          <button id="ok_button" type="submit">OK</button>
+          <button id="ok_button" type="submit">Зберегти</button>
+        </form>
+        {{#ifCond name '!==' null }}
+          <h3>Поточне значення:</h3>
+          <table class="table-fill">
+            <thead>
+              <tr>
+                <th class="text-left">Зображення</th>
+                <th class="text-left">Дії</th>
+              </tr>
+            </thead>
+            <tbody class="table-hover">
+              <tr>
+                <td class="text-left"><img src="http://localhost:1337/images/{{folder_name}}/middlesize/{{name}}" alt="{{name}}" height="90px"/></td>
+                <td>
+                  <form method="POST" action="/admin/{{userid}}/delete/main-photo">
+                    <input name="folder_path" value="{{folder_path}}" type="hidden">
+                    <input name="folder_name" value="{{folder_name}}" type="hidden">
+                    <button id="delete"><i class="fas fa-trash-alt"></i>Видалити</button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        {{/ifCond}}
+         <form id="redirect-files_form" action="/admin/{{userid}}/redirect-slider" method="post">
+          <input name="folder_path" value="{{folder_path}}" type="hidden">
+          <input name="folder_name" value="{{folder_name}}" type="hidden">
+          <button id="ok_button" type="submit">Назад</button>
         </form>
         <form id="redirect-files_form" action="/admin/{{userid}}/redirect-files" method="post">
           <input name="folder_path" value="{{folder_path}}" type="hidden">
           <input name="folder_name" value="{{folder_name}}" type="hidden">
-          <button id="ok_button" type="submit">Пропустити</button>
+          <button id="ok_button" type="submit">Пропустити/ Продовжити</button>
         </form>
     </div>
 </body>

@@ -33,12 +33,47 @@
           <input style="color: white;" type="file" id="slider_photos" name="slider_photos" accept="image/*" multiple>
           <input name="folder_path" value="{{folder_path}}" type="hidden">
           <input name="folder_name" value="{{folder_name}}" type="hidden">
-          <button id="ok_button" type="submit">OK</button>
+          <button id="ok_button" type="submit">Зберегти</button>
         </form>
+        
+        {{#ifCond sliderImgs.length '>' 0}}
+          <h3>Поточні значення:</h3>
+          <table class="table-fill">
+            <thead>
+              <tr>
+                <th class="text-left">Зображення</th>
+                <th class="text-left">Дії</th>
+              </tr>
+            </thead>
+            <tbody class="table-hover">
+              {{#each sliderImgs}} 
+                <tr>
+                  <td class="text-left"><img src="http://localhost:{{../port}}/images/{{../folder_name}}/sliders/{{this}}" alt="{{this}}" height="90px"/></td>
+                  <td>
+                    <form method="POST" action="/admin/{{../userid}}/delete/slider-photo/{{this}}">
+                      <input name="folder_path" value="{{../folder_path}}" type="hidden">
+                      <input name="folder_name" value="{{../folder_name}}" type="hidden">
+                      <button id="delete"><i class="fas fa-trash-alt"></i>Видалити</button>
+                    </form>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          <form id="add-slider-photos_form" class="file-form add-slider-photos_form"
+          action="/admin/{{userid}}/add-slider-photos" method="post" enctype="multipart/form-data">
+            <p style="color: white;">Додати</p>
+            <input style="color: white;" type="file" id="add_slider_photos" name="slider_photos" accept="image/*" multiple>
+            <input name="folder_path" value="{{folder_path}}" type="hidden">
+            <input name="folder_name" value="{{folder_name}}" type="hidden">
+            <button id="ok_button" type="submit">Зберегти</button>
+          </form>
+        {{/ifCond}}
+    
         <form id="redirect-image_form" action="/admin/{{userid}}/redirect-image" method="post">
           <input name="folder_path" value="{{folder_path}}" type="hidden">
           <input name="folder_name" value="{{folder_name}}" type="hidden">
-          <button id="ok_button" type="submit">Пропустити</button>
+          <button id="ok_button" type="submit">Пропустити/ Продовжити</button>
         </form>
     </div>
 </body>

@@ -11,19 +11,19 @@
 <body style="background-color: #2f2f2f">
 <nav class="menu">
     <ul>
-          <li><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{userid}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
-          <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{userid}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
-          <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{userid}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
-          <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{userid}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
-          <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{userid}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
-          <li><form action="/admin/{{user}}/user" method="GET"><a href="/admin/{{userid}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>  
-          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
-          <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{userid}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
-          <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{userid}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
-          <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
-          <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
-          <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{userid}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
-          <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{userid}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
+        <li><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{userid}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
+        <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{userid}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
+        <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{userid}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
+        <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{userid}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
+        <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{userid}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
+        <li><form action="/admin/{{user}}/user" method="GET"><a href="/admin/{{userid}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>  
+        <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/create-content-folder"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
+        <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{userid}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
+        <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{userid}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
+        <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
+        <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
+        <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{userid}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
+        <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{userid}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
     </ul>
 </nav> 
     <div class="container">
@@ -33,12 +33,50 @@
           <input style="color: white;" type="file" id="page_files" name="page_files" multiple>
           <input name="folder_path" value="{{folder_path}}" type="hidden">
           <input name="folder_name" value="{{folder_name}}" type="hidden">
-          <button id="ok_button" type="submit">OK</button>
+          <button id="ok_button" type="submit">Зберегти</button>
         </form>  
+        {{#ifCond files.length '>' 0}}
+          <h3>Поточні значення:</h3>
+          <table class="table-fill">
+            <thead>
+              <tr>
+                <th class="text-left">Файли</th>
+                <th class="text-left">Дії</th>
+              </tr>
+            </thead>
+            <tbody class="table-hover">
+              {{#each files}} 
+                <tr>
+                  <td class="text-left"><p height="40px">{{this}}</p></td>
+                  <td>
+                    <form method="POST" action="/admin/{{../userid}}/delete/file/{{this}}">
+                      <input name="folder_path" value="{{../folder_path}}" type="hidden">
+                      <input name="folder_name" value="{{../folder_name}}" type="hidden">
+                      <button id="delete"><i class="fas fa-trash-alt"></i>Видалити</button>
+                    </form>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          <form id="add-files_form" class="file-form add-files_form"
+          action="/admin/{{userid}}/add-files" method="post" enctype="multipart/form-data">
+            <p style="color: white;">Додати</p>
+            <input style="color: white;" type="file" id="add_files" name="page_files" multiple>
+            <input name="folder_path" value="{{folder_path}}" type="hidden">
+            <input name="folder_name" value="{{folder_name}}" type="hidden">
+            <button id="ok_button" type="submit">Зберегти</button>
+          </form>
+        {{/ifCond}}
+         <form id="redirect-image_form" action="/admin/{{userid}}/redirect-image" method="post">
+          <input name="folder_path" value="{{folder_path}}" type="hidden">
+          <input name="folder_name" value="{{folder_name}}" type="hidden">
+          <button id="ok_button" type="submit">Назад</button>
+        </form>
          <form id="redirect-editor_form" action="/admin/{{userid}}/redirect-editor" method="post">
           <input name="folder_path" value="{{folder_path}}" type="hidden">
           <input name="folder_name" value="{{folder_name}}" type="hidden">
-          <button id="ok_button" type="submit">Пропустити</button>
+          <button id="ok_button" type="submit">Пропустити/ Продовжити</button>
         </form>
     </div>
 </body>
