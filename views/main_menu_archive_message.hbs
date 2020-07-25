@@ -33,39 +33,42 @@
             <div class="version">Версія 1.0</div>
         </div>
         <div class="header">
-          Історія
+           Архів Повідомлень
           <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
         <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
       </form>
         </div>        
       </div>
-     
-      <div class="table_container">
-        {{#if status}}
-        <a style="color: white;" href="/admin/{{user}}/history/xlsx">Завантажити на комп'ютер в Excel-форматі</a>
-        <p><a style="color: white;" href="/admin/{{user}}/archive/1">Архів Повідомлень</a></p>
-        <div style="position:absolute; right: 8px;">
-          <form method="POST" action="/admin/{{user}}/history/delete">
-            <button id="delete-history">Очистити історію</button>
+       <div style="position:absolute; right: 8px;">
+          <form method="POST" action="/admin/{{user}}/archive/clear">
+            <button id="delete-history">Очистити Архів</button>
         </form>
         </div>
-        {{/if}}
+      <div class="table_container">
         <table class="table-fill">
         <thead>
           <tr>
-            <th class="text-left">Тип</th>
-            <th class="text-left">Операція</th>
-            <th class="text-left">Користувач</th>
-            <th class="text-left">Дата створення</th>
+            <th class="text-left">Адреса відправника запиту</th>
+            <th class="text-left">Дата відправлення</th>
+              <th class="text-left">Логін відповідача</th>
+                <th class="text-left">Дата відповіді</th>
+             <th class="text-left">Переглянути</th>
+
+          
           </tr>
         </thead>
           <tbody class="table-hover">
-            {{#each history}}
+            {{#each archive}}
             <tr>
-              <td class="text-left">{{type_content}}</td>
-              <td class="text-left">{{operation}}</td>
-              <td class="text-left">{{user}}</td>
-              <td class="text-left">{{create_date}}</td>
+              <td class="text-left">{{email}}</td>
+              <td class="text-left">{{date}}</td>
+              <td class="text-left">{{login_response}}</td>
+              <td class="text-left">{{date_response}}</td>
+              <td class="left-text">
+                <form method="GET" action="/admin/{{../user}}/archive/view/{{_id}}">
+                <button id="remake"><i class="fas fa-pencil-alt"></i>Переглянути</button>
+                </form>
+              </td>
             </tr>
             {{/each}}
           </tbody>
@@ -73,11 +76,13 @@
       <ul>
         {{#loop 1 pages 1}}
           <li id="pages-container">
-            <a id="counter" href="./{{this}}">  {{this}}  </a>
+            <a id="counter" href="./{{this}}">{{this}}</a>
           </li>
         {{/loop}}
       </ul>
+      {{!-- <form action="/admin/{{user}}/email/add" method="GET">
+          <button id="adding_btn"><i class="fas fa-plus-square"></i> Додати поштовй аккаунт</button>
+      </form> --}}
       </div>     
-     
   </body>
 </html>

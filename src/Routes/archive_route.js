@@ -1,0 +1,1 @@
+"use strict";const e=require("express"),r=require("../Controllers/archive_controller"),i=e.Router();i.get("/archive/:page",r.getAllArchive),i.get("/archive/view/:id",r.getOneArchiveMessage),i.post("/archive/clear",r.ClearArchive),module.exports=i;

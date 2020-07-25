@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"CMS.submenus"}],"uuid":"50ba4319333447c1a6e7d8bfc61fd1ee"}

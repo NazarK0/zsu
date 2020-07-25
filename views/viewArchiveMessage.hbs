@@ -22,7 +22,7 @@
       </ul>
   </nav> 
   <div class="container">
-    <form method="POST" action="/admin/{{userid}}/message/{{id}}/send">
+    <form method="GET" action="/admin/{{user}}/archive/1">
       <div class="row">
         <div class="col-100">
           <label for="email_user"><B>Адреса відправника</B></label>
@@ -33,30 +33,25 @@
       </div>
       <div class="row">
         <div class="col-100">
-          <label for="email_text"><B>Вхідне Повідомлення</B></label>
+          <label for="email_text"><B>Вхідне Повідомлення: <b style="color: white;">{{date}}</b></B></label>
           <textarea id="email_text" readonly>{{text}}</textarea>
         </div>
       </div>
       <div class="row">
         <div class="col-100">
-          <label for="text-response"><B>Поле для Відповіді</B></label>
-          <textarea id="text-response" name="text_response" required></textarea>
+          <label for="text-response"><B>Текст Відповіді: <b style="color: white;">{{date_response}}</b></B></label>
+          <textarea id="text-response" name="text_response" readonly>{{text_response}}</textarea>
         </div>
       </div>
-      <div class="row">
-        <label>Ваш поточна електронна Адреса: <label style="color:red">{{email_current_user}}</label></label>
-
-      </div>
-      <div class="row">
+        <div class="row">
         <div class="col-100">
-          <label for="email_password"><B>Пароль від пошти</B></label>
+          <label for="email_user"><B>Логін Відповідача</B></label>
         </div>
         <div class="col-100">
-          <input type="password" id="email-passport" name="email_password" placeholder="Email password" required>
+          <input type="text" id="email_user" name="email_user" placeholder="Email" value="{{login_response}}" readonly>
         </div>
       </div>
-
-      <button id="save" type="submit">Відповісти</button>
+      <button id="save" type="submit">Повернутись до Архіву</button>
     </form>
   </div>
 </body>

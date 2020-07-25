@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"CMS.corps_backgrounds"}],"uuid":"295ae9ca074f43dbabb8d1ce87b91727"}

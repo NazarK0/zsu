@@ -1,1 +1,1 @@
-"use strict";const e=require("moment"),t=e();module.exports.Date=()=>t.format("DD-MM-YYYY");
+"use strict";const e=require("moment"),t=e();module.exports.Date=()=>t.format("DD-MM-YYYY"),module.exports.FullDate=()=>t.format("DD-MM-YYYY:HH-mm");
