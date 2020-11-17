@@ -1,92 +1,88 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
-  <title></title>
-  <link rel="stylesheet" href="/css/sidemenu.css">
+  <title>Опубліковані Новини</title>
+  <link rel="stylesheet" href="/css/input_form.css">
   <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="/js/news-filter.js" defer></script>
 </head>
-
 <body>
-  <div class="wrapper">
-    <div class="sidebar">
-      <h2>
-        <a href="/admin/{{user}}/main">
-          <img src="/css/logo.png" alt="" srcset="" style="width: 45px; height: 45px;">
-        </a>
-      </h2>
+  <header class="header">
+    <h1>Опубліковані Новини</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header> 
+  {{> sidebar id=user}}
+  <div class="table_container cp-big">
+    <div class="control-panel">
+      <div id="filter-form" class="filter-form">
+        <input id="filter-date" type="date" data-date-format="DD-MMMM-YYYY" >
+        <select id="filter-news-parameter">
+            {{#each news_type_constant}} 
+          <option id="{{id}}">{{value}}</option>
+          {{/each}}
+        </select>
+          <select id="filter-language">
+          <option id="all">Усі Мови</option>
+          <option id="ua">ua</option>
+          <option id="en">en</option>
+        </select>
+        <input id="filter-title" type="search" placeholder="Заголовок">  
+      </div>
+      <div class="control-buttons">
+        <a href="/admin/{{user}}/news-cancel/1" class="button accent-btn canceled-news">Скасовані</a>
+        <a href="/admin/{{user}}/news/category/1"class="button accent-btn canceled-news">Категорії Новин</a>
+        <button id="filter-active" class="button primary-btn filter-btn">Фільтрувати</button>   
+        <button id="disabled-filter" class="button primary-btn filter-btn">Cкинути фільтр</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <table class="table-fill" id="table">
+        <thead>
+          <tr>
+            <th>Заголовок</th>
+            <th class="news-type">Тип Новини</th>
+            <th class="date">Дата</th>
+            <th class="date">Час</th>
+            <th class="lang">Мова</th>
+            <th>Ключові слова</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover" id="table-rows">
+          {{#each news}} 
+            <td id="news-title" class="text-left">{{page_title}}</td>
+            <td id="news-type" class="text-center">{{page_subclass}}</td>
+            <td id="date" class="text-center">{{date}}</td>
+            <td id="date" class="text-center">{{time}}</td>
+            <td id="lang-type"class="text-center">{{lang}}</td>
+            <td class="text-left">{{keywords}}</td>
+            <td class="text-center">
+              <form method="GET" action="/admin/{{../user}}/edit-content/{{_id}}">
+                <button class="button secondary-btn">Редагувати</button>
+              </form>
+              <form method="POST" action="/admin/{{../user}}/news-cancel/{{_id}}">
+                <button class="button secondary-btn">Скасувати публікацію</button>
+              </form>
+              <form method="POST" action="/admin/{{../user}}/news/delete/{{_id}}">
+                <button class="button delete-btn">Видалити</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
       <ul>
-        <li style="border-top: 1px solid rgb(76, 79, 63);"><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{user}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
-              <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{user}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
-              <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{user}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
-              <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{user}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
-              <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{user}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
-              <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{user}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>
-              <li><form action="/admin/{{user}}/send-slider-photos" method="GET"><a href="/admin/{{user}}/send-slider-photos"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
-              <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
-              <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
-              <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
-              <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
-              <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
-              <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
-      </ul>
-      <div class="version">Версія 1.0</div>
-    </div>
-    <div class="header">
-      Редагування новин
-      <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
-        <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
-      </form>
-    </div>
-  </div>
-  <div class="table_container">
-    {{#if status}}
-    <a style="color: white;" href="/admin/{{user}}/news/xlsx">Завантажити на комп'ютер в Excel-форматі</a>
-    {{/if}}
-    <table class="table-fill">
-      <thead>
-        <tr>
-          <th class="text-left">Заголовок</th>
-          <th class="text-left">Тип Новини</th>
-          <th class="text-left">Дата</th>
-          <th class="text-left">Мова</th>
-          <th class="text-left">Ключові слова</th>
-          <th class="text-left">Видалення новини</th>
-        </tr>
-      </thead>
-      <tbody class="table-hover">
-        {{#each news}} 
-        <tr>
-          <td class="text-left">{{page_title}}</td>
-          <td class="text-left">{{news_type}}</td>
-          <td class="text-left">{{date}}</td>
-          <td class="text-left">{{lang}}</td>
-          <td class="text-left">{{keywords}}</td>
-          <td class="left-text">
-            <form method="POST" action="/admin/{{../user}}/news/delete/{{_id}}">
-              <button id="delete"><i class="fas fa-trash-alt"></i>Видалити</button>
-            </form>
-            <form method="GET" action="/admin/{{../user}}/content/{{_id}}/edit-slider">
-              <button id="remake"><i class="fas fa-pencil-alt"></i>Редагувати</button>
-            </form>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-      
-    </table>
-    <ul>
         {{#loop 1 pages 1}}
           <li id="pages-container">
             <a id="counter" href="./{{this}}">{{this}}</a>
           </li>
         {{/loop}}
       </ul>
-
+    </div>
   </div>
-
 </body>
-
 </html>

@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/Main_Menu"),t=require("../SubMenuAPI/getAllChildMain");module.exports=async()=>{const i=[],n=await e.find();for(let e=0;e<n.length;e++)n[e].submenu_item=await t(n[e].id),i.push(n[e]);return n};

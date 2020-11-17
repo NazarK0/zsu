@@ -1,0 +1,1 @@
+"use strict";module.exports={HISTORY_WAR:"Історія війни",LINKS:"Корисні посилання",CURRENT:"Актуальне",CASUAL:"Звичайна"};

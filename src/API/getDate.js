@@ -1,1 +1,1 @@
-"use strict";const e=require("moment"),t=e();module.exports.Date=()=>t.format("DD-MM-YYYY"),module.exports.FullDate=()=>t.format("DD-MM-YYYY:HH-mm");
+"use strict";const t=require("moment"),e=t();module.exports.Date=()=>e.format("DD-MM-YYYY"),module.exports.FullDate=()=>e.format("DD-MM-YYYY:HH-mm"),module.exports.parseUTCDateFormat=e=>t.utc(e).format("DD-MM-YY"),module.exports.getTimeFromUTC=e=>t.utc(e).format("HH:mm");

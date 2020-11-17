@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/User");module.exports=async(o,t)=>(await e.findById(o).select({_id:0,operation:1})).operation.reduce((e,o)=>o.category===t?e.concat(o.ids):e,[]);

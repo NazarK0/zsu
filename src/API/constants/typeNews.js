@@ -1,0 +1,1 @@
+"use strict";module.exports={ALL:"Усі Типи",MAIN:"Головна",CURRENT:"Актуальна",CASUAL:"Звичайна"};

@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),o=e.Schema,r=new o({name:String,url:String,base64:String});module.exports=e.model("category_photo",r);

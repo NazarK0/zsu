@@ -1,0 +1,59 @@
+<head>
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/checkbox_style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+<body style = "background-color: #2f2f2f">
+  {{> menu id=userid}}
+  <div class="container">
+    <h3 class="title">Категорія {{title_ua}} </h3>
+    <form method="POST" action="/admin/{{userid}}/news/category/{{action_type}}">
+      <div class="row">
+        <div class="col-45">
+          <label for="corps_title_ua"><B>Назва Українською</B></label>
+        </div>
+        <div class="col-55">
+          <input type="text" name="title_ua" id="corps_title_ua" class="stretch" placeholder="Назва" value="{{title_ua}}" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-45">
+          <label for="corps_title_en"><B>Назва Англійською</B></label>
+        </div>
+        <div class="col-55">
+          <input type="text" name="title_en" id="corps_title_en" class="stretch" placeholder="Назва" value="{{title_en}}" required>
+        </div>
+      </div>
+        <h2 class="title">Поточні значення</h3>
+        {{#if current_photo}}
+          <div class="inline">
+            <label><B>Фото:</B></label>
+            <img src="data:image/jpeg;base64,{{curent_photo.base64}}" alt="{{current_bg_name}}" width="300px">
+            <input type="hidden" name="current_bg_id" value="{{curent_photo._id}}">
+          </div>
+        {{else}}
+          <p class="label"><B>Фон відсутній</B></p>
+        {{/if}}
+        <h2 class="title">Галерея</h2>
+        <div>
+          <p class="label"><B>Фон</B></p>
+          {{#BackgroundCommandsList category_photos}}
+          {{/BackgroundCommandsList}}
+        </div>
+      </div>
+      <button type="submit" class="button secondary-btn">Зберегти</button>
+    </form>
+    <form method="GET" action="/admin/{{userid}}/news/category/1">
+      <button type="submit" class="button secondary-btn" style="visibility:{{parameter}}">Відмінити</button>
+    </form>
+    <form method="POST" action="/admin/{{userid}}/news/category/remove/{{categoryId}}">
+      <button type="submit" class="button delete-btn" style="visibility:{{parameter}};">Видалити</button>
+    </form>
+  </div>
+</body>
+</html>
+{{!-- views by Vanivskyi --}}

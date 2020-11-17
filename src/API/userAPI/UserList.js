@@ -1,1 +1,1 @@
-"use strict";const e=require("../../Models/User"),{userFind:r}=require("./findUser");module.exports.NormaLizeUserList=async()=>{const r=await e.find().select({_id:1,login:2,email:3,operation:4,creator:5});return JSON.parse(JSON.stringify(r))};
+"use strict";const e=require("../../Models/User");module.exports.NormaLizeUserList=async i=>{let r={};i.length&&(r={_id:{$in:i}});const s=await e.find(r).select({_id:1,login:2,email:3,operation:4,description_user:5,creator:6});return JSON.parse(JSON.stringify(s))};

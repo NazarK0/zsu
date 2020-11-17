@@ -1,88 +1,82 @@
 <head>
-    <link rel="stylesheet" href="/css/input_form.css">
-    <link rel="stylesheet" href="/css/checkbox_style.css">
-    <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/checkbox_style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body style = "background-color: #2f2f2f">
-<nav class="menu">
-    <ul>
-          <li><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{userid}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
-          <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{userid}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
-          <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{userid}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
-          <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{userid}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
-          <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{userid}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
-          <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{userid}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>  
-          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/send-slider-photos"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
-          <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{userid}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
-          <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{userid}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
-          <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
-          <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
-          <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{userid}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
-          <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{userid}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
-    </ul>
-</nav>
-
-<div class="container">
+  {{> menu id=userid}}
+  <div class="container">
+    <h3 class="title">Вид/рід військ "{{title_ua}}"</h3>
     <form method="POST" action="/admin/{{userid}}/corps/{{action_type}}">
-        <div class="row">
-            <div class="col-25">
-                <label for="corps_title_ua"><B>Назва Українською</B></label>
-            </div>
-            <div class="col-75">
-                <input type="text" name="title_ua" id="corps_title_ua" placeholder="Назва Українською" value="{{title_ua}}" required>
-            </div>
-             <div class="col-25">
-                <label for="corps_title_en"><B>Назва Англійською</B></label>
-            </div>
-            <div class="col-75">
-                <input type="text" name="title_en" id="corps_title_en" placeholder="Назва Англійською" value="{{title_en}}" required>
-            </div>
+      <div class="row">
+        <div class="col-45">
+          <label for="corps_title_ua"><B>Назва Українською</B></label>
         </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="link_title"><B>Посилання</B></label>
-            </div>
-            <div class="col-75">
-                <input type="text" name="link" id="" placeholder="Посилання" value="{{link}}" required>
-            </div>
+        <div class="col-55">
+          <input type="text" name="title_ua" id="corps_title_ua" class="stretch" placeholder="Назва Українською" value="{{title_ua}}" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-45">
+          <label for="corps_title_en"><B>Назва Англійською</B></label>
+        </div>
+        <div class="col-55">
+          <input type="text" name="title_en" id="corps_title_en" class="stretch" placeholder="Назва Англійською" value="{{title_en}}" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="link_title"><B>Посилання</B></label>
+        </div>
+        <div class="col-75">
+          <input type="text" name="link" class="stretch" placeholder="Посилання" value="{{link}}" required>
+        </div>
+      </div>
+      <div>
+        <h2 class="title">Поточні значення</h3>
+        {{#if current_bg_id}}
+          <div class="inline">
+            <label><B>Фон:</B></label>
+            <img src="data:image/jpeg;base64,{{current_bg_base64}}" alt="{{current_bg_name}}" width="300px">
+            <input type="hidden" name="current_bg_id" value="{{current_bg_id}}">
+          </div>
+        {{else}}
+          <p class="label"><B>Фон відсутній</B></p>
+        {{/if}}
+        {{#if current_sign_id}}
+          <div class="inline">
+            <label><B>Емблема:</B></label>
+            <img src="data:image/jpeg;base64,{{current_sign_base64}}" alt="{{current_sign_name}}" width="60px">
+            <input type="hidden" name="current_sign_id" value="{{current_sign_id}}">
+          </div>
+        {{else}}
+          <p class="label"><b>Емблема відсутня</b></p>
+        {{/if}}
+        <h2 class="title">Галерея</h2>
+        <div>
+          <p class="label"><B>Фон</B></p>
+          {{#BackgroundCorpsList background}}
+          {{/BackgroundCorpsList}}
         </div>
         <div>
-                <h3 style="color: white;">Поточні значення</h3>
-                {{#if current_bg_id}}
-                    <div style="display:inline-block;">
-                        <label><B>Фон:</B></label>
-                        <img src="data:image/jpeg;base64,{{current_bg_base64}}" alt="{{current_bg_name}}" height="200px">
-                        <input type="hidden" name="current_bg_id" value="{{current_bg_id}}">
-                    </div>
-                {{else}}
-                    <p><B>Фон відсутній</B></p>
-                {{/if}}
-                {{#if current_sign_id}}
-                    <div style="display:inline-block;">
-                        <label><B>Емблема:</B></label>
-                        <img src="data:image/jpeg;base64,{{current_sign_base64}}" alt="{{current_sign_name}}" height="60px">
-                        <input type="hidden" name="current_sign_id" value="{{current_sign_id}}">
-                    </div>
-                {{else}}
-                    <p style="color: white;">Емблема відсутня</p>
-                {{/if}}
-                <h2 style="color: white; margin-left: 43%;">Галерея</h2>
-                <div>
-                    <p style="color: white;"><B>Фон</B></p>
-                    {{#BackgroundCorpsList background}}
-                    {{/BackgroundCorpsList}}
-                </div>
-                <div>
-                    <p style="color: white;"><B>Емблема</B></p>
-                    {{#SignCorpsList sign}}
-                    {{/SignCorpsList}}
-                </div>
-            </div>
-            <button id="save">Зберегти</button>
+          <p class="label"><B>Емблема</B></p>
+          {{#SignCorpsList sign}}
+          {{/SignCorpsList}}
+        </div>
+      </div>
+      <button type="submit" class="button secondary-btn">Зберегти</button>
     </form>
-    <form method="POST" action="/admin/{{userid}}/corps/delete/{{corpsid}}"  style="border-bottom: 1px solid #6f6d5b">
-        <button id="delete" style="visibility:{{parameter}}; margin-bottom: 5px;">Видалити</button>
+    <form method="GET" action="/admin/{{userid}}/corps/1" class="inline">
+      <button type="submit" class="button secondary-btn" style="visibility:{{parameter}}">Відмінити</button>
     </form>
-</div>
+    <form method="POST" action="/admin/{{userid}}/corps/delete/{{corpsid}}" class="inline">
+      <button type="submit" class="button delete-btn" style="visibility:{{parameter}};">Видалити</button>
+    </form>
+  </div>
 </body>
 </html>
+{{!-- views by Vanivskyi --}}

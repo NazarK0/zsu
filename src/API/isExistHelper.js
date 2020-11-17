@@ -1,0 +1,1 @@
+"use strict";const e=require("fs"),i=(i,s)=>{const n=e.readdirSync(s).find(e=>e.includes(i));return n?{isImgExist:!0,filename:n}:{isImgExist:!1,filename:null}};module.exports=i;

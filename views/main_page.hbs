@@ -1,119 +1,92 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="uk" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title></title>
-  <link rel="stylesheet" href="/css/sidemenu.css">
+  <title>Опубліковані сторінки</title>
+  <script src="/js/pages-filter.js" defer></script>
   <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
-
 <body>
-  <div class="wrapper">
-    <div class="sidebar">
-      <h2>
-        <a href="/admin/{{user}}/main">
-          <img src="/css/logo.png" alt="" srcset="" style="width: 45px; height: 45px;">
-        </a>
-      </h2>
+  <header class="header">
+    <h1>Опубліковані сторінки</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header>
+  {{> sidebar id=user}}
+  <div class="table_container cp-big">
+    <div class="control-panel">
+      <div id="filter-form" class="filter-form">
+        <select name="filter-main" id="filter-main" class="filter-main">
+          <option id="all">Усі сторінки </option>
+          <option>Усі сторінки Головного Меню</option>
+          <option>Усі сторінки Бокового Меню</option>
+          {{#each menu_names}}
+          <option>{{title}}</option>
+          {{/each}}
+        </select>
+        <select name="language" id="filter-language">
+          <option id="all">Усі Мови</option>
+          <option>ua</option>
+          <option>en</option>
+        </select>
+        <input type="search" placeholder="Назва Сторінки" id="filter-title">
+      </div>
+      <div class="control-buttons">
+        <a href="/admin/{{user}}/pages/cancel-publish/1" class="button accent-btn published">Скасовані</a>
+        <button id="filter-active" class="button primary-btn filter-btn">Фільтрувати</button>
+        <button id="disabled-filter" class="button primary-btn filter-btn">Скинути фільтр</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <table class="table-fill" id="table">
+        <thead>
+          <tr>
+            <th>Назва</th>
+            <th class="page-check">Головне Меню</th>
+            <th>Пункт Головного Меню</th>
+            <th class="page-check">Бокове Меню</th>
+            <th>Пункт Бокового Меню</th>
+            <th class="lang">Мова</th>
+            <th>Ключові слова</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each contentPages}}
+          <tr>
+            <td class="text-left" id="page-title">{{page_title}}</td>
+            <td class="text-center" id="page-dependense-main">{{dependense_main}}</td>
+            <td class="text-center" id="page-dependense-main-title">{{dependense_main_title}}</td>
+            <td class="text-center" id="page-dependense-side">{{dependense_side}}</td>
+            <td class="text-center" id="page-dependense-side-title">{{dependense_side_title}}</td>
+            <td class="text-center" id="page-language">{{lang}}</td>
+            <td class="text-left">{{keywords}}</td>
+            <td class="text-center">
+              <form method="GET" action="/admin/{{../user}}/edit-content/{{_id}}">
+                <button class="button secondary-btn">Редагувати</button>
+              </form>
+              <form method="POST" action="/admin/{{../user}}/pages/cancel-publish/{{_id}}">
+                <button class="button secondary-btn">Cкасувати публікацію</button>
+              </form>
+                <form method="POST" action="/admin/{{../user}}/pages/delete/{{_id}} ">
+                <button class="button delete-btn">Видалити</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
       <ul>
-        <li style="border-top: 1px solid rgb(76, 79, 63);">
-          <form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{user}}/mainmenu"><i
-                class="fas fa-bars"></i>Головне меню</a></form>
-        </li>
-        <li>
-          <form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{user}}/news/1"><i
-                class="fas fa-newspaper"></i>Новини</a></form>
-        </li>
-        <li>
-          <form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{user}}/pages/1"><i
-                class="fas fa-file"></i>Сторінки</a></form>
-        </li>
-        <li>
-          <form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{user}}/sidemenu/1"><i
-                class="fas fa-sliders-h"></i>Бокове меню</a></form>
-        </li>
-        <li>
-          <form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{user}}/links/1"><i
-                class="fas fa-share-alt"></i>Посилання</a></form>
-        </li>
-        <li>
-          <form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{user}}/user/1"><i
-                class="fas fa-user-shield"></i>Адміністратори</a></form>
-        </li>
-
-        <li>
-          <form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{user}}/send-slider-photos"><i
-                class="fas fa-keyboard"></i>Редактор</a></form>
-        </li>
-        <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
-        <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
-        <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
-        <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
-        <li>
-          <form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i
-                class="fas fa-history"></i>Історія редагувань</a></form>
-        </li>
-        <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
-      </ul>
-      <div class="version">Версія 1.0</div>
-    </div>
-    <div class="header">
-      Всі доступні сторінки
-      <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
-        <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
-      </form>
-    </div>
-  </div>
-  <div class="table_container" style="overflow-y:scroll">
-    <table class="table-fill">
-      <thead>
-        <tr>
-          <th class="text-left">Назва Сторінки</th>
-          <th class="text-left">Приналежність до Головного Меню</th>
-          <th class="text-left">Назва Пункту Головного Меню</th>
-          <th class="text-left">Приналежність до Бокового Меню</th>
-          <th class="text-left">Назва Пункту Бокового Меню</th>
-          <th class="text-left">Мова</th>
-          <th class="text-left">Ключові слова</th>
-          <th class="text-left">Видалення сторінки</th>
-
-        </tr>
-      </thead>
-      <tbody class="table-hover">
-        {{#each contentPages}}
-        <tr>
-          <td class="text-left">{{page_title}}</td>
-          <td class="text-left">{{dependense_main}}</td>
-          <td class="text-left">{{dependense_main_title}}</td>
-          <td class="text-left">{{dependense_side}}</td>
-          <td class="text-left">{{dependense_side_title}}</td>
-          <td class="text-left">{{lang}}</td>
-          <td class="text-left">{{keywords}}</td>
-          <td class="left-text">
-            <form method="POST" action="/admin/{{../user}}/pages/delete/{{_id}}">
-              <button id="delete"><i class="fas fa-trash-alt"></i>Видалити</button>
-            </form>
-            <form method="GET" action="/admin/{{../user}}/content/{{_id}}/edit-slider">
-              <button id="remake"><i class="fas fa-pencil-alt"></i>Редагувати</button>
-            </form>
-          </td>
-
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <ul>
         {{#loop 1 pages 1}}
           <li id="pages-container">
             <a id="counter" href="./{{this}}"> {{this}} </a>
           </li>
         {{/loop}}
       </ul>
-
+    </div>
   </div>
-
 </body>
-
 </html>

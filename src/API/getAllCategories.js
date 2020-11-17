@@ -1,0 +1,1 @@
+"use strict";const e=require("../Models/Category"),r=async()=>{const r=await e.find();return JSON.parse(JSON.stringify(r))};module.exports=r;

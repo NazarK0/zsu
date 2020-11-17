@@ -1,1 +1,1 @@
-"use strict";const t=require("mongoose"),e=t.Schema,o=new e({title:String,contact:String,user_id:String});module.exports=t.model("contacts",o);
+"use strict";const t=require("mongoose"),e=t.Schema,n=new e({title:String,contact:String,type:String,user_id:String});module.exports=t.model("contacts",n);

@@ -5,76 +5,45 @@
     <title></title>
     <link rel="stylesheet" href="/css/sidemenu.css">
     <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" href="/css/main_styles.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   </head>
   <body>
-      <div class="wrapper">
-          <div class="sidebar">
-            <h2>
-              <a href="/admin/{{user}}/main">
-                <img src="/css/logo.png" alt="" srcset="" style="width: 45px; height: 45px;">
-              </a>
-            </h2>
-            <ul>
-              <li style="border-top: 1px solid rgb(76, 79, 63);"><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{user}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
-              <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{user}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
-              <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{user}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
-              <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{user}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
-              <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{user}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
-              <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{user}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>
-              <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{user}}/send-slider-photos"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
-              <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{user}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
-              <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{user}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
-              <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
-              <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{user}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
-              <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{user}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
-              <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{user}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
-            </ul>
-            <div class="version">Версія 1.0</div>
-        </div>
-        <div class="header">
-          Редагування підпунктів: {{name_of_parent}}
-          <form id="exit_form" action="/admin/{{user}}/exit" method="GET">
-        <button id="exit"><i class="fas fa-power-off"></i> ВИХІД</button>
+    <header class="header">
+      <h1>Редагування підменю: {{name_of_parent}}</h1>
+      <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+    </header>
+    {{> sidebar id=user}}
+    <div class="table_container">
+      <form action="/admin/{{user}}/all/{{mainmenu_id}}/submenu/add" method="GET">
+        <button class="button accent-btn">Додати</button>
       </form>
-        </div>        
-      </div>
-      
-     
-      <div class="table_container" style="overflow-y:scroll; margin-left:240px;">
-        <table class="table-fill">
+      <table class="table-fill">
         <thead>
           <tr>
             <th>Назва</th>
             <th>Мова</th>
-            <th>Редагувати даний пункт Меню</th>
-            <th>Підпункт даного меню</th>
+            <th>Дії</th>
           </tr>
         </thead>
-          <tbody class="table-hover">
-            {{#each submenu}}
-            <tr>
-              <td class="text-left">{{title}}</td>
-              <td class="text-left">{{lang}}</td>
-              <td class="left-text">
-                  <form method="GET" action="/admin/{{../user}}/all/{{../mainmenu_id}}/submenu/edit/{{_id}}">
-                  <button id="add"><i class="fas fa-plus-square"></i> Редагувати</button>
-                </form>
-                </form>
-              </td>
-              <td>
-                <form action="/admin/{{../user}}/all/submenu/{{_id}}/child">
-               <button id="add"><i class="fas fa-plus-square"></i> Додати</button>
-                </form>
-              </td>  
-            </tr>
-            {{/each}}
-          </tbody>
+        <tbody class="table-hover">
+          {{#each submenu}}
+          <tr>
+            <td class="text-left">{{title}}</td>
+            <td class="text-left">{{lang}}</td>
+            <td class="left-text">
+              <form method="GET" action="/admin/{{../user}}/all/{{../mainmenu_id}}/submenu/edit/{{_id}}">
+                <button class="button primary-btn">Редагувати</button>
+              </form>
+              <form action="/admin/{{../user}}/all/submenu/{{_id}}/child">
+                <button class="button secondary-btn">Перейти в Підменю</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
       </table>
-      <form action="/admin/{{user}}/all/{{mainmenu_id}}/submenu/add" method="GET">
-          <button id="adding_btn"><i class="fas fa-plus-square"></i> Додати пункт Меню</button>
-      </form>
-      </div>     
-      
+    </div>     
   </body>
 </html>

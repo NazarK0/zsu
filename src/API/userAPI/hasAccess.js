@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/User");module.exports=async(t,r)=>{try{const o=await e.findById(t).select({_id:0,operation:1});return o.operation.map(e=>e.category).includes(r)}catch(o){return!1}};

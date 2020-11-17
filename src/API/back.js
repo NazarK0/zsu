@@ -1,0 +1,1 @@
+"use strict";const t=(t,c)=>{try{c.redirect("..")}catch(e){console.log(e)}};module.exports=t;

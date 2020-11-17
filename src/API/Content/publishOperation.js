@@ -1,0 +1,1 @@
+"use strict";const t=require("../../Models/Content");async function e(e){return(await t.findByIdAndUpdate({_id:e},{$set:{public_status:"cancel"}})).page_title}async function i(e){return(await t.findByIdAndUpdate({_id:e},{$set:{public_status:"active",date:require("moment")().format("YYYY-MM-DDTHH:mm")}})).page_title}module.exports={CancelPublish:e,Publish:i};

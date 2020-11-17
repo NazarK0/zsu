@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Редактор</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/input_form.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" href="/css/tabs.css">
+    <link rel="stylesheet" href="/css/main_styles.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="/js/photo_category_editor.js" defer></script>
+    {{!-- <script src="/js/send_command.js" defer></script> --}}
+    <script src="/js/jquery-3.0.0.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Зображення для Категорій Новин</h1>
+      <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+    </header> 
+    {{> sidebar id=user}}
+    <div class="table_container">
+      <div class="control-panel small">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <form action="/admin/{{user}}/news/category/1">
+            <button class="button accent-btn" >Перейти до  Категорій</button>
+          </form>
+            <form action="/admin/{{user}}/news/1">
+            <button class="button accent-btn" >Перейти до  Новин</button>
+          </form>
+          {{!-- <li class="nav-item" role="presentation">
+            <a class="nav-link" id="sign-tab" data-toggle="tab" href="#sign" role="tab" aria-controls="sign" aria-selected="false">Емблеми</a>
+          </li> --}}
+        </ul>
+      </div>
+      <div class="content-area">
+        <div class="tab-content" id="commandTabContent">
+          <div class="tab-pane fade show active" id="bg" role="tabpanel" aria-labelledby="bg-tab">
+            <div class="panel-flex">
+              <form id="send-photo_form" class="file-form send-bg_form">
+                <p>Завантажити  Зображення</p>
+                <input type="file" id="photo-input" name="category_imgs" accept="image/*" multiple style="display: none;">
+                <button id="view-photo-btn" class="button secondary-btn">Огляд...</button>
+                <button type="submit" id="send-photo-submit" class="button accent-btn" disabled>Зберегти</button>
+              </form>
+              <form action="/admin/{{user}}/news/category/photo-editor" method="GET">
+                <button class="button delete-btn">Оновити таблицю </button>
+              </form>
+            </div>
+            <table class="table-fill">
+              <thead>
+                <tr>
+                  <th>Зображення</th>
+                  <th>Дії</th>
+                </tr>
+              </thead>
+              <tbody class="table-hover" id="container-bg">
+                {{#each photos}}
+                  <tr>
+                    <td class="text-left"><img src="data:image/jpeg;base64,{{base64}}" height="90px"></td>
+                    <td class="left-text">
+                      <form data-group="delete-bg-img" method="POST" action="/admin/{{../user}}/news/category/photo-remove/{{./_id}}">
+                        <button  class="button delete-btn">Видалити</button>
+                      </form>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          {{!-- <div class="tab-pane fade" id="sign" role="tabpanel" aria-labelledby="sign-tab">
+            <div class="panel-flex">
+              <form id="send-sign_form" class="file-form send-sign-photo_form">
+                <p>Завантажити емблему</p>
+                <input type="file" id="sign_photo" name="sign_imgs" accept="image/*" multiple style="display: none;">
+                <button id="send-sign-btn" class="button secondary-btn">Огляд...</button>
+                <button type="submit" id="send-sign-submit" class="button accent-btn" disabled>Зберегти</button>
+              </form>
+              <form action="/admin/{{user}}/command/sign/delete" method="POST">
+                <button type="submit" class="button delete-btn">Очистити емблеми</button>
+              </form>
+            </div>
+            <table class="table-fill">
+              <thead>
+                <tr>
+                  <th>Зображення</th>
+                  <th>Дії</th>
+                </tr>
+              </thead>
+              <tbody class="table-hover" id="container-sign">
+                {{#each signs}}
+                  <tr>
+                    <td class="text-left"><img src="data:image/jpeg;base64,{{base64}}" height="60px"></td>
+                    <td class="left-text">
+                      <form data-group="delete-sign-img">
+                        <input name="id" value="{{_id}}" type="hidden">
+                        <button type="submit" class="button delete-btn">Видалити</button>
+                      </form>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div> --}}
+      </div>
+    </div>
+  </body>
+</html>
+{{!-- views by Vanivskyi --}}

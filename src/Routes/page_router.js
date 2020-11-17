@@ -1,1 +1,1 @@
-"use strict";const e=require("express"),r=require("../Controllers/page_controller"),t=e.Router();t.get("/pages/:page([0-9]+)",r.getAllPages),t.post("/pages/delete/:id",r.deletePage),module.exports=t;
+"use strict";const e=require("express"),s=require("../Controllers/page_controller"),p=e.Router();p.get("/pages/:page([0-9]+)",s.getAllPages),p.get("/pages/cancel-publish/:page([0-9]+)",s.getCanceledPages),p.post("/pages/cancel-publish/:id_page",s.postCancelPublicPage),p.post("/pages/publish/:id_page",s.postPublicPage),p.post("/pages/delete/:id",s.deletePage),module.exports=p;

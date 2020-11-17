@@ -1,0 +1,1 @@
+"use strict";const e=require("express"),t=require("../Controllers/category_controller"),r=e.Router();r.get("/category/:page([0-9])+",t.getCategoryList),r.route("/category/edit/:id").get(t.getEditCategory).post(t.postEditCategory),module.exports=r;

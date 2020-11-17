@@ -1,142 +1,227 @@
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/input_form.css">
-    <link rel="stylesheet" href="/css/checkbox_style.css">
-    <link rel="stylesheet" href="/css/menu.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/js/generate_pass.js" defer></script>
+  <script src="/js/jquery-3.0.0.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/js/tree-view.js" defer></script>
+  <script src="/js/edit-user.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/checkbox_style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/tabs.css">
+  <link rel="stylesheet" href="/css/tree-view.css">
+  <link rel="stylesheet" href="/css/buttons.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <link rel="stylesheet" href="/css/tree-view.css">
+  <link rel="stylesheet" href="/css/edit_user.css">
 </head>
 <body style = "background-color: #2f2f2f">
-<nav class="menu">
-    <ul>
-          <li><form action="/admin/{{user}}/mainmenu" method="GET"><a type="submit" href="/admin/{{userid}}/mainmenu"><i class="fas fa-bars"></i>Головне меню</a></form></li>
-          <li><form action="/admin/{{user}}/news/1" method="GET"><a href="/admin/{{userid}}/news/1"><i class="fas fa-newspaper"></i>Новини</a></form></li>
-          <li><form action="/admin/{{user}}/pages/1" method="GET"><a href="/admin/{{userid}}/pages/1"><i class="fas fa-file"></i>Сторінки</a></form></li>
-          <li><form action="/admin/{{user}}/sidemenu/1" method="GET"><a href="/admin/{{userid}}/sidemenu/1"><i class="fas fa-sliders-h"></i>Бокове меню</a></form></li>
-          <li><form action="/admin/{{user}}/links/1" method="GET"><a href="/admin/{{userid}}/links/1"><i class="fas fa-share-alt"></i>Посилання</a></form></li>
-          <li><form action="/admin/{{user}}/user/1" method="GET"><a href="/admin/{{userid}}/user/1"><i class="fas fa-user-shield"></i>Адміністратори</a></form></li>  
-          <li><form action="/admin/{{user}}/history" method="GET"><a href="/admin/{{userid}}/send-slider-photos"><i class="fas fa-keyboard"></i>Редактор</a></form></li>
-          <li><form action="/admin/{{user}}/contact/1" method="GET"><a href="/admin/{{userid}}/contact/1"><i class="fas fa-address-book"></i> Контакти</a></form></li>
-          <li><form action="/admin/{{user}}/corps/1" method="GET"><a href="/admin/{{userid}}/corps/1"><i class="fas fa-meteor"></i> Види/Роди військ</a></form></li>
-          <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/command/1"><i class="far fa-address-card"></i> Командування</a></form></li>
-          <li><form action="/admin/{{user}}/command/1" method="GET"><a href="/admin/{{userid}}/message/1"><i class="far fa-envelope"></i> Повідомлення</a></form></li>
-          <li><form action="/admin/{{user}}/history/1" method="GET"><a href="/admin/{{userid}}/history/1"><i class="fas fa-history"></i>Історія редагувань</a></form></li>
-          <li><form action="/admin/{{user}}/settings" method="GET"><a href="/admin/{{userid}}/settings"><i class="fas fa-cog"></i>Налаштування</a></form></li>
-    </ul>
-</nav> 
-<div class="container">
-  <form method="POST" action="/admin/{{userid}}/user/{{action_type}}" autocomplete="off">
-    
-    <div class="row">
+  {{> menu id=userid}} 
+  <div class="container">
+    <form method="POST" action="/admin/{{userid}}/user/{{action_type}}" autocomplete="off">
+      <h3 class="title">Користувач "{{login}}"</h3>
       {{#ifCond action_type '===' "add"}}
-       
-        <div class="row">
-      <div class="col-25">
-        <label for="login"><B>Логін</B></label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="name" name="login" placeholder="Логін" >
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="email"><B>Електронна пошта</B></label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="email" name="email" placeholder="Електронна пошта" >
-      </div>
-       <div class="col-25">
-          <label for="password"><B>Пароль</B></label>
+        <div>
+          <label for="login"><B>Логін</B></label>
+          <input type="text" class="stretch" id="name" name="login" placeholder="Логін" >
         </div>
-        <div class="col-75">
-          <input type="password" id="password" name="password" placeholder="Пароль">
+        <div>
+          <label for="email"><B>Електронна пошта</B></label>
+          <input type="text" id="email" class="stretch" name="email" placeholder="Електронна пошта" >
         </div>
-    </div>
+        <div>
+          <label for="password" id="pass"><B>Пароль</B></label>
+          <input type="password" id="password" class="stretch" name="password" placeholder="Пароль">
+                
+            <a class="button secondary-btn" id="view-pass" style="display: none;"> Показати Пароль </a>
+            <a class="button secondary-btn" id="generator-pass" style="display: block;"> Згенерувати Пароль </a>   
+        </div>
+          <div>
+            <label for="description_user"><B>Опис Користувача</B></label>
+            <textarea placeholder="Детальніший опис користувача" name="description_user">{{description_user}}</textarea>
+          </div>
       {{else}}
-      <div class="row">
-      <div class="col-25">
-        <label for="login"><B>Логін</B></label>
-      </div>
-      <div class="col-75">
-        
-        <input type="text" id="name" name="login" placeholder="Логін" value={{login}}>
-      
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="email"><B>Електронна пошта</B></label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="email" name="email" placeholder="Електронна пошта" value="{{email}}">
-      </div>
-    </div>
-         <a id="edit_password" href="./{{userid}}/password">Змінити пароль</a>
-         
-      {{/ifCond}}
-    </div>
-    {{#if edit}}
-    <div class="row">
-        <div class="col-25-checks">
-            <h4 id="name_component">Доступні категорії для опрацювання</h4>
-            <label class="check" style="color: brown;">Усі категорії
-                <input id="ALL" type="checkbox" name="ALL">
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Статті
-                <input type="checkbox" name="PAGES" {{PAGES}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Історія
-                <input type="checkbox" name="HISTORY"{{HISTORY}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Новини
-                <input type="checkbox" name="NEWS"{{NEWS}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Користувачі
-                <input type="checkbox" name="USER"{{USER}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Бокове Меню
-                <input type="checkbox" name="SIDEMENU"{{SIDEMENU}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Головне меню
-                <input type="checkbox" name="MAIN_MENU"{{MAIN_MENU}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Створення контенту
-                <input type="checkbox" name="CONTENT" {{CONTENT}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Посилання на сторонні ресурси
-                <input type="checkbox" name="LINKS"{{LINKS}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Види/Роди військ
-                <input type="checkbox" name="CORPS"{{CORPS}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Командування
-                <input type="checkbox" name="COMMAND"{{COMMAND}}>
-                <span class="checkmark"></span>
-            </label>
-            <label class="check">Повідомлення
-                <input type="checkbox" name="MESSAGE"{{MESSAGE}}>
-                <span class="checkmark"></span>
-            </label>
+        <div class="with-mb">
+          <div>
+            <label for="login"><B>Логін</B></label>
+            <input type="text" id="name" class="stretch" name="login" placeholder="Логін" value={{login}}>
+          </div>
+          <div>
+            <label for="email"><B>Електронна пошта</B></label>
+            <input type="text" id="email" class="stretch" name="email" placeholder="Електронна пошта" value="{{email}}">
+          </div>
+          <div>
+            <label for="description_user"><B>Опис Користувача</B></label>
+            <textarea placeholder="Детальніший опис користувача" name="description_user">{{description_user}}</textarea>
+          </div>
+          <a id="edit_password" href="./{{userid}}/password" class="button primary-btn">Змінити пароль</a>
         </div>
-    </div>
-    {{/if}}
-    <div class="row">
-      <button id="save">Зберегти</button>
-    </div>
-  </form>
-  {{#ifCond action_type '!=='"add"}}
-    <form method="POST" action="/admin/{{userid}}/user/delete/{{edited_userid}}">
-        <button id="delete">Видалити</button>
+      {{/ifCond}}
+      {{#if edit}}
+        <div class="row">
+          <div class="categories-block">
+            <h4 id="name_component">Доступні категорії для опрацювання</h4>
+            <select id="select-user-categories" name="selectUserCategories">
+              <option value="setup">Налаштувати</option>
+              <option value="all">Усі категорії</option>
+            </select>  
+            <div id="user-rights-tab">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active" id="pages-tab" data-toggle="tab" href="#pages" role="tab" aria-controls="pages" aria-selected="true">Сторінки</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="news-tab" data-toggle="tab" href="#news" role="tab" aria-controls="news" aria-selected="false">Новини</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links" aria-selected="false">Посилання</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="false">Контакти</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="corps-tab" data-toggle="tab" href="#corps" role="tab" aria-controls="corps" aria-selected="false">Види/Роди військ</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="command-tab" data-toggle="tab" href="#command" role="tab" aria-controls="command" aria-selected="false">Командування</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Користувачі</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Інше</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="rightsTabContent">
+                <div class="tab-pane fade show active" id="pages" role="tabpanel" aria-labelledby="pages-tab">
+                  <label class="check">Надати доступ
+                    <input id="category-pages" type="checkbox" name="PAGES" {{PAGES}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <div id="content-list-pages" class="disabled">
+                    <h5>Надати доступ до визначеного контенту</h5>
+                    <div class="user-content-container">
+                      {{#CheckListPages pagesData}}
+                      {{/CheckListPages}}
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">
+                  <label class="check">Надати доступ
+                    <input id="category-news" type="checkbox" name="NEWS"{{NEWS}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <div id="content-list-news" class="disabled">
+                    <h5>Надати доступ до визначеного контенту</h5>
+                    <div class="user-content-container">
+                      {{#CheckListNews newsData}}
+                      {{/CheckListNews}}
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="links-tab">
+                  <label class="check">Надати доступ
+                    <input id="category-links" type="checkbox" name="LINKS"{{LINKS}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <div id="content-list-links" class="disabled">
+                    <h5>Надати доступ до визначеного контенту</h5>
+                    <div class="user-content-container">
+                      {{#CheckListLinks linksData}}
+                      {{/CheckListLinks}}
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                  <label class="check">Надати доступ
+                    <input id="category-contacts" type="checkbox" name="CONTACTS"{{CONTACTS}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <div id="content-list-contacts" class="disabled" data-content="list">
+                    <h5>Надати доступ до визначеного контенту</h5>
+                    <div class="user-content-container">
+                      {{#CheckListContacts contactsData}}
+                      {{/CheckListContacts}}
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="corps" role="tabpanel" aria-labelledby="corps-tab">
+                  <label class="check">Надати доступ
+                    <input id="category-corps" type="checkbox" name="CORPS"{{CORPS}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <div id="content-list-corps" class="disabled">
+                    <h5>Надати доступ до визначеного контенту</h5>
+                    <div class="user-content-container">
+                      {{#CheckListCorps corpsData}}
+                      {{/CheckListCorps}}
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="command" role="tabpanel" aria-labelledby="command-tab">
+                  <label class="check">Надати доступ
+                    <input id="category-command" type="checkbox" name="COMMAND"{{COMMAND}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <div id="content-list-command" class="disabled">
+                    <h5>Надати доступ до визначеного контенту</h5>
+                    <div class="user-content-container">
+                      {{#CheckListCommand commandData}}
+                      {{/CheckListCommand}}
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
+                  <label class="check">Надати доступ
+                    <input id="category-users" type="checkbox" name="USER"{{USER}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <div id="content-list-users" class="disabled">
+                    <h5>Надати доступ до визначених користувачів</h5>
+                    <div class="user-content-container">
+                      {{#CheckListUsers usersData}}
+                      {{/CheckListUsers}}
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+                  <label class="check">Основне меню
+                    <input id="category-menu" type="checkbox" name="MAIN_MENU"{{MAIN_MENU}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check">Створення контенту
+                    <input type="checkbox" name="CONTENT" {{CONTENT}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check">Бокове Меню
+                    <input type="checkbox" name="SIDEMENU"{{SIDEMENU}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check">Повідомлення
+                    <input type="checkbox" name="MESSAGE"{{MESSAGE}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check">Історія
+                    <input type="checkbox" name="HISTORY"{{HISTORY}}>
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      <button type="submit" class="button secondary-btn">Зберегти</button>
     </form>
-  {{/ifCond}}
-</div>
+    <form method="GET" action="/admin/{{userid}}/user/1" class="inline">
+      <button type="submit" class="button secondary-btn" style="visibility:{{parameter}}">Відмінити</button>
+    </form>
+    {{#ifCond action_type '!=='"add"}}
+      <form method="POST" action="/admin/{{userid}}/user/delete/{{edited_userid}}" class="inline">
+          <button type="submit" class="button delete-btn">Видалити</button>
+      </form>
+    {{/ifCond}}
+  </div>
 </body>
 </html>

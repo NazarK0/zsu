@@ -2,32 +2,13 @@
 <rss version="2.0">
   <channel>
     <title>Офіційний портал ЗСУ</title>
-    <link>http://zsu.mil.gov.ua/</link>
+    <link>http://zsu.gov.ua/</link>
     <description>Збройні сили України</description>
     <language>uk-ua</language>
     <image>
-      <url>http://zsu.mil.gov.ua:1337/css/logo.png</url>
+      <url>http://zsu.gov.ua:1337/css/logo.png</url>
       <title>Збройні сили України</title>
       <link>http://zsu.mil.gov.ua/</link>
     </image>
-    <item>
-        <title>page1 DDelete</title>
-        <link>http://zsu.gov.ua</link>
-        <description>del blasa</description>
-        <guid>1594731290842</guid>
-      </item>
-    <item>
-        <title>page11</title>
-        <link>http://zsu.gov.ua</link>
-        <description>ddd</description>
-        <guid>1594734932341</guid>
-      </item>
-    <item>
-        <title>page11</title>
-        <link>http://zsu.gov.ua</link>
-        <description>dd</description>
-        <guid>1594736416266</guid>
-      </item>
     </channel>
   </rss>
-      

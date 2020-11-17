@@ -1,0 +1,1 @@
+"use strict";module.exports={news:"Новина",side:"Бокове Меню",sub:"Під Меню",commamnd:"Командування",user:"Користувач",link:"Посилання",troops:"Види/роди військ",history:"Історія"};

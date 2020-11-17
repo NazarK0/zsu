@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),t=e.Schema,i=new t({timestamp:String,news_id:String});module.exports=e.model("publish_time",i);
