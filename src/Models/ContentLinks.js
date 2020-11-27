@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),{Schema:t}=e,n=new t({base_url:String,links:{contacts:[String],pages:[String],directLink:{type:String,default:""}}});module.exports=e.model("ContentLinks",n);

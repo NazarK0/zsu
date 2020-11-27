@@ -31,6 +31,19 @@
           </select>
         </div>
       </div>
+      <div>
+        {{#ifCond currentContent '!==' ""}}
+          <p class="label">Поточний контент</p>
+          <label><b>"{{currentContent}}"</b></label>
+        {{/ifCond}}
+      </div>
+      <div class="row">
+        <div class="col-75" style="text-align: center;">
+          <h4>Доступні сторінки для контенту</h4>
+          {{#ContentList content_page_list}}
+          {{/ContentList}}
+        </div>
+      </div>
       <button class="button secondary-btn">Зберегти</button>
     </form>
     <form method="POST" action="/admin/{{user}}/mainmenu/back/{{type}}" class="inline">

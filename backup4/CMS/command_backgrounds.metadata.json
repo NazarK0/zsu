@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"CMS.command_backgrounds"}],"uuid":"7e99e5e903b84e179a6d9f97193b525a"}

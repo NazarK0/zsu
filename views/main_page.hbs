@@ -2,7 +2,7 @@
 <html lang="uk" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>Опубліковані сторінки</title>
+  <title>Перевірені сторінки</title>
   <script src="/js/pages-filter.js" defer></script>
   <link rel="stylesheet" href="/css/table.css">
   <link rel="stylesheet" href="/css/input_form.css">
@@ -12,7 +12,7 @@
 </head>
 <body>
   <header class="header">
-    <h1>Опубліковані сторінки</h1>
+    <h1>Перевірені сторінки</h1>
     <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
   </header>
   {{> sidebar id=user}}
@@ -35,7 +35,7 @@
         <input type="search" placeholder="Назва Сторінки" id="filter-title">
       </div>
       <div class="control-buttons">
-        <a href="/admin/{{user}}/pages/cancel-publish/1" class="button accent-btn published">Скасовані</a>
+        <a href="/admin/{{user}}/pages/cancel-publish/1" class="button accent-btn published">Не перевірені</a>
         <button id="filter-active" class="button primary-btn filter-btn">Фільтрувати</button>
         <button id="disabled-filter" class="button primary-btn filter-btn">Скинути фільтр</button>
       </div>
@@ -69,7 +69,7 @@
                 <button class="button secondary-btn">Редагувати</button>
               </form>
               <form method="POST" action="/admin/{{../user}}/pages/cancel-publish/{{_id}}">
-                <button class="button secondary-btn">Cкасувати публікацію</button>
+                <button class="button secondary-btn">Подати на перевірку</button>
               </form>
                 <form method="POST" action="/admin/{{../user}}/pages/delete/{{_id}} ">
                 <button class="button delete-btn">Видалити</button>

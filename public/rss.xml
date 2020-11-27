@@ -10,5 +10,35 @@
       <title>Збройні сили України</title>
       <link>http://zsu.mil.gov.ua/</link>
     </image>
+    <item>
+        <title>DELETE eww</title>
+        <link>http://localhost</link>
+        <description>dddd</description>
+        <guid>1605690896805</guid>
+      </item>
+    <item>
+        <title>DELETE</title>
+        <link>http://localhost</link>
+        <description>sss</description>
+        <guid>1605715671316</guid>
+      </item>
+    <item>
+        <title>delll</title>
+        <link>http://localhost</link>
+        <description>dddddd</description>
+        <guid>1605715702991</guid>
+      </item>
+    <item>
+        <title>DELETE ED</title>
+        <link>http://localhost</link>
+        <description>ggg</description>
+        <guid>1605716552864</guid>
+      </item>
+    <item>
+        <title>DELETE page</title>
+        <link>http://localhost</link>
+        <description>ds</description>
+        <guid>1605773505975</guid>
+      </item>
     </channel>
   </rss>
