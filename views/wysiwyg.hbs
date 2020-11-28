@@ -5,14 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Редактор контенту</title>
-  <script src="/tinymce/tinymce.min.js"></script>
-  <script src="/tinymce/js/settings.js"></script>
-  <script src="/js/jquery-3.0.0.min.js"></script>
-  <script src="/js/bootstrap.bundle.min.js" defer></script>
-  <script src="/js/wysiwyg.js" defer></script>
-  <script src="/js/tree-view.js" defer></script>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+  <link rel="stylesheet" href="/css/buttons.css">
+  <link rel="stylesheet" href="/css/edit_styles.css">
   <link rel="stylesheet" href="/css/input_form.css">
   <link rel="stylesheet" href="/css/checkbox_style.css">
   <link rel="stylesheet" href="/css/menu.css">
@@ -20,14 +16,17 @@
   <link rel="stylesheet" href="/css/table.css">
   <link rel="stylesheet" href="/css/tabs.css">
   <link rel="stylesheet" type="text/css" href="/css/wysiwyg.css" />
-  <link rel="stylesheet" href="/css/edit_styles.css">
+  <script src="/tinymce/tinymce.min.js"></script>
+  <script src="/tinymce/js/settings.js"></script>
+  <script src="/js/jquery-3.0.0.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/js/wysiwyg.js" defer></script>
+  <script src="/js/tree-view.js" defer></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js">
-  <link rel="stylesheet" href="/css/buttons.css">
 </head>
 <body style = "background-color: #2f2f2f">
   {{> menu id=userid}} 
 <section class="editor-container">
-
   <section class="main">
     <h2 class="label">Конструктор</h2>
     <div>
@@ -114,34 +113,34 @@
                     {{#ifCond action '===' "create"}}
                       <div id="page_controls-group">
                         <div style="display: {{displayPageSubclassCPCasual}};">
-                          <input id="page-type-casual" type="radio" name="contentPage_type" value="casual" checked>
+                          <input id="page-type-casual" type="radio" name="contentPage_type" value="casual" {{pageSubclassCPCasualChecked}}>
                           <label id="page-type-casual__label" for="page-type-casual" class="label">Звичайна</label>
                         </div>
                         <div style="display: {{displayPageSubclassCPHistoryWar}};">
-                          <input id="page-type-history-war" type="radio" name="contentPage_type" value="historyWar">
+                          <input id="page-type-history-war" type="radio" name="contentPage_type" value="historyWar" {{pageSubclassCPHistoryWarChecked}}>
                           <label id="page-type-history-war__label" for="page-type-history-war" class="label">Стаття з циклу "Історія війни"</label>
                         </div>
                         <div style="display: {{displayPageSubclassCPCurrent}};">
-                          <input id="page-type-current" type="radio" name="contentPage_type" value="current">
+                          <input id="page-type-current" type="radio" name="contentPage_type" value="current" {{pageSubclassCPCurrentChecked}}>
                           <label id="page-type-current__label" for="page-type-current" class="label">Актуальне</label>
                         </div>
                         <div style="display: {{displayPageSubclassCPContacts}};">
-                          <input id="page-type-contacts" type="radio" name="contentPage_type" value="contacts">
+                          <input id="page-type-contacts" type="radio" name="contentPage_type" value="contacts" {{pageSubclassCPContactsChecked}}>
                           <label id="page-type-contacts__label" for="page-type-contacts" class="label">Контакти</label>
                         </div>
                         <div style="display: {{displayPageSubclassCPFiles}};">
-                          <input id="page-type-files" type="radio" name="contentPage_type" value="files">
+                          <input id="page-type-files" type="radio" name="contentPage_type" value="files" {{pageSubclassCPFilesChecked}}>
                           <label id="page-type-files__label" for="page-type-files" class="label">Нормативно-правова база</label>
                         </div>
                       </div>
                       <hr>
                     {{/ifCond}}
-                    <div id="history-war-controls">
+                    <div id="history-war-controls" style="display: {{displayHWLabel}};">
                       <div>
                         <label for="hw-link-lbl" class="label">Назва Якоря</label>
                         {{#HistoryLabelList historyWarLabelsList}}
                         {{/HistoryLabelList}}
-                        <input id="hw-link-lbl" name="historyWarLinkLabelNew" class="stretch" placeholder="Створити новий" disabled>
+                        <input id="hw-link-lbl" name="historyWarLinkLabelNew" class="stretch" placeholder="Створити новий">
                         {{#ifCond action '===' "edit"}}
                           <p class="label">Поточний</p>
                           <label><b>{{historyWarLinkLabel}}</b></label>>

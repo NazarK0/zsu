@@ -40,5 +40,17 @@
         <description>ds</description>
         <guid>1605773505975</guid>
       </item>
+    <item>
+        <title>test</title>
+        <link>http://localhost</link>
+        <description>ttt</description>
+        <guid>1606555168847</guid>
+      </item>
+    <item>
+        <title>ddd</title>
+        <link>http://localhost</link>
+        <description>test</description>
+        <guid>1606555487306</guid>
+      </item>
     </channel>
   </rss>

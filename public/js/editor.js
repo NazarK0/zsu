@@ -10,13 +10,14 @@ const pageSubclassFromServer = document.getElementsByName('page-subclass');
 const pageType = document.querySelector('[name="page-type"]');
 const linksForm = document.getElementById('links-form');
 const directLinkInput = document.getElementById('direct-link');
-const linksPagesTab = document.getElementById('v-pills-page-tab');
+// const linksPagesTab = document.getElementById('v-pills-page-tab');
 // const linksOtherTab = document.getElementById('v-pills-contact-tab');
 const usefulLinksMainTab = document.getElementById('useful-links-tab');
 const mainPhotoTab = document.getElementById('main_photos-tab');
 const sliderTab = document.getElementById('slider_photos-tab');
 const filesTab = document.getElementById('files-tab');
 const wysiwygEditor = document.getElementById('html_body-container');
+const hwControls = document.getElementById('history-war-controls');
 
 const linksCheckboxesToRadio = () => {
   const div = document.getElementById('v-pills-tabContentUsefulLinks');
@@ -115,10 +116,6 @@ function showHideNewsTypes({ value }) {
 }
 
 function contentPageSubclassFeatures({ value }) {
-  historyWarLinkLabelNew.disabled = true;
-  if (historyWarLinkLabelDropdown) {
-    historyWarLinkLabelDropdown.disabled = true;
-  }
   linksRadioToCheckboxes();
 
   switch (value) {
@@ -128,13 +125,11 @@ function contentPageSubclassFeatures({ value }) {
       sliderTab.style.display = 'block';
       filesTab.style.display = 'block';
       wysiwygEditor.style.display = 'block';
+      hwControls.style.display = 'none';
       filterPagesLinks();
       break;
     case 'historyWar':
-      historyWarLinkLabelNew.disabled = false;
-      if (historyWarLinkLabelDropdown) {
-        historyWarLinkLabelDropdown.disabled = false;
-      }
+      hwControls.style.display = 'block';
       usefulLinksMainTab.style.display = 'none';
       mainPhotoTab.style.display = 'none';
       sliderTab.style.display = 'block';
@@ -147,6 +142,7 @@ function contentPageSubclassFeatures({ value }) {
       sliderTab.style.display = 'none';
       filesTab.style.display = 'none';
       wysiwygEditor.style.display = 'block';
+      hwControls.style.display = 'none';
       linksCheckboxesToRadio();
       filterPagesLinks(['casual', 'contacts', 'files']);
       // linksPagesTab.onclick = () => {
@@ -172,6 +168,7 @@ function contentPageSubclassFeatures({ value }) {
       sliderTab.style.display = 'none';
       filesTab.style.display = 'none';
       wysiwygEditor.style.display = 'block';
+      hwControls.style.display = 'none';
       filterPagesLinks('contacts');
       break;
     case 'files':
@@ -180,6 +177,7 @@ function contentPageSubclassFeatures({ value }) {
       sliderTab.style.display = 'none';
       filesTab.style.display = 'block';
       wysiwygEditor.style.display = 'none';
+      hwControls.style.display = 'none';
       filterPagesLinks('files');
       break;
     default:
