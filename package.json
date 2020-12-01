@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": " node index && npm run start-service",
-    "start-service": "node ./src/DefferedPublicationService/index",
+    "start-service": "node ./src/DefferedPublicationService/index"
   },
   "author": "223 Teams (Rudyak and Vanivskiy)",
   "license": "ISC",
