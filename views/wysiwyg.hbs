@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Редактор контенту</title>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/dtsel.css" />
   <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
   <link rel="stylesheet" href="/css/buttons.css">
   <link rel="stylesheet" href="/css/edit_styles.css">
@@ -20,6 +21,7 @@
   <script src="/tinymce/js/settings.js"></script>
   <script src="/js/jquery-3.0.0.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/js/dtsel.js"></script>
   <script src="/js/wysiwyg.js" defer></script>
   <script src="/js/tree-view.js" defer></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js">
@@ -157,7 +159,7 @@
                     <p class="label">Додаткові налаштування для новин</p>
                     <div>
                       <label class="label">Час публікації</label>
-                      <input type="datetime-local" name="time_to_publish" id="time_to_publish" value="{{timeToPublish}}">
+                      <input type="text" name="time_to_publish" id="time_to_publish" value="{{timeToPublish}}">
                     </div>
                     {{#ifCond action '===' 'create'}}
                       <div id="news_controls-group">

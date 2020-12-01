@@ -22,6 +22,7 @@
       <table class="table-fill">
         <thead>
           <tr>
+            <th>№</th>
             <th>Заголовок</th>
             <th class="lang">Мова</th>
             <th>Дії</th>
@@ -30,6 +31,7 @@
         <tbody class="table-hover">
           {{#each main}}
           <tr>
+            <td class="text-left">{{number}}</td>
             <td class="text-left">{{title}}</td>
             <td class="text-center">{{lang}}</td>
             <td class="left-center">
@@ -38,6 +40,12 @@
               </form>
               <form method="GET" action="/admin/{{../user}}/all/{{_id}}/submenu" class="inline">
                 <button type="submit" class="button secondary-btn">Перейти в Підменю</button>
+              </form>
+               <form method="POST" action="/admin/{{../user}}/mainmenu/setUp/{{_id}}" class="inline">
+                <button type="submit" class="button secondary-btn">Підняти в гору</button>
+              </form>
+               <form method="POST" action="/admin/{{../user}}/mainmenu/setDown/{{_id}}" class="inline">
+                <button type="submit" class="button secondary-btn">Спустити вниз</button>
               </form>
             </td>
           </tr>

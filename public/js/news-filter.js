@@ -11,6 +11,7 @@ function formatDate(date) {
   }
 
 document.getElementById('filter-active').addEventListener('click',()=>{
+
     let options={
         date:formatDate(document.getElementById('filter-date').value),
         typeNews:document.getElementById('filter-news-parameter').value?document.getElementById('filter-news-parameter').value:null,
@@ -18,7 +19,6 @@ document.getElementById('filter-active').addEventListener('click',()=>{
         title:(document.getElementById('filter-title').value!=="")?document.getElementById('filter-title').value.toUpperCase():null,
         // status:document.getElementById('filter-status').value
     }
-
 
     if(options.date===null & options.typeNews==="Усі Типи" & options.lang==="Усі Мови"){
         let tableoptions=document.getElementById('table');
@@ -30,9 +30,21 @@ document.getElementById('filter-active').addEventListener('click',()=>{
 
     let tableoptions=document.getElementById('table');
     let row=tableoptions.getElementsByTagName('tr')
+
+    let filter_flag = {
+
+        index:0,
+        type:false,
+        lang:false,
+        date:false,
+        title:false
+
+    }
+
     for(let i=0;i<row.length;i++){
         let column=row[i].getElementsByTagName('td');
         for(let j=0;j<column.length;j++){
+
             if(column[j].id ==='news-type'){
                 if(options.typeNews!=='Усі Типи' && column[j].innerText!==options.typeNews){
                     row[i].style='display:none'
@@ -42,7 +54,6 @@ document.getElementById('filter-active').addEventListener('click',()=>{
                     row[i].style='display: true '
                 }
                 if(options.typeNews ==='Усі Мови'){
-
                     row[i].style='display: true '
                 }
             }
@@ -59,20 +70,27 @@ document.getElementById('filter-active').addEventListener('click',()=>{
                 }
             }
             if(column[j].id === 'date'){  
+
                 if(options.date !== null && column[j].innerText !== options.date){
 
-                    
                     row[i].style='display:none'
                     break;
                 }
                 if(options.date!==null &&  column[j].innerText===options.date ){
+
                     row[i].style='display:true'
                 }
                 if(options.date===null){
+
                     row[i].style='display: true '
                 }
             }
             if(column[j].id==='news-title'){
+
+                if(options.title===null){
+                    
+                    row[i].style='display: true '
+                }
                 
                 if(options.title!==null && !column[j].innerText.toUpperCase().includes(options.title.toUpperCase())){
                     row[i].style='display:none'
@@ -82,12 +100,13 @@ document.getElementById('filter-active').addEventListener('click',()=>{
                     row[i].style='display: true '
                 }
 
-                if(options.title===null){
-                    row[i].style='display: true '
-                }
+              
             }
+            console.log(row[i].style);
             // if(column[j].id==='status'){
+
             //     if(options.status!=="Усі Статуси"){
+
             //         console.log(column[j].innerText.length);
             //         console.log("Cкасована Новина".length)
             //         console.log(column[j].innerText==="Cкасована Новина",options.status==="Скасовані Новини");
@@ -113,7 +132,6 @@ document.getElementById('filter-active').addEventListener('click',()=>{
             // }
         }
     }
-
 
   
 })

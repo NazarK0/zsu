@@ -19,6 +19,13 @@ const filesTab = document.getElementById('files-tab');
 const wysiwygEditor = document.getElementById('html_body-container');
 const hwControls = document.getElementById('history-war-controls');
 
+const instance = new dtsel.DTS('input[name="time_to_publish"]', {
+  direction: 'BOTTOM',
+  dateFormat: 'dd.mm.yyyy',
+  showTime: true,
+  timeFormat: 'HH:MM'
+});
+
 const linksCheckboxesToRadio = () => {
   const div = document.getElementById('v-pills-tabContentUsefulLinks');
   const checkboxes = Array.from(div.querySelectorAll('input[type="checkbox"]'));
@@ -100,6 +107,7 @@ function showHideNewsTypes({ value }) {
       document.getElementById('nav-content-page-other-tab').style.display = 'none';
       document.getElementById('nav-news-other-tab').style.display = 'block';
       document.getElementById('nav-news-category-tab').style.display = 'block';
+      mainPhotoTab.style.display = 'block';
       linksRadioToCheckboxes();
       filterPagesLinks();
       usefulLinksMainTab.style.display = 'block';

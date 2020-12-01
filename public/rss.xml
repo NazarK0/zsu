@@ -41,6 +41,12 @@
         <guid>1605773505975</guid>
       </item>
     <item>
+<<<<<<< HEAD
+        <title>Defferedka</title>
+        <link>http://localhost</link>
+        <description>іфвіфв</description>
+        <guid>1606664189943</guid>
+=======
         <title>test</title>
         <link>http://localhost</link>
         <description>ttt</description>
@@ -51,6 +57,121 @@
         <link>http://localhost</link>
         <description>test</description>
         <guid>1606555487306</guid>
+>>>>>>> 54b27c9806ff500cf11ccdb4ff14161fd508eb2d
+      </item>
+    <item>
+        <title>DELETE ED todat</title>
+        <link>http://localhost</link>
+        <description>fff</description>
+        <guid>1606721781323</guid>
+      </item>
+    <item>
+        <title>DELETE page defffer</title>
+        <link>http://localhost</link>
+        <description>dd</description>
+        <guid>1606722023950</guid>
+      </item>
+    <item>
+        <title>DELETE ED</title>
+        <link>http://localhost</link>
+        <description>fff</description>
+        <guid>1606752968909</guid>
+      </item>
+    <item>
+        <title>DELETE page</title>
+        <link>http://localhost</link>
+        <description>вввв</description>
+        <guid>1606753093231</guid>
+      </item>
+    <item>
+        <title>ccc</title>
+        <link>http://localhost</link>
+        <description>ccc</description>
+        <guid>1606753192231</guid>
+      </item>
+    <item>
+        <title>DELETE eww</title>
+        <link>http://localhost</link>
+        <description>fff</description>
+        <guid>1606767982665</guid>
+      </item>
+    <item>
+        <title>DELETE eww</title>
+        <link>http://localhost</link>
+        <description>ffff</description>
+        <guid>1606768309145</guid>
+      </item>
+    <item>
+        <title>test1</title>
+        <link>http://localhost</link>
+        <description>fff</description>
+        <guid>1606768403913</guid>
+      </item>
+    <item>
+        <title>delll</title>
+        <link>http://localhost</link>
+        <description>vdgfvc</description>
+        <guid>1606768456860</guid>
+      </item>
+    <item>
+        <title>DELETE page</title>
+        <link>http://localhost</link>
+        <description>sdfdf</description>
+        <guid>1606768675004</guid>
+      </item>
+    <item>
+        <title>DELETE page</title>
+        <link>http://localhost</link>
+        <description>fff</description>
+        <guid>1606768926262</guid>
+      </item>
+    <item>
+        <title>DELETE page</title>
+        <link>http://localhost</link>
+        <description>ddfffd</description>
+        <guid>1606770180398</guid>
+      </item>
+    <item>
+        <title>DELETE page</title>
+        <link>http://localhost</link>
+        <description>xcxcx</description>
+        <guid>1606770498112</guid>
+      </item>
+    <item>
+        <title>test1</title>
+        <link>http://localhost</link>
+        <description>ffdf</description>
+        <guid>1606770591779</guid>
+      </item>
+    <item>
+        <title>DELETE eww</title>
+        <link>http://localhost</link>
+        <description>fff</description>
+        <guid>1606772303205</guid>
+      </item>
+    <item>
+        <title>DELETE ewwC</title>
+        <link>http://localhost</link>
+        <description>CVCVVC</description>
+        <guid>1606772576846</guid>
+      </item>
+    <item>
+        <title>DELETE page</title>
+        <link>http://localhost</link>
+        <description>RRR</description>
+        <guid>1606772721921</guid>
+      </item>
+    <item>
+        <title>test1</title>
+        <link>http://localhost</link>
+        <description>ввв</description>
+        <guid>1606774205316</guid>
+      </item>
+    <item>
+        <title>DELETE ewwC</title>
+        <link>http://localhost</link>
+        <description>dddfdf</description>
+        <guid>1606806281416</guid>
       </item>
     </channel>
   </rss>

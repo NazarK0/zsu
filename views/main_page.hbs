@@ -22,7 +22,6 @@
         <select name="filter-main" id="filter-main" class="filter-main">
           <option id="all">Усі сторінки </option>
           <option>Усі сторінки Головного Меню</option>
-          <option>Усі сторінки Бокового Меню</option>
           {{#each menu_names}}
           <option>{{title}}</option>
           {{/each}}
@@ -47,8 +46,7 @@
             <th>Назва</th>
             <th class="page-check">Головне Меню</th>
             <th>Пункт Головного Меню</th>
-            <th class="page-check">Бокове Меню</th>
-            <th>Пункт Бокового Меню</th>
+            <th class="ategory-check">Категорія Сторінки</th>
             <th class="lang">Мова</th>
             <th>Ключові слова</th>
             <th>Дії</th>
@@ -60,8 +58,7 @@
             <td class="text-left" id="page-title">{{page_title}}</td>
             <td class="text-center" id="page-dependense-main">{{dependense_main}}</td>
             <td class="text-center" id="page-dependense-main-title">{{dependense_main_title}}</td>
-            <td class="text-center" id="page-dependense-side">{{dependense_side}}</td>
-            <td class="text-center" id="page-dependense-side-title">{{dependense_side_title}}</td>
+            <td class="text-center" id="page-dependense-main-title">{{page_subclass}}</td>
             <td class="text-center" id="page-language">{{lang}}</td>
             <td class="text-left">{{keywords}}</td>
             <td class="text-center">

@@ -19,9 +19,16 @@
       <form action="/admin/{{user}}/all/{{mainmenu_id}}/submenu/add" method="GET">
         <button class="button accent-btn">Додати</button>
       </form>
+      <form action="/admin/{{user}}/mainmenu" method="GET">
+
+           <button class="button accent-btn">До Головного Меню</button>
+
+      </form>
+     
       <table class="table-fill">
         <thead>
           <tr>
+            <th>№</th>
             <th>Назва</th>
             <th>Мова</th>
             <th>Дії</th>
@@ -30,6 +37,7 @@
         <tbody class="table-hover">
           {{#each submenu}}
           <tr>
+            <td class="text-left">{{number}}</td>
             <td class="text-left">{{title}}</td>
             <td class="text-left">{{lang}}</td>
             <td class="left-text">
@@ -38,6 +46,12 @@
               </form>
               <form action="/admin/{{../user}}/all/submenu/{{_id}}/child">
                 <button class="button secondary-btn">Перейти в Підменю</button>
+              </form>
+                <form method="POST" action="/admin/{{../user}}/submenu/setUp/{{_id}}" class="inline">
+                <button type="submit" class="button secondary-btn">Підняти в гору</button>
+              </form>
+               <form method="POST" action="/admin/{{../user}}/submenu/setDown/{{_id}}" class="inline">
+                <button type="submit" class="button secondary-btn">Спустити вниз</button>
               </form>
             </td>
           </tr>
