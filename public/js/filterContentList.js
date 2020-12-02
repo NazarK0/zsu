@@ -5,7 +5,6 @@ let optionsInitial = [];
 
 const restoreOptions = () => {
   const options = Array.from(contentList.options)
-    console.log('restore')
 
   if (optionsInitial.length === options.length) return;
 
