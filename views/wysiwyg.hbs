@@ -90,7 +90,7 @@
                     </div>
                     <div>
                       <label id="page_title__label" for="page-title" class="label">Назва:</label>
-                      <input id="page_title" name="page_title" value="{{page_title}}" required>
+                      <input id="page_title" class="stretch" name="page_title" value="{{page_title}}" required>
                     </div>
                     <div>
                       <label id="description__label" for="description" class="label">Короткий опис:</label>
@@ -133,6 +133,10 @@
                         <div style="display: {{displayPageSubclassCPFiles}};">
                           <input id="page-type-files" type="radio" name="contentPage_type" value="files" {{pageSubclassCPFilesChecked}}>
                           <label id="page-type-files__label" for="page-type-files" class="label">Нормативно-правова база</label>
+                        </div>
+                        <div style="display: {{displayPageSubclassCPСommander}};">
+                          <input id="page-type-commander" type="radio" name="contentPage_type" value="commander" {{pageSubclassCPCommanderChecked}}>
+                          <label id="page-type-commander__label" for="page-type-commander" class="label">Командування</label>
                         </div>
                       </div>
                       <hr>

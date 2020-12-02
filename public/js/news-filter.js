@@ -5,7 +5,7 @@ function formatDate(date) {
       return null
   }
     let datearray= date.split('-');
-    datearray[0]=datearray[0]%100;
+    datearray[0]=datearray[0];
   
     return datearray[2] + '-' + datearray[1] + '-' + datearray[0]
   }
@@ -31,15 +31,7 @@ document.getElementById('filter-active').addEventListener('click',()=>{
     let tableoptions=document.getElementById('table');
     let row=tableoptions.getElementsByTagName('tr')
 
-    let filter_flag = {
-
-        index:0,
-        type:false,
-        lang:false,
-        date:false,
-        title:false
-
-    }
+    console.log(options.date);
 
     for(let i=0;i<row.length;i++){
         let column=row[i].getElementsByTagName('td');
@@ -102,7 +94,6 @@ document.getElementById('filter-active').addEventListener('click',()=>{
 
               
             }
-            console.log(row[i].style);
             // if(column[j].id==='status'){
 
             //     if(options.status!=="Усі Статуси"){

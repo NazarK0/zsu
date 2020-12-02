@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"CMS2.slidernames"}],"uuid":"67f06328b02044939ea4c0d8a20a03cb"}

@@ -1,1 +1,1 @@
-"use strict";const e=require("mongoose"),n=e.Schema,r=new n({title:String,submenu_item:Array,lang:String,content_id:String,user_id:String,number:Number});module.exports=e.model("main_menu",r);
+"use strict";const e=require("mongoose"),n=e.Schema,r=new n({title:String,submenu_item:Array,lang:String,content_id:String,link:String,user_id:String,number:Number});module.exports=e.model("main_menu",r);

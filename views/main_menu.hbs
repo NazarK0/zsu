@@ -15,9 +15,21 @@
   </header> 
   {{> sidebar id=user}}
   <div class="table_container">
-    <div class="control-panel small">
-      <a href="/admin/{{user}}/mainmenu/add" class="button accent-btn">Додати</a>
+    <div>
+       <form action="/admin/{{user}}/mainmenu/add" method="GET">
+          <button class="button accent-btn">Додати</button>
+    </form>
     </div>
+    <div>
+       <form action="/admin/{{user}}/mainmenu/lang/{{lang}}" method="GET">
+      <button class="button accent-btn">{{lang}}</button>
+      </form>
+
+    </div>
+   
+   
+   
+  
     <div class="content-area">
       <table class="table-fill">
         <thead>

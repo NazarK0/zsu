@@ -18,6 +18,8 @@ const sliderTab = document.getElementById('slider_photos-tab');
 const filesTab = document.getElementById('files-tab');
 const wysiwygEditor = document.getElementById('html_body-container');
 const hwControls = document.getElementById('history-war-controls');
+const pageTitleLabel = document.getElementById('page_title__label');
+const pageDescriptionLabel = document.getElementById('description__label');
 
 const instance = new dtsel.DTS('input[name="time_to_publish"]', {
   direction: 'BOTTOM',
@@ -111,6 +113,8 @@ function showHideNewsTypes({ value }) {
       linksRadioToCheckboxes();
       filterPagesLinks();
       usefulLinksMainTab.style.display = 'block';
+      pageTitleLabel.innerText = 'Назва';
+      pageDescriptionLabel.innerText = 'Короткий опис';
       break;
     default:
       // document.getElementById('nav-main-menu-tab').style.display = 'none';
@@ -125,6 +129,8 @@ function showHideNewsTypes({ value }) {
 
 function contentPageSubclassFeatures({ value }) {
   linksRadioToCheckboxes();
+  pageTitleLabel.innerText = 'Назва';
+  pageDescriptionLabel.innerText = 'Короткий опис';
 
   switch (value) {
     case 'casual':
@@ -188,6 +194,15 @@ function contentPageSubclassFeatures({ value }) {
       hwControls.style.display = 'none';
       filterPagesLinks('files');
       break;
+    case 'commander':
+      usefulLinksMainTab.style.display = 'none';
+      mainPhotoTab.style.display = 'block';
+      sliderTab.style.display = 'none';
+      filesTab.style.display = 'block';
+      wysiwygEditor.style.display = 'block';
+      hwControls.style.display = 'none';
+      pageTitleLabel.innerText = "Прізвище, Ім'я, По батькові";
+      pageDescriptionLabel.innerText = 'Посада';
     default:
       // usefulLinksMainTab.style.display = 'none';
       break;

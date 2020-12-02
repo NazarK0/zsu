@@ -28,7 +28,8 @@
           <input type="text" name="title_en" id="corps_title_en" class="stretch" placeholder="Назва" value="{{title_en}}" required>
         </div>
       </div>
-        <h2 class="title">Поточні значення</h3>
+      <div>
+        <h3 class="title">Поточні значення</h3>
         {{#if current_photo}}
           <div class="inline">
             <label><B>Фото:</B></label>
@@ -45,8 +46,9 @@
           {{/BackgroundCommandsList}}
         </div>
       </div>
-      <button type="submit" class="button secondary-btn">Зберегти</button>
+      <button  class="button secondary-btn" > Зберегти </button>
     </form>
+
     <form method="GET" action="/admin/{{userid}}/news/category/1">
       <button type="submit" class="button secondary-btn" style="visibility:{{parameter}}">Відмінити</button>
     </form>

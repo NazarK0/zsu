@@ -44,6 +44,13 @@
           {{/ContentList}}
         </div>
       </div>
+       <div class="row">
+        <div class="col-75" style="text-align: center;">
+          <h4>Доступні Посилання для переходу на інші ресурси</h4>
+          {{#LinkList link_list}}
+          {{/LinkList}}
+        </div>
+      </div>
       <button class="button secondary-btn">Зберегти</button>
     </form>
     <form method="POST" action="/admin/{{user}}/mainmenu/back/{{type}}" class="inline">
