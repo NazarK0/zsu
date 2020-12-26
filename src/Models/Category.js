@@ -1,1 +1,1 @@
-"use strict";const e=require("mongoose"),t=e.Schema,o=new t({title_ua:String,title_en:String,photo:String});module.exports=e.model("category",o);
+"use strict";const e=require("mongoose"),{Schema:t}=e,i=new t({contentType:String,title_ua:String,title_en:String,img:String,user_id:String});module.exports=e.model("category",i);

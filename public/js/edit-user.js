@@ -22,8 +22,8 @@ const contentListCommand = document.getElementById('content-list-command');
 const categoryUsers = document.getElementById('category-users');
 const contentListUsers = document.getElementById('content-list-users');
 
-const categoryContacts = document.getElementById('category-contacts');
-const contentListContacts = document.getElementById('content-list-contacts');
+// const categoryContacts = document.getElementById('category-contacts');
+// const contentListContacts = document.getElementById('content-list-contacts');
 
 selectUserCategories.onchange = () => {
   switch (selectUserCategories.value) {
@@ -101,13 +101,13 @@ categoryUsers.onchange = () => {
     contentListUsers.classList.add('disabled');
   }
 };
-categoryContacts.onchange = () => {
-  if (categoryContacts.checked) {
-    contentListContacts.classList.remove('disabled');
-  } else {
-    contentListContacts.classList.add('disabled');
-  }
-};
+// categoryContacts.onchange = () => {
+//   if (categoryContacts.checked) {
+//     contentListContacts.classList.remove('disabled');
+//   } else {
+//     contentListContacts.classList.add('disabled');
+//   }
+// };
 
 document.body.onload = () => {
   if (categoryNews.checked) {
@@ -131,7 +131,7 @@ document.body.onload = () => {
   if (categoryUsers.checked) {
     contentListUsers.classList.remove('disabled');
   }
-  if (categoryContacts.checked) {
-    contentListContacts.classList.remove('disabled');
-  }
+  // if (categoryContacts.checked) {
+  //   contentListContacts.classList.remove('disabled');
+  // }
 };

@@ -1,0 +1,1 @@
+"use strict";const{Schema:t,model:e}=require("mongoose"),o=new t({title_ua:String,title_en:String,photos:[String],status:{type:String,default:"uncomplete"}});module.exports=e("mediaCategory",o);

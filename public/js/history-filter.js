@@ -1,17 +1,23 @@
-function formatDate(date) {
-    if(date===""){
-        return null
-    }
-      let datearray= date.split('-');
-      datearray[0]=datearray[0]%100;
+const instance = new dtsel.DTS('input#filter-date', {
+  direction: 'TOP',
+  dateFormat: 'dd.mm.yyyy',
+  showTime: false,
+});
+
+// function formatDate(date) {
+//     if(date===""){
+//         return null
+//     }
+//       let datearray= date.split('-');
+//       datearray[0]=datearray[0]%100;
     
-      return datearray[2] + '-' + datearray[1] + '-' + datearray[0]
-    }
+//       return datearray[2] + '-' + datearray[1] + '-' + datearray[0]
+//     }
   
 
 
 document.getElementById('filter-button').addEventListener('click',()=>{
-   let date_value= formatDate(document.getElementById('filter-date').value)
+   let date_value= document.getElementById('filter-date').value;
    let date_operation_type =document.getElementById('filter-operation').value
    let date_user=document.getElementById('filter-users').value
    let date_operation_Info=document.getElementById('search-operation').value;

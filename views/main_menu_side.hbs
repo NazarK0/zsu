@@ -1,56 +1,50 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Бокове меню</title>
-    <link rel="stylesheet" href="/css/table.css">
-    <link rel="stylesheet" href="/css/buttons.css">
-    <link rel="stylesheet" href="/css/main_styles.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <h1>Редагування бокового меню</h1>
-      <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
-    </header>
-    {{> sidebar id=user}}
-    <div class="table_container">
-      <div class="control-panel small">
-        <a href="/admin/{{user}}/sidemenu/add" class="button accent-btn">Додати</a>
-      </div>
-      <div class="content-area">
-        <table class="table-fill">
-          <thead>
+<head>
+  <title>Бокове меню</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Редагування бокового меню</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header>
+  {{> sidebar id=user}}
+  <div class="table_container">
+    <div class="control-panel small">
+      <a href="/admin/{{user}}/sidemenu/add" class="button accent-btn">Додати</a>
+    </div>
+    <div class="content-area">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>Заголовок</th>
+            <th>Контент</th>
+            <th class="lang">Мова</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each sidemenu}}
             <tr>
-              <th>Заголовок</th>
-              <th>Контент</th>
-              <th class="lang">Мова</th>
-              <th>Дії</th>
+              <td class="text-left">{{title}}</td>
+              <td class="text-center">{{content_title}}</td>
+              <td class="text-center">{{lang}}</td>
+              <td class="text-center">
+                <form method="GET" action="/admin/{{../user}}/sidemenu/edit/{{_id}}">
+                  <button type="submit" class="button primary-btn">Редагувати</button>
+                </form>
+              </td>
             </tr>
-          </thead>
-          <tbody class="table-hover">
-            {{#each sidemenu}}
-              <tr>
-                <td class="text-left">{{title}}</td>
-                <td class="text-center">{{content_title}}</td>
-                <td class="text-center">{{lang}}</td>
-                <td class="text-center">
-                  <form method="GET" action="/admin/{{../user}}/sidemenu/edit/{{_id}}">
-                    <button type="submit" class="button primary-btn">Редагувати</button>
-                  </form>
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <ul>
-          {{#loop 1 pages 1}}
-            <li>
-              <a id="counter" href="./{{this}}">{{this}}</a>
-            </li>
-          {{/loop}}
-        </ul>
-      </div>
-    </div>     
-  </body>
-</html>
+          {{/each}}
+        </tbody>
+      </table>
+      <ul>
+        {{#loop 1 pages 1}}
+          <li>
+            <a id="counter" href="./{{this}}">{{this}}</a>
+          </li>
+        {{/loop}}
+      </ul>
+    </div>
+  </div>     
+</body>

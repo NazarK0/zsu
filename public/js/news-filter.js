@@ -1,19 +1,25 @@
 
 
-function formatDate(date) {
-  if(date===""){
-      return null
-  }
-    let datearray= date.split('-');
-    datearray[0]=datearray[0];
+// function formatDate(date) {
+//   if(date===""){
+//       return null
+//   }
+//     let datearray= date.split('-');
+//     datearray[0]=datearray[0];
   
-    return datearray[2] + '-' + datearray[1] + '-' + datearray[0]
-  }
+//     return datearray[2] + '-' + datearray[1] + '-' + datearray[0]
+//   }
+
+const instance = new dtsel.DTS('input#filter-date', {
+  direction: 'TOP',
+  dateFormat: 'dd.mm.yyyy',
+  showTime: false,
+});
 
 document.getElementById('filter-active').addEventListener('click',()=>{
 
     let options={
-        date:formatDate(document.getElementById('filter-date').value),
+        date: document.getElementById('filter-date').value,
         typeNews:document.getElementById('filter-news-parameter').value?document.getElementById('filter-news-parameter').value:null,
         lang:document.getElementById('filter-language').value?document.getElementById('filter-language').value:null,
         title:(document.getElementById('filter-title').value!=="")?document.getElementById('filter-title').value.toUpperCase():null,
@@ -63,12 +69,12 @@ document.getElementById('filter-active').addEventListener('click',()=>{
             }
             if(column[j].id === 'date'){  
 
-                if(options.date !== null && column[j].innerText !== options.date){
+                if(options.date !== null && !column[j].innerText.includes(options.date)){
 
                     row[i].style='display:none'
                     break;
                 }
-                if(options.date!==null &&  column[j].innerText===options.date ){
+                if(options.date!==null &&  column[j].innerText.includes(options.date) ){
 
                     row[i].style='display:true'
                 }

@@ -1,51 +1,45 @@
 <head>
-    <link rel="stylesheet" href="/css/input_form.css">
-    <link rel="stylesheet" href="/css/checkbox_style.css">
-    <link rel="stylesheet" href="/css/menu.css">
-    <link rel="stylesheet" href="/css/buttons.css">
-    <link rel="stylesheet" href="/css/resets.css">
-    <link rel="stylesheet" href="/css/edit_styles.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script src="/js/filterContentList.js" defer></script>
+  <title>Редагувати меню</title>
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/checkbox_style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <link rel="stylesheet" href="/css/edit_styles.css">
+  <script src="/js/filterContentList.js" defer></script>
 </head>
 <body style="background-color: #2f2f2f">
   {{> menu id=user}}
   <div class="container">
-    <h3 class="title">Пункт меню "{{title}}"</h3>
-    <form method="POST" action="/admin/{{user}}/mainmenu/{{action_type}}">
+    {{#ifCond mode '===' 'add'}}
+      <h3 class="title">Створити пункт меню ({{language}})</h3>
+      <form method="POST" action="/admin/{{user}}/mainmenu/{{language}}/add">
+    {{/ifCond}}
+    {{#ifCond mode '===' 'edit'}}
+      <h3 class="title">Пункт меню "{{title}} ({{language}})"</h3>
+      <form method="POST" action="/admin/{{user}}/mainmenu/{{language}}/edit/{{id}}">
+    {{/ifCond}}
       <div class="row">
         <div class="col-25">
-          <label for="login"><B>Назва</B></label>
+          <label for="login">Назва</label>
         </div>
         <div class="col-75">
           <input type="text" class="stretch" name="title" placeholder="Назва" value="{{title}}" required>
         </div>
       </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="dropdown"><B>Мова</B></label>
-        </div>
-        <div class="col-75">
-          <select id="dropdown" name="lang" class="stretch">
-            <option value="ua">Українська</option>
-            <option value="en">English</option>
-          </select>
-        </div>
-      </div>
       <div>
-        {{#ifCond currentContent '!==' ""}}
+        {{#ifCond mode '===' 'edit'}}
           <p class="label">Поточний контент</p>
-          <label><b>"{{currentContent}}"</b></label>
+          <label>"{{currentContent}}"</label>
         {{/ifCond}}
       </div>
       <div class="row">
         <div class="col-75" style="text-align: center;">
           <h4>Доступні сторінки для контенту</h4>
-          {{#ContentList content_page_list}}
+          {{#ContentList pagesList ''}}
           {{/ContentList}}
         </div>
       </div>
-       <div class="row">
+      <div class="row">
         <div class="col-75" style="text-align: center;">
           <h4>Доступні Посилання для переходу на інші ресурси</h4>
           {{#LinkList link_list}}
@@ -55,12 +49,11 @@
       <button class="button secondary-btn">Зберегти</button>
     </form>
     <form method="POST" action="/admin/{{user}}/mainmenu/back/{{type}}" class="inline">
-      <button class="button secondary-btn">Відмінити</button>
+      <button class="button secondary-btn">Назад</button>
     </form>
-    <form method="POST" action="/admin/{{user}}/mainmenu/delete/{{id}}" class="inline">
+    <form method="POST" action="/admin/{{user}}/mainmenu/{{language}}/delete/{{id}}" class="inline">
       <button class="button delete-btn" type="submit">Видалити</button>
     </form>
   </div>
 </body>
-</html>
-{{!-- views by Larin --}}
+{{!-- views by Vanivskyi --}}

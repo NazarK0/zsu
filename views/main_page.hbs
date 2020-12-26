@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="uk" dir="ltr">
 <head>
-  <meta charset="utf-8">
   <title>Перевірені сторінки</title>
-  <script src="/js/pages-filter.js" defer></script>
   <link rel="stylesheet" href="/css/table.css">
   <link rel="stylesheet" href="/css/input_form.css">
-  <link rel="stylesheet" href="/css/buttons.css">
   <link rel="stylesheet" href="/css/main_styles.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="/js/pages-filter.js" defer></script>
 </head>
 <body>
   <header class="header">
@@ -34,7 +29,9 @@
         <input type="search" placeholder="Назва Сторінки" id="filter-title">
       </div>
       <div class="control-buttons">
-        <a href="/admin/{{user}}/pages/cancel-publish/1" class="button accent-btn published">Не перевірені</a>
+        <a href="/admin/{{user}}/pages/add" class="button accent-btn">Створити</a>
+        <a href="/admin/{{user}}/pages/cancel-publish/1" class="button secondary-btn published">Не перевірені</a>
+        <a href="/admin/{{user}}/pages/category/1"class="button secondary-btn">Категорії</a>
         <button id="filter-active" class="button primary-btn filter-btn">Фільтрувати</button>
         <button id="disabled-filter" class="button primary-btn filter-btn">Скинути фільтр</button>
       </div>
@@ -43,47 +40,39 @@
       <table class="table-fill" id="table">
         <thead>
           <tr>
-            <th>Назва</th>
-            <th class="page-check">Головне Меню</th>
-            <th>Пункт Головного Меню</th>
-            <th class="ategory-check">Категорія Сторінки</th>
-            <th class="lang">Мова</th>
-            <th>Ключові слова</th>
-            <th>Дії</th>
+            <th class="text-center">Назва</th>
+            <th class="text-center page-check">Головне Меню</th>
+            <th class="text-center">Актуальне</th>
+            <th class="text-center ategory-check">Категорія</th>
+            <th class="text-center lang">Мова</th>
+            <th class="text-center">Кількість переглядів</th>
+            <th class="text-center">Дії</th>
           </tr>
         </thead>
         <tbody class="table-hover">
           {{#each contentPages}}
-          <tr>
-            <td class="text-left" id="page-title">{{page_title}}</td>
-            <td class="text-center" id="page-dependense-main">{{dependense_main}}</td>
-            <td class="text-center" id="page-dependense-main-title">{{dependense_main_title}}</td>
-            <td class="text-center" id="page-dependense-main-title">{{page_subclass}}</td>
-            <td class="text-center" id="page-language">{{lang}}</td>
-            <td class="text-left">{{keywords}}</td>
-            <td class="text-center">
-              <form method="GET" action="/admin/{{../user}}/edit-content/{{_id}}">
-                <button class="button secondary-btn">Редагувати</button>
-              </form>
-              <form method="POST" action="/admin/{{../user}}/pages/cancel-publish/{{_id}}">
-                <button class="button secondary-btn">Подати на перевірку</button>
-              </form>
-                <form method="POST" action="/admin/{{../user}}/pages/delete/{{_id}} ">
-                <button class="button delete-btn">Видалити</button>
-              </form>
-            </td>
-          </tr>
+            <tr>
+              <td class="text-left" id="page-title">{{title}}</td>
+              <td class="text-center" id="page-dependense-main">{{mainMenuItemTitle}}</td>
+              <td class="text-center">{{actualContentTitle}}</td>
+              <td class="text-center">{{categoryTitle}}</td>
+              <td class="text-center" id="page-language">{{language}}</td>
+              <td class="text-center">{{views}}</td>
+              <td class="text-center">
+                <form method="GET" action="/admin/{{../user}}/pages/edit/{{_id}}">
+                  <button class="button secondary-btn">Редагувати</button>
+                </form>
+                <form method="POST" action="/admin/{{../user}}/pages/cancel-publish/{{_id}}">
+                  <button class="button secondary-btn">Подати на перевірку</button>
+                </form>
+                  <form method="POST" action="/admin/{{../user}}/pages/delete/{{_id}} ">
+                  <button class="button delete-btn">Видалити</button>
+                </form>
+              </td>
+            </tr>
           {{/each}}
         </tbody>
       </table>
-      <ul>
-        {{#loop 1 pages 1}}
-          <li id="pages-container">
-            <a id="counter" href="./{{this}}"> {{this}} </a>
-          </li>
-        {{/loop}}
-      </ul>
     </div>
   </div>
 </body>
-</html>

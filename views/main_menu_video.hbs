@@ -1,0 +1,42 @@
+<head>
+  <title>Головне меню</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Відео Контент </h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header> 
+  {{> sidebar id=user}}
+   
+  <div class="table_container">
+    <div class="control-buttons">
+     <a href="/admin/{{user}}/video/add" class="button accent-btn">Створити</a>
+   </div> 
+    <div class="content-area">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>Заголовок</th>
+            <th>Опис</th>
+            <th>Посилання</th>
+            <th>Операції</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each videos}}
+          <tr>
+            <td class="text-left">{{title}}</td>
+            <td class="text-left">{{description}}</td>
+              <td class="text-left">{{link}}</td>
+            <td class="left-center">
+              <a href="/admin/{{../user}}/video/edit/{{_id}}" class="button primary-btn">Редагувати Відео Контент</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

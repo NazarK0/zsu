@@ -1,0 +1,133 @@
+<head>
+  <title>Редагувати Актуальне</title>
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/checkbox_style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <script src="/js/actual-content-edit-visual.js" defer></script>
+  <script src="/js/actual-content-fetch.js" defer></script>
+  <script src="/js/filterContentListUa.js" defer></script>
+  <script src="/js/filterContentListEn.js" defer></script>
+</head>
+<body style = "background-color: #2f2f2f">
+  {{> menu id=userid}}
+  <div class="container">
+    {{#ifCond mode '===' 'add'}}
+      <h3 class="title">Створити актуальний контент</h3>
+    {{/ifCond}}
+    {{#ifCond mode '===' 'edit'}}
+      <h3 class="title">Редагувати актуальний контент "{{title_ua}}"</h3>
+    {{/ifCond}}
+    <div>
+      <h3 class="label">Зображення</h3>
+      <form id="actual-content-img-form">
+        <input type="file" id="actual-content-img-input" accept="image/*" name="actualContentImage" style="display: none;">
+        <button type="button" id="browse-actual-content-img-btn" class="button secondary-btn">Огляд...</button>
+        <button type="submit" id="submit-actual-content-img-btn" class="button accent-btn" disabled>Зберегти</button>
+      </form>
+      <div class="flex" id="current-actual-content-img-block" style="display: none;">
+        <img id="actual-content-image" src="{{imgSrc}}" alt="{{title_ua}}">
+        <form id="actual-content-img-delete-form">
+          <button type="submit" class="button delete-btn">Видалити</button>
+        </form>
+      </div>
+      <hr>
+    </div>
+    {{#ifCond mode '===' 'add'}}
+      <form method="POST" action="/admin/{{userid}}/actual-content/add">
+    {{/ifCond}}
+    {{#ifCond mode '===' 'edit'}}
+      <form method="POST" action="/admin/{{userid}}/actual-content/edit/{{id}}">
+    {{/ifCond}}
+      <div>
+        <label for="title_ua">Заголовок (UA)</label>
+        <input 
+          id="title_ua"
+          type="text"
+          class="stretch"
+          name="title_ua"
+          placeholder="Заголовок (UA)"
+          value="{{title_ua}}"
+          required
+          >
+      </div>
+      <div>
+        <label for="title_en">Заголовок (EN)</label>
+        <input 
+          id="title_en"
+          type="text"
+          class="stretch"
+          name="title_en"
+          placeholder="Заголовок (EN)"
+          value="{{title_en}}"
+          required
+          >
+      </div>
+      {{#ifCond mode '===' 'edit'}}
+        <div>
+          <p class="label" style="display: block;">Поточні значення:</p>
+          <p class="label" style="display: block;">(UA) - {{currentUrlUA}}</p>
+          <p class="label" style="display: block;">(EN) - {{currentUrlEN}}</p>
+        </div>
+      {{/ifCond}}
+      <div>
+        <p class="label">Прив'язати</p>
+        <div>
+          {{#ifCond mode '===' 'edit'}}
+            <div>
+              <input id="link-type-no-change" type="radio" name="linkType" value="noChange" checked>
+              <label for="link-type-no-change">Залишити без змін</label>
+            </div>
+            <div>
+              <input id="link-type-no-link" type="radio" name="linkType" value="noLink">
+              <label for="link-type-no-link">Без прив'язування</label>
+            </div>
+            {{else}}
+            <div>
+              <input id="link-type-no-link" type="radio" name="linkType" value="noLink" checked>
+              <label for="link-type-no-link">Без прив'язування</label>
+            </div>
+          {{/ifCond}}
+          <div>
+            <div>
+              <input id="link-type-direct-link" type="radio" name="linkType" value="directLink">
+              <label for="link-type-direct-link">Пряме посилання</label>
+            </div>
+            <div style="margin-left: 30px;">
+              <div>
+                <label for="url_ua">UA</label>
+                <input type="text" name="url_ua" id="url_ua" class="stretch" placeholder="https://example.com" required>
+              </div>
+              <div>
+                <label for="url_en">EN</label>
+                <input type="text" name="url_en" id="url_en" class="stretch" placeholder="https://example.com" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <input id="link-type-content" type="radio" name="linkType" value="content">
+            <label for="link-type-content">Сторінка</label>
+          </div>
+          <div style="margin-left: 30px;">
+            <div>
+              <label>UA</label>
+              {{#ContentList contentPageListUA 'ua'}}
+              {{/ContentList}} 
+            </div>
+            <div>
+              <label>EN</label>
+              {{#ContentList contentPageListEN 'en'}}
+              {{/ContentList}} 
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="button secondary-btn">Зберегти</button>
+      <input type="hidden" id="actual-content-id" name="actualContentId" value="{{id}}">
+    </form>
+    <a href="/admin/{{userid}}/actual-content" class="button primary-btn">Назад</a>
+  </div>
+</body>
+{{!-- views by Vanivskyi --}}

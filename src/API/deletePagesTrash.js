@@ -1,0 +1,1 @@
+"use strict";const e=require("../Models/Page");module.exports=async()=>{(await e.find({public_status:"uncomplete"}).select({_id:1,mainPhoto:2}).lean()).map(e=>e._id).forEach(async a=>{await e.findByIdAndDelete(a)})};

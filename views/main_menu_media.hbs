@@ -1,0 +1,43 @@
+<head>
+  <title>Головне меню</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Фото Категорії </h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header> 
+  {{> sidebar id=user}}
+   
+  <div class="table_container">
+    <div class="control-buttons">
+     <a href="/admin/{{user}}/media-category/add" class="button accent-btn">Створити</a>
+   </div> 
+    <div class="content-area">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>Назва(UA)</th>
+            <th>Назва(EN)</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each medias}}
+          <tr>
+            <td class="text-left">{{title_ua}}</td>
+            <td class="text-left">{{title_en}}</td>
+            <td class="left-center">
+              <a href="/admin/{{../user}}/media-category/edit/{{_id}}" class="button primary-btn">Редагувати</a>
+              <form method="POST" action="/admin/{{../user}}/media-category/remove/{{_id}}" class="inline">
+                <button type="submit" class="button delete-btn" type="submit">Видалити</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

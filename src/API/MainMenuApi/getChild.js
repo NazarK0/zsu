@@ -1,0 +1,1 @@
+"use strict";const e=require("../../Models/Menu");module.exports=async function(n){let t=await e.find().where({parentFK:n}).lean();return console.log(t.length),null};

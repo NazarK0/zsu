@@ -1,0 +1,47 @@
+<head>
+  <title>Види/роди ЗСУ</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Фото категорії : {{title_ua}}</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header>
+  {{> sidebar id=user}}
+  <div class="table_container">
+    <div class="control-panel small">
+
+        <form enctype="multipart/form-data" id="photo-form">
+
+            <input type="file" name="file_name" id="file_name"> 
+            <button type="submit" id="uploads_photo" class="button secondary-btn">Завантажити Фото</button>
+
+        </form>
+    </div>
+    <div class="content-area">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>Фото</th>
+            <th>ОпераціІ</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each photos}}
+            <tr>
+              <td class="text-center"><img src="data:image/jpeg;base64,{{base64}}" alt="{{title}}" height="60px"></td>
+              <td class="text-center">
+                <form method="GET" action="/admin/{{../user}}//media-category/photos/{{name}}/remove">
+                  <button type="submit" class="button primary-btn">Видалити</button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</body>

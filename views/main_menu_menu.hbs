@@ -1,0 +1,60 @@
+<head>
+  <title>Головне меню</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Головне меню ({{langCurrent}})</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header> 
+  {{> sidebar id=user}}
+  <div class="table_container">
+    <div class="control-panel small">
+      {{#if parent}}
+        {{#if grandParent}}
+            <a href="/admin/{{user}}/menu/{{langCurrent}}/show/{{grandParent}}" class="button secondary-btn">Назад</a>
+          {{else}}
+            <a href="/admin/{{user}}/menu/{{langCurrent}}/show" class="button secondary-btn">Назад</a>
+        {{/if}}
+        <a href="/admin/{{user}}/menu/{{langCurrent}}/{{parent}}/add" class="button accent-btn">Додати</a>
+        {{else}}
+        <a href="/admin/{{user}}/menu/{{langCurrent}}/add" class="button accent-btn">Додати</a>
+        <a href="/admin/{{user}}/menu/{{langOther}}/show" class="button secondary-btn">{{langOther}}</a>
+      {{/if}}
+      
+    </div>
+    <div class="content-area">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Заголовок</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each menu}}
+          <tr>
+            <td class="text-left">{{number}}</td>
+            <td class="text-left">{{title}}</td>
+            <td class="left-center">
+              <a href="/admin/{{../user}}/menu/{{../langCurrent}}/edit/{{_id}}" class="button small secondary-btn"><i class="fas fa-pencil-alt"></i></a>
+              <form method="POST" action="/admin/{{../user}}/menu/{{../langCurrent}}/delete/{{_id}}" class="inline">
+                <button type="submit" class="button small delete-btn"><i class="fas fa-trash-alt"></i></button>
+              </form>
+              <a href="/admin/{{../user}}/menu/{{../langCurrent}}/show/{{_id}}" class="button primary-btn">Перейти в Підменю</a>
+              <form method="POST" action="/admin/{{../user}}/menu/{{../langCurrent}}/up/{{_id}}" class="inline">
+                <button type="submit" class="button small inline secondary-btn"><i class="fas fa-chevron-up"></i></button>
+              </form>
+              <form method="POST" action="/admin/{{../user}}/menu/{{../langCurrent}}/down/{{_id}}" class="inline">
+                <button type="submit" class="button small secondary-btn"><i class="fas fa-chevron-down"></i></button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

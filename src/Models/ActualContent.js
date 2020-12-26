@@ -1,0 +1,1 @@
+"use strict";const{Schema:e,model:n}=require("mongoose"),t=new e({title_ua:String,title_en:String,hasUaContent:Boolean,hasEnContent:Boolean,hasDirectLinkUa:Boolean,hasDirectLinkEn:Boolean,url_ua:String,url_en:String,user_id:String,published:Boolean,img:{type:String,default:""}});module.exports=n("actualContent",t);

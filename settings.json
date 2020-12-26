@@ -1,8 +1,8 @@
 {
 
-   "db_connect":"mongodb://localhost/CMS",
+   "db_connect":"mongodb://localhost:27017/CMS3",
     "port": "1337",
-    "host": "localhost"
+    "host": "www.zsu.gov.ua"
 }
 
 

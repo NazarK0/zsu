@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/sidemenu.css">
-    <link rel="stylesheet" href="/css/table.css">
-    <link rel="stylesheet" href="/css/buttons.css">
-    <link rel="stylesheet" href="/css/main_styles.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <h1>Редагування підменю: {{name_of_parent}}</h1>
-      <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
-    </header>
-      {{> sidebar id=user}}
-      <div class="table_container">
-        <form action="/admin/{{user}}/all/submenu/{{submenu_id}}/child/add" method="GET">
-          <button class="button accent-btn">Додати</button>
-        </form>
-        <form action="{{redirect_link}}" method="GET">
-          <button class="button accent-btn">Назад</button>
-        </form>
-       
-        <table class="table-fill">
+<head>
+  <title>Редагувати меню</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Редагування підменю: {{name_of_parent}}</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header>
+  {{> sidebar id=user}}
+  <div class="table_container">
+    <div class="control-panel small">
+      <a href="{{redirect_link}}" class="button primary-btn">Назад</a>
+      <a href="/admin/{{user}}/all/submenu/{{submenu_id}}/child/add" class="button accent-btn">Додати</a>
+    </div>
+    <div class="content-area">
+      <table class="table-fill">
         <thead>
           <tr>
             <th>№</th>
@@ -32,8 +24,8 @@
             <th>Дії</th>
           </tr>
         </thead>
-          <tbody class="table-hover">
-            {{#each childlist}}
+        <tbody class="table-hover">
+          {{#each childlist}}
             <tr>
               <td class="text-left">{{number}}</td>
               <td class="text-left">{{title}}</td>
@@ -46,16 +38,16 @@
                   <button class="button secondary-btn">Перейти в Підменю</button>
                 </form>
                 <form action="/admin/{{../user}}/all/submenu/{{../submenu_id}}/child/setUp/{{_id}}" method="POST">
-                  <button class="button secondary-btn">Підняти в гору</button>
+                  <button class="button secondary-btn">Підняти</button>
                 </form>
                 <form action="/admin/{{../user}}/all/submenu/{{../submenu_id}}/child/setDown/{{_id}}" method="POST">
-                  <button class="button secondary-btn">Спустити в низ</button>
+                  <button class="button secondary-btn">Опустити</button>
                 </form>
               </td>
             </tr>
-            {{/each}}
-          </tbody>
+          {{/each}}
+        </tbody>
       </table>
-    </div>     
-  </body>
-</html>
+    </div>
+  </div>
+</body>

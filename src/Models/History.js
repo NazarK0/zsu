@@ -1,1 +1,1 @@
-"use strict";const e=require("mongoose"),t=require("moment"),r=e.Schema,o=new r({type_content:String,operation:String,user:String,create_date:{type:String,default:t().format("DD-MM-YY")}});module.exports=e.model("history",o);
+"use strict";const e=require("mongoose"),t=require("moment"),r=e.Schema,o=new r({type_content:String,operation:String,user:String,create_date:{type:String,default:t().toISOString()}});module.exports=e.model("history",o);

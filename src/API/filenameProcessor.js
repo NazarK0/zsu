@@ -1,0 +1,1 @@
+"use strict";const e=require("path"),t=require("moment");module.exports=c=>{const{name:n,ext:r}=e.parse(c);return"".concat(n,"-").concat(t().unix()).concat(r)};

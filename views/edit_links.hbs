@@ -1,11 +1,10 @@
 <head>
-    <link rel="stylesheet" href="/css/input_form.css" type="text/css">
-    <link rel="stylesheet" href="/css/checkbox_style.css" type="text/css">
-    <link rel="stylesheet" href="/css/menu.css" type="text/css">
-    <link rel="stylesheet" href="/css/resets.css" type="text/css">
-    <link rel="stylesheet" href="/css/buttons.css" type="text/css">
-    <link rel="stylesheet" href="/css/edit_links.css" type="text/css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <title>Редагувати посилання</title>
+  <link rel="stylesheet" href="/css/input_form.css" type="text/css">
+  <link rel="stylesheet" href="/css/checkbox_style.css" type="text/css">
+  <link rel="stylesheet" href="/css/menu.css" type="text/css">
+  <link rel="stylesheet" href="/css/resets.css" type="text/css">
+  <link rel="stylesheet" href="/css/edit_links.css" type="text/css">
   <script src="/js/edit_links.js" defer></script>
   <script src="/js/links-img-fetch.js" defer></script>
 </head>
@@ -33,7 +32,7 @@
       </div>
       <div>
         <label for="link"><B>Посилання</B></label>
-        <input id="link" class="stretch" name="link" type="text" value="{{link}}" placeholder="Посилання" required>
+        <input id="link" class="stretch" name="link" type="text" value="{{link}}" placeholder="https://example.com" required>
       </div>
       <div>
         <label for="link-img"><b>Зображення</b></label>
@@ -52,12 +51,11 @@
       <button class="button secondary-btn">Зберегти</button>
     </form>
     <form method="GET" action="/admin/{{userid}}/links/1" class="inline">
-      <button class="button secondary-btn" style="visibility:{{parameter}}">Відмінити</button>
+      <button class="button primary-btn" style="visibility:{{parameter}}">Назад</button>
     </form>
     <form method="POST" action="/admin/{{userid}}/links/delete/{{linkid}}" class="inline">
       <button type="submit" class="button delete-btn" style="visibility:{{parameter}}" type="submit">Видалити</button>
     </form>
   </div>
 </body>
-</html>
 {{!-- views by Vanivskyi --}}

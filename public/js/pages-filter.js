@@ -36,7 +36,6 @@ document.getElementById('disabled-filter').addEventListener('click',()=>{
 })
 document.getElementById('filter-active').addEventListener('click',()=>{ 
 
-
     const options={
         menu_title:document.getElementById('filter-main').value,
         language:document.getElementById('filter-language').value,
@@ -105,7 +104,7 @@ document.getElementById('filter-active').addEventListener('click',()=>{
 
                 }
                  if(column[j].id==='page-dependense-main'){
-                     if(column[j].innerText==='Так'){
+                     if(column[j].innerText!=='-'){
                          row[i].style='display:true'
                      }
                      else {
@@ -141,7 +140,7 @@ document.getElementById('filter-active').addEventListener('click',()=>{
 
                 }
                  if(column[j].id==='page-dependense-side'){
-                     if(column[j].innerText==='Так'){
+                     if(column[j].innerText!=='-'){
                          row[i].style='display:true'
                      }
                      else {

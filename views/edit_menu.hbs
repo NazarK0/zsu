@@ -1,0 +1,86 @@
+<head>
+  <title>Редагувати меню</title>
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <link rel="stylesheet" href="/css/edit_styles.css">
+  <script src="/js/menu-edit-visual.js" defer></script>
+  <script src="/js/filterContentList.js" defer></script>
+</head>
+<body style="background-color: #2f2f2f">
+  {{> menu id=user}}
+  <div class="container">
+    {{#ifCond mode '===' 'add'}}
+      <h3 class="title">Створити пункт меню ({{language}})</h3>
+      {{#if parent}}
+          <form method="POST" action="/admin/{{user}}/menu/{{language}}/{{parent}}/add">
+        {{else}}
+          <form method="POST" action="/admin/{{user}}/menu/{{language}}/add">
+      {{/if}}
+    {{/ifCond}}
+    {{#ifCond mode '===' 'edit'}}
+      <h3 class="title">Редагувати пункт меню "{{title}} ({{language}})"</h3>
+      <form method="POST" action="/admin/{{user}}/menu/{{language}}/edit/{{id}}">
+    {{/ifCond}}
+      <div>
+        <label for="title">Назва</label>
+        <input id="title" type="text" class="stretch" name="title" placeholder="Назва" value="{{title}}" required>
+      </div>
+      <div>
+        {{#ifCond mode '===' 'edit'}}
+          <p class="label">Поточний контент</p>
+          <label>"{{currentContent}}"</label>
+        {{/ifCond}}
+      </div>
+      <div>
+        <p class="label">Прив'язати</p>
+        <div>
+          {{#ifCond mode '===' 'edit'}}
+            <div>
+              <input id="link-type-no-change" type="radio" name="linkType" value="noChange" checked>
+              <label for="link-type-no-change">Залишити без змін</label>
+            </div>
+            <div>
+              <input id="link-type-no-link" type="radio" name="linkType" value="noLink">
+              <label for="link-type-no-link">Без прив'язування</label>
+            </div>
+            {{else}}
+            <div>
+              <input id="link-type-no-link" type="radio" name="linkType" value="noLink" checked>
+              <label for="link-type-no-link">Без прив'язування</label>
+            </div>
+          {{/ifCond}}
+        </div>
+        <div>
+          <div>
+            <div>
+              <input id="link-type-direct-link" type="radio" name="linkType" value="directLink">
+              <label for="link-type-direct-link">Посилання для переходу на інші ресурси</label>
+            </div>
+            <div style="margin-left: 30px;">
+              {{#LinkList linksList}}
+              {{/LinkList}}
+            </div>
+          </div>
+          <div>
+            <div>
+              <input id="link-type-content" type="radio" name="linkType" value="content">
+              <label for="link-type-content">Сторінка</label>
+            </div>
+            <div style="margin-left: 30px;">
+              {{#ContentList pagesList ''}}
+              {{/ContentList}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="button secondary-btn">Зберегти</button>
+    </form>
+    {{#if parent}}
+        <a href="/admin/{{user}}/menu/{{language}}/show/{{parent}}" class="button secondary-btn">Назад</a>
+      {{else}}
+        <a href="/admin/{{user}}/menu/{{language}}/show" class="button secondary-btn">Назад</a>
+    {{/if}}
+  </div>
+</body>
+{{!-- views by Vanivskyi --}}

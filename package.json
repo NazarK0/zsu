@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index",
     "start": " node index && npm run start-service",
-    "start-service": "node ./src/DefferedPublicationService/index"
+    "start-service": "node ./src/DefferedPublicationService/index",
+    "start-service-test": "node ./src/DefferedPublicationService/index",
+    "build": "gulp build"
   },
   "author": "223 Teams (Rudyak and Vanivskiy)",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",

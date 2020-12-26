@@ -1,1 +1,1 @@
-"use strict";const e=require("../Models/Category"),r=async()=>{const r=await e.find();return JSON.parse(JSON.stringify(r))};module.exports=r;
+"use strict";const e=require("../Models/Category"),t=async t=>await e.find({contentType:t}).lean();module.exports=t;

@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="uk" dir="ltr">
 <head>
-  <meta charset="utf-8">
   <title>Скасовані новини</title>
-  <script src="/js/news-filter.js" defer></script>
+  <link rel="stylesheet" href="/css/dtsel.css" />
   <link rel="stylesheet" href="/css/table.css">
   <link rel="stylesheet" href="/css/input_form.css">
-  <link rel="stylesheet" href="/css/buttons.css">
   <link rel="stylesheet" href="/css/main_styles.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="/js/dtsel.js"></script>
+  <script src="/js/news-filter.js" defer></script>
 </head>
 <body>
   <header class="header">
@@ -19,7 +16,7 @@
   <div class="table_container cp-big">
     <div class="control-panel">
       <div id="filter-form" class="filter-form">
-        <input id="filter-date" type="date" data-date-format="DD-MMMM-YYYY" >
+        <input id="filter-date" type="text" placeholder="dd.mm.yyyy">
         <select id="filter-news-parameter">
             {{#each news_type_constant}} 
           <option id="{{id}}">{{value}}</option>
@@ -38,7 +35,9 @@
         <input id="filter-title" type="search" placeholder="Заголовок">
       </div>
       <div class="control-buttons">
-        <a href="/admin/{{user}}/news/1" class="button accent-btn">Опубліковані</a>
+        <a href="/admin/{{user}}/news/add" class="button accent-btn">Створити</a>
+        <a href="/admin/{{user}}/news/1" class="button secondary-btn">Опубліковані</a>
+        <a href="/admin/{{user}}/news/category/1"class="button secondary-btn">Категорії</a>
         <button  id="filter-active" class="button primary-btn filter-btn">Фільтрувати</button>   
         <button id="disabled-filter" class="button primary-btn filter-btn">Cкинути фільтр</button>
       </div>
@@ -50,7 +49,6 @@
             <th>Заголовок</th>
             <th class="news-type">Тип Новини</th>
             <th class="date">Дата</th>
-            <th class="date">Час</th>
             <th class="lang">Мова</th>
             <th>Ключові слова</th>
             <th class="news-status">Статус Новини</th>
@@ -60,18 +58,18 @@
         <tbody class="table-hover">
           {{#each news}} 
           <tr>
-            <td class="text-left" id="news-title">{{page_title}}</td>
-            <td class="text-center" id="news-type">{{page_subclass}}</td>
+            <td class="text-left" id="news-title">{{title}}</td>
+            <td class="text-center" id="news-type">{{type}}</td>
             <td class="text-center" id="date">{{date}}</td>
-            <td class="text-center" id="time">{{time}}</td>
-            <td class="text-center" id="lang-type">{{lang}}</td>
-            <td class="text-left">{{keywords}}</td>
-            <td class="text-center " id="status">{{public_status}}</td>
+            <td class="text-center" id="lang-type">{{language}}</td>
+            <td class="text-center">{{keywords}}</td>
+            <td class="text-center " id="status">{{publicStatus}}</td>
             <td class="text-center">
               <form method="POST" action="/admin/{{../user}}/news-public/{{_id}}">
                 <button class="button secondary-btn">Публікувати</button>
               </form>
-              <form method="GET" action="/admin/{{../user}}/edit-content/{{_id}}">
+              <a href="https://www.zsu.gov.ua/Новина/test/zsu_site/backeand/site/v_2/2020/3123/id/news/seen/{{_id}}" class="button accent-btn" target="_blank">Попередній перегляд</a>
+              <form method="GET" action="/admin/{{../user}}/news/edit/{{_id}}">
                 <button class="button secondary-btn">Редагувати</button>
               </form>
               <form method="POST" action="/admin/{{../user}}/news/delete/{{_id}}">
@@ -82,14 +80,6 @@
           {{/each}}
         </tbody>
       </table>
-      <ul>
-        {{#loop 1 pages 1}}
-          <li id="pages-container">
-            <a id="counter" href="./{{this}}">{{this}}</a>
-          </li>
-        {{/loop}}
-      </ul>
     </div>
   </div>
 </body>
-</html>

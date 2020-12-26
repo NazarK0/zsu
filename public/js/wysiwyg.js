@@ -68,6 +68,7 @@ const sliderInitDeleteFormsAction = (selector) => {
           if (filenames.length === 0) {
             sliderCurrentContainer.style.display = 'none';
             sliderAddForm.style.display = 'none';
+            sliderSendBtn.disabled = false;
           }
         }
       }
@@ -113,6 +114,7 @@ const filesInitDeleteFormsAction = (selector) => {
           if (filenames.length === 0) {
             filesCurrentContainer.style.display = 'none';
             filesAddForm.style.display = 'none';
+            filesSendBtn.disabled = false;
           }
         }
       }
@@ -140,6 +142,7 @@ mainPhotoForm.onsubmit = async (e) => {
 
     if (filename) {
       mainPhotoSubmitBtn.disabled = true;
+      mainPhotoSendBtn.disabled = true;
       mainPhotoInput.value = null;
       mainPhotoCurrentContainer.style.display = 'block';
       mainPhotoCurrent.src = `${folder}middlesize/${filename}`;
@@ -159,6 +162,7 @@ mainPhotoDeleteForm.onsubmit = async (e) => {
     if (mainPhotoCurrentContainer) {
       mainPhotoCurrentContainer.style.display = 'none';
       mainPhotoCurrent.src = '';
+      mainPhotoSendBtn.disabled = false;
     }
   }
 };
@@ -186,6 +190,7 @@ sliderForm.onsubmit = async (e) => {
 
       sliderTableBody.innerHTML = currentImagesRows.join('\n');
       sliderSubmitBtn.disabled = true;
+      sliderSendBtn.disabled = true;
       sliderInput.value = '';
       sliderCurrentContainer.style.display = 'block';
       sliderAddForm.style.display = 'block';
@@ -244,6 +249,7 @@ filesForm.onsubmit = async (e) => {
 
       filesTableBody.innerHTML = currentFilesRows.join('\n');
       filesSubmitBtn.disabled = true;
+      filesSendBtn.disabled = true;
       filesInput.value = '';
       filesCurrentContainer.style.display = 'block';
       filesAddForm.style.display = 'block';
@@ -282,6 +288,9 @@ filesAddBtn.onclick = () => filesAddInput.click();
 filesSendBtn.onclick = () => filesInput.click();
 
 document.body.onload = () => {
+  mainPhotoSendBtn.disabled = mainPhotoCurrentContainer.style.display === 'block';
+  sliderSendBtn.disabled = sliderCurrentContainer.style.display === 'block';
+  filesSendBtn.disabled = filesCurrentContainer.style.display === 'block';
   sliderInitDeleteFormsAction('[data-group="delete-slider-img"]');
   filesInitDeleteFormsAction('[data-group="delete-file-form"]');
 };

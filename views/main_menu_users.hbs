@@ -1,67 +1,61 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Адміністратори</title>
-    <link rel="stylesheet" href="/css/table.css">
-    <link rel="stylesheet" href="/css/buttons.css">
-    <link rel="stylesheet" href="/css/main_styles.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <h1>Адміністратори</h1>
-      <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
-    </header>
-    {{> sidebar id=user}}
-    <div class="table_container">
-      <div class="control-panel small">
-        <a href="/admin/{{user}}/user/add" class="button accent-btn">Додати</a>
-        {{#if status}}
-          <a href="/admin/{{user}}/user/xlsx" class="button secondary-btn">Зберегти .xls</a>
-        {{/if}}
-      </div>
-      <div class="content-area">
-        <table class="table-fill">
-          <thead>
-            <tr>
-              <th>Логін</th>
-              <th>Електронна пошта</th>
-              <th class="user-operations">Доступні категорії для опрацювання</th>
-              <th class="user-creator">Створений користувачем</th>
-              <th>Детальний опис</th>
-              <th>Дії</th>
-            </tr>
-          </thead>
-          <tbody class="table-hover">
-            {{#each users}}
-              <tr>
-                <td class="text-left">{{login}}</td>
-                <td class="text-center">{{email}}</td>
-                <td class="text-center">
-                  {{#each operation}} 
-                    <div>{{category}}</div>
-                  {{/each}}
-                </td>
-                <td class="text-center">{{creator.login}}</td>
-                <td class="text-center">{{description_user}}</td>
-                <td class="text-center">
-                  <form method="GET" action="/admin/{{../user}}/user/edit/{{_id}}">
-                    <button type="submit" class="button primary-btn">Редагувати</button>
-                  </form>
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <ul>
-          {{#loop 1 pages 1}}
-            <li id="pages-container">
-              <a id="counter" href="./{{this}}">{{this}}</a>
-            </li>
-          {{/loop}}
-        </ul>
-      </div>
+<head>
+  <title>Адміністратори</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Адміністратори</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header>
+  {{> sidebar id=user}}
+  <div class="table_container">
+    <div class="control-panel small">
+      <a href="/admin/{{user}}/user/add" class="button accent-btn">Додати</a>
+      {{#if status}}
+        <a href="/admin/{{user}}/user/xlsx" class="button secondary-btn">Зберегти .xls</a>
+      {{/if}}
     </div>
-  </body>
-</html>
+    <div class="content-area">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>Логін</th>
+            <th>Електронна пошта</th>
+            <th class="user-operations">Доступні категорії для опрацювання</th>
+            <th class="user-creator">Створений користувачем</th>
+            <th>Детальний опис</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each users}}
+            <tr>
+              <td class="text-left">{{login}}</td>
+              <td class="text-center">{{email}}</td>
+              <td class="text-center">
+                {{#each operation}} 
+                  <div>{{category}}</div>
+                {{/each}}
+              </td>
+              <td class="text-center">{{creator.login}}</td>
+              <td class="text-center">{{description_user}}</td>
+              <td class="text-center">
+                <form method="GET" action="/admin/{{../user}}/user/edit/{{_id}}">
+                  <button type="submit" class="button primary-btn">Редагувати</button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <ul>
+        {{#loop 1 pages 1}}
+          <li id="pages-container">
+            <a id="counter" href="./{{this}}">{{this}}</a>
+          </li>
+        {{/loop}}
+      </ul>
+    </div>
+  </div>
+</body>

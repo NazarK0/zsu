@@ -1,42 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <title>Головне меню</title>
+  <title>Головне меню : {{long_lang}}</title>
   <link rel="stylesheet" href="/css/table.css">
-  <link rel="stylesheet" href="/css/buttons.css">
   <link rel="stylesheet" href="/css/main_styles.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body>
   <header class="header">
-    <h1>Головне меню</h1>
+    <h1>Головне меню ({{langCurrent}})</h1>
     <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
   </header> 
   {{> sidebar id=user}}
   <div class="table_container">
-    <div>
-       <form action="/admin/{{user}}/mainmenu/add" method="GET">
-          <button class="button accent-btn">Додати</button>
-    </form>
+    <div class="control-panel small">
+      <a href="/admin/{{user}}/mainmenu/{{langCurrent}}/add" class="button accent-btn">Додати</a>
+      <a href="/admin/{{user}}/mainmenu/lang/{{langOther}}" class="button secondary-btn">{{langOther}}</a>
     </div>
-    <div>
-       <form action="/admin/{{user}}/mainmenu/lang/{{lang}}" method="GET">
-      <button class="button accent-btn">{{lang}}</button>
-      </form>
-
-    </div>
-   
-   
-   
-  
     <div class="content-area">
       <table class="table-fill">
         <thead>
           <tr>
             <th>№</th>
             <th>Заголовок</th>
-            <th class="lang">Мова</th>
             <th>Дії</th>
           </tr>
         </thead>
@@ -45,18 +28,17 @@
           <tr>
             <td class="text-left">{{number}}</td>
             <td class="text-left">{{title}}</td>
-            <td class="text-center">{{lang}}</td>
             <td class="left-center">
-              <form method="GET" action="/admin/{{../user}}/mainmenu/edit/{{_id}}" class="inline">
+              <form method="GET" action="/admin/{{../user}}/mainmenu/{{../langCurrent}}/edit/{{_id}}">
                 <button type="submit" class="button primary-btn">Редагувати</button>
               </form>
-              <form method="GET" action="/admin/{{../user}}/all/{{_id}}/submenu" class="inline">
+              <form method="GET" action="/admin/{{../user}}/all/{{_id}}/submenu">
                 <button type="submit" class="button secondary-btn">Перейти в Підменю</button>
               </form>
-               <form method="POST" action="/admin/{{../user}}/mainmenu/setUp/{{_id}}" class="inline">
+              <form method="POST" action="/admin/{{../user}}/mainmenu/setUp/{{_id}}/{{../langCurrent}}">
                 <button type="submit" class="button secondary-btn">Підняти в гору</button>
               </form>
-               <form method="POST" action="/admin/{{../user}}/mainmenu/setDown/{{_id}}" class="inline">
+              <form method="POST" action="/admin/{{../user}}/mainmenu/setDown/{{_id}}/{{../langCurrent}}">
                 <button type="submit" class="button secondary-btn">Спустити вниз</button>
               </form>
             </td>
@@ -67,4 +49,3 @@
     </div>
   </div>
 </body>
-</html>

@@ -1,1 +1,1 @@
-"use strict";const n=require("mongoose"),r=n.Schema,t=new r({title:String,lang:String,parent_sub:String,parent_childSub:String,child:Array,content_id:String,number:Number,link:String});module.exports=n.model("child_sub",t);
+"use strict";const e=require("mongoose"),{Schema:n}=e,t=new n({title:String,lang:String,parent_sub:String,content_id:String,number:Number,link:String});module.exports=e.model("child_sub",t);

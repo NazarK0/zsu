@@ -1,0 +1,1 @@
+"use strict";const e=require("express"),d=e.Router(),o=require("../Controllers/video_controller");d.get("/video",o.getAllVideo),d.get("/video/add",o.getAddVideo),d.post("/video/add",o.postAddVideo),d.get("/video/edit/:id",o.getEditVideo),d.post("/video/edit/:id",o.postEditVideo),d.post("/video/remove/:id",o.postRemoveVideo),module.exports=d;

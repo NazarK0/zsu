@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-{{!--  --}}
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Редактор контенту</title>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/dtsel.css" />
-  <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
-  <link rel="stylesheet" href="/css/buttons.css">
   <link rel="stylesheet" href="/css/edit_styles.css">
   <link rel="stylesheet" href="/css/input_form.css">
   <link rel="stylesheet" href="/css/checkbox_style.css">
@@ -16,7 +9,7 @@
   <link rel="stylesheet" href="/css/tree-view.css">
   <link rel="stylesheet" href="/css/table.css">
   <link rel="stylesheet" href="/css/tabs.css">
-  <link rel="stylesheet" type="text/css" href="/css/wysiwyg.css" />
+  <link rel="stylesheet" href="/css/wysiwyg.css" />
   <script src="/tinymce/tinymce.min.js"></script>
   <script src="/tinymce/js/settings.js"></script>
   <script src="/js/jquery-3.0.0.min.js"></script>
@@ -24,329 +17,280 @@
   <script src="/js/dtsel.js"></script>
   <script src="/js/wysiwyg.js" defer></script>
   <script src="/js/tree-view.js" defer></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js">
 </head>
 <body style = "background-color: #2f2f2f">
   {{> menu id=userid}} 
-<section class="editor-container">
-  <section class="main">
-    <h2 class="label">Конструктор</h2>
-    <div>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="editor-tab" data-toggle="tab" href="#editor" role="tab" aria-controls="editor" aria-selected="true">Головна</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="useful-links-tab" data-toggle="tab" href="#useful-links" role="tab" aria-controls="useful-links" aria-selected="false" style="display: {{displayLinksTab}}">Посилання</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="main_photos-tab" data-toggle="tab" href="#main_photos" role="tab" aria-controls="main_photos" aria-selected="false" style="display: {{displayMainPhotoTab}}">Основне фото</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="slider_photos-tab" data-toggle="tab" href="#slider_photos" role="tab" aria-controls="slider_photos" aria-selected="false" style="display: {{displaySliderTab}}">Слайдер</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false" style="display: {{displayFilesTab}}">Файли</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="editor" role="tabpanel" aria-labelledby="editor-tab">
-          <p class="label"><b>Налаштування</b></p>
-            <form name="editor-control-panel_form" class="" action="/admin/{{userid}}/{{action}}-content" method="POST">
-              <div class="editor-settings">
-                <nav>
-                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-link active" id="nav-main-tab" data-toggle="tab" href="#nav-main" role="tab" aria-controls="nav-main" aria-selected="true">Основні</a>
-                    {{!-- <a class="nav-link" id="nav-main-menu-tab" data-toggle="tab" href="#nav-main-menu" role="tab" aria-controls="nav-main-menu" aria-selected="false" style="display: {{displayContentPage}}">Меню</a> --}}
-                    <a class="nav-link" id="nav-content-page-other-tab" data-toggle="tab" href="#nav-content-page-other" role="tab" aria-controls="nav-main-menu" aria-selected="false" style="display: {{displayCPOtherTab}}">Додатково</a>
-                    <a class="nav-link" id="nav-news-category-tab" data-toggle="tab" href="#nav-news-category" role="tab" aria-controls="nav-news-category" aria-selected="false" style="display: {{displayNewsCategoryTab}}">Категорії</a>
-                    <a class="nav-link" id="nav-news-other-tab" data-toggle="tab" href="#nav-news-other" role="tab" aria-controls="nav-news-other" aria-selected="false" style="display: {{displayNewsOtherTab}}">Додатково</a>
-                  </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                  <div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
-                    <div class="tiny-submit-buttons">
-                      <button id="save-content" class="tiny-submit-button button accent-btn">
-                        Зберегти
-                      </button>
+  <section class="editor-container">
+    <section class="main">
+      <h2 class="label">Конструктор</h2>
+      <div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="editor-tab" data-toggle="tab" href="#editor" role="tab" aria-controls="editor" aria-selected="true">Головна</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="useful-links-tab" data-toggle="tab" href="#useful-links" role="tab" aria-controls="useful-links" aria-selected="false" style="display: {{displayLinksTab}}">Посилання</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="main_photos-tab" data-toggle="tab" href="#main_photos" role="tab" aria-controls="main_photos" aria-selected="false" style="display: {{displayMainPhotoTab}}">Основне фото</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="slider_photos-tab" data-toggle="tab" href="#slider_photos" role="tab" aria-controls="slider_photos" aria-selected="false" style="display: {{displaySliderTab}}">Слайдер</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false" style="display: {{displayFilesTab}}">Файли</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="editor" role="tabpanel" aria-labelledby="editor-tab">
+            <p class="label"><b>Налаштування</b></p>
+              <form name="editor-control-panel_form" class="" action="/admin/{{userid}}/{{action}}-content" method="POST">
+                <div class="editor-settings">
+                  <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-link active" id="nav-main-tab" data-toggle="tab" href="#nav-main" role="tab" aria-controls="nav-main" aria-selected="true">Основні</a>
+                      <a class="nav-link" id="nav-content-page-other-tab" data-toggle="tab" href="#nav-content-page-other" role="tab" aria-controls="nav-content-page-other" aria-selected="false" style="display: {{displayCPOtherTab}}">Додатково</a>
+                      <a class="nav-link" id="nav-news-category-tab" data-toggle="tab" href="#nav-news-category" role="tab" aria-controls="nav-news-category" aria-selected="false" style="display: {{displayNewsCategoryTab}}">Категорії</a>
+                      <a class="nav-link" id="nav-news-other-tab" data-toggle="tab" href="#nav-news-other" role="tab" aria-controls="nav-news-other" aria-selected="false" style="display: {{displayNewsOtherTab}}">Додатково</a>
                     </div>
-                    <div id="radio_controlls-news" style="display: {{displayTypes}};">
-                      <p class="label">Тип</p>
-                      <div>
-                        <input id="page-type_news" type="radio" name="page_type" value="news" checked>
-                        <label id="page-type_news__label" for="page_type-news" class="label">Новина</label>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
+                      <div class="tiny-submit-buttons">
+                        <button id="save-content" class="tiny-submit-button button accent-btn">
+                          Зберегти
+                        </button>
+                      </div>
+                      <div id="radio_controlls-news" style="display: {{displayTypes}};">
+                        <p class="label">Тип</p>
+                        <div>
+                          <input id="page-type_news" type="radio" name="page_type" value="news" checked>
+                          <label id="page-type_news__label" for="page_type-news" class="label">Новина</label>
+                        </div>
+                        <div>
+                          <input id="page-type_content-page" type="radio" name="page_type" value="content_page">
+                          <label id="page-type_content-page__label" for="page-type_content-page" class="label">Сторінка</label>
+                        </div>
+                      </div>
+                      <div class="language-group">
+                        <label id="dropdown-language__label" for="dropdown-language" class="label">Мова:</label>
+                        <select id="dropdown" name="lang">
+                          <option value="ua">Українська</option>
+                          <option value="en">English</option>
+                        </select>
                       </div>
                       <div>
-                        <input id="page-type_content-page" type="radio" name="page_type" value="content_page">
-                        <label id="page-type_content-page__label" for="page-type_content-page" class="label">Сторінка</label>
+                        <label id="page_title__label" for="page-title" class="label">Назва/ПІБ:</label>
+                        <input id="page_title" class="stretch" name="page_title" value="{{page_title}}" required>
                       </div>
-                    </div>
-                    <div class="language-group">
-                      <label id="dropdown-language__label" for="dropdown-language" class="label">Мова:</label>
-                      <select id="dropdown" name="lang">
-                        <option value="ua">Українська</option>
-                        <option value="en">English</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label id="page_title__label" for="page-title" class="label">Назва:</label>
-                      <input id="page_title" class="stretch" name="page_title" value="{{page_title}}" required>
-                    </div>
-                    <div>
-                      <label id="description__label" for="description" class="label">Короткий опис:</label>
-                      <textarea id="description" name="description" class="description" required>{{description}}</textarea>
-                    </div>
-                    <div>
-                      <label id="tiny-keywords__label" for="tiny-keywords" class="label">#Ключові слова</label>
-                      <textarea id="tiny-keywords" class="tiny-keywords" name="keywords">{{keywords}}</textarea>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="nav-main-menu" role="tabpanel" aria-labelledby="nav-main-menu-tab">
-                    <p class="label">Видалено</p>
-                    {{!-- {{#MenuList menu}}
-                    {{/MenuList}} --}}
-                  </div>
-                  <div class="tab-pane fade" id="nav-content-page-other" role="tabpanel" aria-labelledby="nav-content-page-other-tab">
-                    <p class="label">Додаткові налаштування для сторінки</p>
-                    {{!-- {{#SidemenuList sidemenu}}
-                    {{/SidemenuList}} --}}
-                    <input type="hidden" name="page-subclass" value="{{page_subclass}}"/>
-                    <input type="hidden" name="page-type" value="content_page"/>
-                    {{#ifCond action '===' "create"}}
-                      <div id="page_controls-group">
-                        <div style="display: {{displayPageSubclassCPCasual}};">
-                          <input id="page-type-casual" type="radio" name="contentPage_type" value="casual" {{pageSubclassCPCasualChecked}}>
-                          <label id="page-type-casual__label" for="page-type-casual" class="label">Звичайна</label>
-                        </div>
-                        <div style="display: {{displayPageSubclassCPHistoryWar}};">
-                          <input id="page-type-history-war" type="radio" name="contentPage_type" value="historyWar" {{pageSubclassCPHistoryWarChecked}}>
-                          <label id="page-type-history-war__label" for="page-type-history-war" class="label">Стаття з циклу "Історія війни"</label>
-                        </div>
-                        <div style="display: {{displayPageSubclassCPCurrent}};">
-                          <input id="page-type-current" type="radio" name="contentPage_type" value="current" {{pageSubclassCPCurrentChecked}}>
-                          <label id="page-type-current__label" for="page-type-current" class="label">Актуальне</label>
-                        </div>
-                        <div style="display: {{displayPageSubclassCPContacts}};">
-                          <input id="page-type-contacts" type="radio" name="contentPage_type" value="contacts" {{pageSubclassCPContactsChecked}}>
-                          <label id="page-type-contacts__label" for="page-type-contacts" class="label">Контакти</label>
-                        </div>
-                        <div style="display: {{displayPageSubclassCPFiles}};">
-                          <input id="page-type-files" type="radio" name="contentPage_type" value="files" {{pageSubclassCPFilesChecked}}>
-                          <label id="page-type-files__label" for="page-type-files" class="label">Нормативно-правова база</label>
-                        </div>
-                        <div style="display: {{displayPageSubclassCPСommander}};">
-                          <input id="page-type-commander" type="radio" name="contentPage_type" value="commander" {{pageSubclassCPCommanderChecked}}>
-                          <label id="page-type-commander__label" for="page-type-commander" class="label">Командування</label>
-                        </div>
-                      </div>
-                      <hr>
-                    {{/ifCond}}
-                    <div id="history-war-controls" style="display: {{displayHWLabel}};">
                       <div>
-                        <label for="hw-link-lbl" class="label">Назва Якоря</label>
-                        {{#HistoryLabelList historyWarLabelsList}}
-                        {{/HistoryLabelList}}
-                        <input id="hw-link-lbl" name="historyWarLinkLabelNew" class="stretch" placeholder="Створити новий">
-                        {{#ifCond action '===' "edit"}}
-                          <p class="label">Поточний</p>
-                          <label><b>{{historyWarLinkLabel}}</b></label>>
-                        {{/ifCond}}
+                        <label id="description__label" for="description" class="label">Короткий опис/Посада:</label>
+                        <textarea id="description" name="description" class="description" required>{{description}}</textarea>
+                      </div>
+                      <div>
+                        <label id="tiny-keywords__label" for="tiny-keywords" class="label">#Ключові слова</label>
+                        <textarea id="tiny-keywords" class="tiny-keywords" name="keywords">{{keywords}}</textarea>
                       </div>
                     </div>
-                  </div>
-                  <div class="tab-pane fade" id="nav-news-category" role="tabpanel" aria-labelledby="nav-news-category-tab">
-                    <p class="label">Виберіть категорію для новини</p>
-                    {{#NewsCategoriesList categories}}
-                    {{/NewsCategoriesList}}
-                  </div>
-                  <div class="tab-pane fade" id="nav-news-other" role="tabpanel" aria-labelledby="nav-news-other-tab">
-                    <p class="label">Додаткові налаштування для новин</p>
-                    <div>
-                      <label class="label">Час публікації</label>
-                      <input type="text" name="time_to_publish" id="time_to_publish" value="{{timeToPublish}}">
+                    <div class="tab-pane fade" id="nav-content-page-other" role="tabpanel" aria-labelledby="nav-content-page-other-tab">
+                      <p class="label">Додаткові налаштування для сторінки</p>
+                      <input type="hidden" name="page-subclass" value="{{page_subclass}}"/>
+                      <input type="hidden" name="page-type" value="content_page"/>
+                      {{#ifCond action '===' "create"}}
+                        <div id="page_controls-group">
+                          <label class="check">Головна
+                            <input id="content-page-main" type="checkbox" name="contentPage_main" {{contentPageMainCheckedStatus}}>
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      {{/ifCond}}
                     </div>
-                    {{#ifCond action '===' 'create'}}
-                      <div id="news_controls-group">
-                        <span>
-                          <input id="news-type-casual" type="radio" name="news_type" value="casual" checked>
-                          <label id="news-type-casual__label" for="news-type-casual" class="label">Звичайна</label>
-                        </span>
-                        <span>
-                          <input id="news-type-current" type="radio" name="news_type" value="current">
-                          <label id="news-type-current__label" for="news-type-current" class="label">Актуальна</label>
-                        </span>
-                        <span>
-                          <input id="news-type-main" type="radio" name="news_type" value="main">
-                          <label id="news-type-main__label" for="news-type-main" class="label">Головна</label>
-                        </span>
+                    <div class="tab-pane fade" id="nav-news-category" role="tabpanel" aria-labelledby="nav-news-category-tab">
+                      <p class="label">Виберіть категорію для новини</p>
+                      {{#NewsCategoriesList categories}}
+                      {{/NewsCategoriesList}}
+                    </div>
+                    <div class="tab-pane fade" id="nav-news-other" role="tabpanel" aria-labelledby="nav-news-other-tab">
+                      <p class="label">Додаткові налаштування для новин</p>
+                      <div>
+                        <label class="label">Час публікації</label>
+                        <input type="text" name="publishDate" id="publishDate" value="{{timeToPublish}}">
                       </div>
-                    {{/ifCond}}
+                      {{#ifCond action '===' 'create'}}
+                        <div id="news_controls-group">
+                          <span>
+                            <input id="news-type-casual" type="radio" name="news_type" value="casual" checked>
+                            <label id="news-type-casual__label" for="news-type-casual" class="label">Звичайна</label>
+                          </span>
+                          <span>
+                            <input id="news-type-main" type="radio" name="news_type" value="main">
+                            <label id="news-type-main__label" for="news-type-main" class="label">Головна</label>
+                          </span>
+                        </div>
+                      {{/ifCond}}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="html_body-container" id="html_body-container" style="display: {{displayWysiwyg}};">
-                <textarea id="html_body" name="html_body" class="html_body">{{{ html_body }}}</textarea>
-              </div>
-              <input name="content_folder" id="content_folder" value="{{content_folder}}" type="hidden">
-              <input name="content_id" value="{{content_id}}" type="hidden">
-              <input name="current_main_menu" id="current_main_menu" value="{{current_main_menu}}" type="hidden">
-              <input name="current_side_menu" id="current_side_menu" value="{{current_side_menu}}" type="hidden">
-              <input name="current_category" id="current_category" value="{{current_category}}" type="hidden">
-              <input name="current_news_type" id="current_news_type" value="{{current_news_type}}" type="hidden">
-            </form>
-          
-        </div>
-        <div class="tab-pane fade" id="useful-links" role="tabpanel" aria-labelledby="useful-links-tab">
-          <div class="row">
-            <div class="col-3">
-              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-page-tab" data-toggle="pill" href="#v-pills-page" role="tab" aria-controls="v-pills-page" aria-selected="true">Сторінки</a>
-                {{!-- <a class="nav-link" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">Соц. мережі та інше</a> --}}
-              </div>
-            </div>
-            <div class="col-9">
-              <form id="links-form">
-                <div class="tab-content" id="v-pills-tabContentUsefulLinks">
-                  <input name="folder_path" value="{{folder_path}}" type="hidden">
-                  <div>
-                    <label for="direct-link">Пряме посилання</label>
-                    <input id="direct-link" name="directLink" class="stretch" placeholder="Пряме посилання" value="{{directLink}}">
-                  </div>
-                  <button type="submit" id="links-form-submit" class="button secondary-btn">Зберегти</button>
-                  <div class="tab-pane fade show active" id="v-pills-page" role="tabpanel" aria-labelledby="v-pills-page-tab">
-                    {{#CheckListPages usefulPages}}
-                    {{/CheckListPages}}
-                  </div>
-                  <div class="tab-pane fade" id="v-pills-contact" role="tabpanel" aria-labelledby="v-pills-contact-tab">
-                    {{#CheckListLinks usefulLinks}}
-                    {{/CheckListLinks}}
-                  </div>
+                <div class="html_body-container" id="html_body-container" style="display: {{displayWysiwyg}};">
+                  <textarea id="html_body" name="html_body" class="html_body">{{{ html_body }}}</textarea>
                 </div>
+                <input name="content_folder" id="content_folder" value="{{content_folder}}" type="hidden">
+                <input name="content_id" value="{{content_id}}" type="hidden">
+                <input name="current_main_menu" id="current_main_menu" value="{{current_main_menu}}" type="hidden">
+                <input name="current_side_menu" id="current_side_menu" value="{{current_side_menu}}" type="hidden">
+                <input name="current_category" id="current_category" value="{{current_category}}" type="hidden">
+                <input name="current_news_type" id="current_news_type" value="{{current_news_type}}" type="hidden">
               </form>
+          </div>
+          <div class="tab-pane fade" id="useful-links" role="tabpanel" aria-labelledby="useful-links-tab">
+            <div class="row">
+              <div class="col-3">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="nav-link active" id="v-pills-page-tab" data-toggle="pill" href="#v-pills-page" role="tab" aria-controls="v-pills-page" aria-selected="true">Сторінки</a>
+                  {{!-- <a class="nav-link" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">Соц. мережі та інше</a> --}}
+                </div>
+              </div>
+              <div class="col-9">
+                <form id="links-form">
+                  <div class="tab-content" id="v-pills-tabContentUsefulLinks">
+                    <input name="folder_path" value="{{folder_path}}" type="hidden">
+                    {{!-- <div>
+                      <label for="direct-link">Пряме посилання</label>
+                      <input id="direct-link" name="directLink" class="stretch" placeholder="Пряме посилання" value="{{directLink}}">
+                    </div> --}}
+                    <button type="submit" id="links-form-submit" class="button secondary-btn">Зберегти</button>
+                    <div class="tab-pane fade show active" id="v-pills-page" role="tabpanel" aria-labelledby="v-pills-page-tab">
+                      {{#CheckListPages usefulPages}}
+                      {{/CheckListPages}}
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-contact" role="tabpanel" aria-labelledby="v-pills-contact-tab">
+                      {{#CheckListLinks usefulLinks}}
+                      {{/CheckListLinks}}
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="tab-pane fade" id="main_photos" role="tabpanel" aria-labelledby="main_photos-tab">
-          <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ОСНОВНЕ ФОТО</h3>
-          <form id="send-main-photo_form">
-            <input type="file" name="main_photo" id="main_photo-input" accept="image/*" class="file-input-btn" style="display: none;">
-            <input name="folder_path" value="{{folder_path}}" type="hidden">
-            <div id="send-main_photo-btn" class="button secondary-btn">Огляд...</div>
-            <button type="submit" id="main_photo-send-submit" class="button accent-btn" disabled>Завантажити</button>
-          </form>
-          <div id="main_photo-current_container" style="display: {{displayMainPhotoCurrent}};">
-            <p class="label">Поточне зображення</p>
-            <table class="table-fill">
-              <thead>
-                <tr>
-                  <th class="text-left">Зображення</th>
-                  <th class="text-left">Дії</th>
-                </tr>
-              </thead>
-              <tbody class="table-hover">
-                <tr>
-                  <td class="text-left">
-                    <img id="main_photo-current" src="{{mainPhotoCurrent}}" height="120px">
-                  </td>
-                  <td>
-                    <form id="delete-main-photo_form">
-                      <input name="folder_path" value="{{folder_path}}" type="hidden">
-                      <button type="submit" class="button delete-btn">Видалити</button>
-                    </form>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="slider_photos" role="tabpanel" aria-labelledby="slider_photos-tab">
-          <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ЗОБРАЖЕННЯ ДЛЯ СЛАЙДЕРА</h3>
-          <form id="send-slider_form">
-            <input id="slider-input" type="file" name="slider_photos" accept="image/*" multiple class="file-input-btn" style="display: none;">
-            <input name="folder_path" value="{{folder_path}}" type="hidden">
-            <button id="send-slider-btn" class="button secondary-btn">Огляд...</button>
-            <button type="submit" id="slider-send-submit" class="button accent-btn" disabled>Завантажити</button>
-          </form>
-          <form id="add-slider_form" style="display: none;">
-            <input id="add_slider-input" type="file" name="slider_photos" accept="image/*" multiple class="file-input-btn" style="display: none;">
-            <input name="folder_path" value="{{folder_path}}" type="hidden">
-            <button id="add-slider-btn" class="button secondary-btn">Огляд...</button>
-            <button type="submit" id="slider-add-submit" class="button secondary-btn" disabled>Додати</button>
-          </form>
-          <div id="slider-current_container" style="display: {{displaySliderCurrent}};">
-            <p class="label">Поточні зображення</p>
-            <table class="table-fill">
-              <thead>
-                <tr>
-                  <th class="text-left">Зображення</th>
-                  <th class="text-left">Дії</th>
-                </tr>
-              </thead>
-              <tbody class="table-hover" id="slider-tbody">
-                {{#each sliderCurrent}} 
+          <div class="tab-pane fade" id="main_photos" role="tabpanel" aria-labelledby="main_photos-tab">
+            <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ОСНОВНЕ ФОТО</h3>
+            <form id="send-main-photo_form">
+              <input type="file" name="main_photo" id="main_photo-input" accept="image/*" class="file-input-btn" style="display: none;">
+              <input name="folder_path" value="{{folder_path}}" type="hidden">
+              <button type="button" id="send-main_photo-btn" class="button secondary-btn">Огляд...</button>
+              <button type="submit" id="main_photo-send-submit" class="button accent-btn" disabled>Завантажити</button>
+            </form>
+            <div id="main_photo-current_container" style="display: {{displayMainPhotoCurrent}};">
+              <p class="label">Поточне зображення</p>
+              <table class="table-fill">
+                <thead>
+                  <tr>
+                    <th class="text-left">Зображення</th>
+                    <th class="text-left">Дії</th>
+                  </tr>
+                </thead>
+                <tbody class="table-hover">
                   <tr>
                     <td class="text-left">
-                      <img class="slider_img-current" src="{{this.url}}" height="90px"/>
+                      <img id="main_photo-current" src="{{mainPhotoCurrent}}" height="120px">
                     </td>
                     <td>
-                      <form id="delete-slider-image_form-{{@index}}" data-group="delete-slider-img">
-                        <input name="filename" value="{{this.filename}}" type="hidden">
-                        <input name="id" value="{{this.id}}" type="hidden">
-                        <button type="submit" class="button delete-btn" >Видалити</button>
+                      <form id="delete-main-photo_form">
+                        <input name="folder_path" value="{{folder_path}}" type="hidden">
+                        <button type="submit" class="button delete-btn">Видалити</button>
                       </form>
                     </td>
                   </tr>
-                {{/each}}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-        <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
-          <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ФАЙЛИ</h3>
-          <form id="send-files_form">
-            <input id="files-input" type="file" name="page_files" multiple class="file-input-btn" style="display: none;">
-            <input name="folder_path" value="{{folder_path}}" type="hidden">
-            <button id="send-files-btn" class="button secondary-btn">Огляд...</button>
-            <button type="submit" id="files-send-submit" class="button accent-btn" disabled>Завантажити</button>
-          </form>
-          <form id="add-files_form" style="display: none;">
-            <input id="add_files-input" type="file" name="page_files" multiple class="file-input-btn" style="display: none;">
-            <input name="folder_path" value="{{folder_path}}" type="hidden">
-            <button id="add-files-btn" class="button secondary-btn">Огляд...</button>
-            <button type="submit" id="files-add-submit" class="button accent-btn" disabled>Додати</button>
-          </form>
-          
-          <div id="files-current_container" style="display: {{displayFilesCurrent}};">
-            <p class="label">Поточні файли</p>
-            <table class="table-fill">
-              <thead>
-                <tr>
-                  <th class="text-left">Файли</th>
-                  <th class="text-left">Дії</th>
-                </tr>
-              </thead>
-              <tbody class="table-hover" id="files-tbody">
-                {{#each filesCurrent}} 
+          <div class="tab-pane fade" id="slider_photos" role="tabpanel" aria-labelledby="slider_photos-tab">
+            <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ЗОБРАЖЕННЯ ДЛЯ СЛАЙДЕРА</h3>
+            <form id="send-slider_form">
+              <input id="slider-input" type="file" name="slider_photos" accept="image/*" multiple class="file-input-btn" style="display: none;">
+              <input name="folder_path" value="{{folder_path}}" type="hidden">
+              <button id="send-slider-btn" class="button secondary-btn">Огляд...</button>
+              <button type="submit" id="slider-send-submit" class="button accent-btn" disabled>Завантажити</button>
+            </form>
+            <form id="add-slider_form" style="display: none;">
+              <input id="add_slider-input" type="file" name="slider_photos" accept="image/*" multiple class="file-input-btn" style="display: none;">
+              <input name="folder_path" value="{{folder_path}}" type="hidden">
+              <button id="add-slider-btn" class="button secondary-btn">Огляд...</button>
+              <button type="submit" id="slider-add-submit" class="button secondary-btn" disabled>Додати</button>
+            </form>
+            <div id="slider-current_container" style="display: {{displaySliderCurrent}};">
+              <p class="label">Поточні зображення</p>
+              <table class="table-fill">
+                <thead>
                   <tr>
-                    <td class="text-left"><p height="40px">{{this.filename}}</p></td>
-                    <td>
-                      <form id="delete-file_form-{{@index}}" data-group="delete-file-form">
-                        <input name="filename" value="{{this.filename}}" type="hidden">
-                        <input name="id" value="{{this.id}}" type="hidden">
-                        <button type="submit" class="button delete-btn"><i class="fas fa-trash-alt"></i>Видалити</button>
-                      </form>
-                    </td>
+                    <th class="text-left">Зображення</th>
+                    <th class="text-left">Дії</th>
                   </tr>
-                {{/each}}
-              </tbody>
-            </table>
+                </thead>
+                <tbody class="table-hover" id="slider-tbody">
+                  {{#each sliderCurrent}} 
+                    <tr>
+                      <td class="text-left">
+                        <img class="slider_img-current" src="{{this.url}}" height="90px"/>
+                      </td>
+                      <td>
+                        <form id="delete-slider-image_form-{{@index}}" data-group="delete-slider-img">
+                          <input name="filename" value="{{this.filename}}" type="hidden">
+                          <input name="id" value="{{this.id}}" type="hidden">
+                          <button type="submit" class="button delete-btn" >Видалити</button>
+                        </form>
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
+            <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ФАЙЛИ</h3>
+            <form id="send-files_form">
+              <input id="files-input" type="file" name="page_files" multiple class="file-input-btn" style="display: none;">
+              <input name="folder_path" value="{{folder_path}}" type="hidden">
+              <button id="send-files-btn" class="button secondary-btn">Огляд...</button>
+              <button type="submit" id="files-send-submit" class="button accent-btn" disabled>Завантажити</button>
+            </form>
+            <form id="add-files_form" style="display: none;">
+              <input id="add_files-input" type="file" name="page_files" multiple class="file-input-btn" style="display: none;">
+              <input name="folder_path" value="{{folder_path}}" type="hidden">
+              <button id="add-files-btn" class="button secondary-btn">Огляд...</button>
+              <button type="submit" id="files-add-submit" class="button accent-btn" disabled>Додати</button>
+            </form>
+            
+            <div id="files-current_container" style="display: {{displayFilesCurrent}};">
+              <p class="label">Поточні файли</p>
+              <table class="table-fill">
+                <thead>
+                  <tr>
+                    <th class="text-left">Файли</th>
+                    <th class="text-left">Дії</th>
+                  </tr>
+                </thead>
+                <tbody class="table-hover" id="files-tbody">
+                  {{#each filesCurrent}} 
+                    <tr>
+                      <td class="text-left"><p height="40px">{{this.filename}}</p></td>
+                      <td>
+                        <form id="delete-file_form-{{@index}}" data-group="delete-file-form">
+                          <input name="filename" value="{{this.filename}}" type="hidden">
+                          <input name="id" value="{{this.id}}" type="hidden">
+                          <button type="submit" class="button delete-btn"><i class="fas fa-trash-alt"></i>Видалити</button>
+                        </form>
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </section>
-</section>
-
-<script src="/js/editor.js"></script>
+  <script src="/js/editor.js"></script>
 </body>
-</html>

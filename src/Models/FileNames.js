@@ -1,1 +1,0 @@
-"use strict";const e=require("mongoose"),s=e.Schema,o=new s({names:[String],base_url:String});module.exports=e.model("FileNames",o);

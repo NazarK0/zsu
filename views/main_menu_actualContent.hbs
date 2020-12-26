@@ -1,0 +1,54 @@
+<head>
+  <title>Актуальний контент</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+  <script src="/js/actual-content-visual.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Редагування актуального контенту</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header>
+  {{> sidebar id=user}}
+  <div class="table_container">
+    <div class="control-panel small">
+      <a href="/admin/{{user}}/actual-content/add" class="button accent-btn">Додати</a>
+    </div>
+    <div class="content-area">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>Фото</th>
+            <th>Заголовок</th>
+            <th>Статус</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          {{#each contentList}}
+            <tr>
+              <td class="text-center">
+                {{#ifCond img '!==' ''}}
+                  <img src="{{img}}" alt="{{title_ua}}" width="200px">
+                  {{else}}
+                  <span>Відсутнє</span>
+                {{/ifCond}}
+              </td>
+              <td class="text-center">{{title_ua}}</td>
+              <td class="text-center">{{published}}</td>
+              <td class="text-center">
+                <a href="/admin/{{../user}}/actual-content/edit/{{_id}}" class="button primary-btn block">Редагувати</a>
+                <form method="POST" action="/admin/{{../user}}/actual-content/change-status/{{_id}}">
+                  <button type="submit" class="button primary-btn">Змінити статус</button>
+                </form>
+                <form method="POST" action="/admin/{{../user}}/actual-content/delete/{{_id}}">
+                  <button type="submit" class="button delete-btn">Видалити</button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>     
+</body>

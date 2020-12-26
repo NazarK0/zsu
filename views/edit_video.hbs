@@ -1,0 +1,43 @@
+<head>
+  <title>Редагувати Відео Контенту</title>
+  <link rel="stylesheet" href="/css/input_form.css" type="text/css">
+  <link rel="stylesheet" href="/css/checkbox_style.css" type="text/css">
+  <link rel="stylesheet" href="/css/menu.css" type="text/css">
+  <link rel="stylesheet" href="/css/resets.css" type="text/css">
+  <link rel="stylesheet" href="/css/edit_links.css" type="text/css">
+  <script src="/js/edit_links.js" defer></script>
+  <script src="/js/links-img-fetch.js" defer></script>
+</head>
+<body style = "background-color: #2f2f2f;">
+  {{> menu id=userid}}
+  <div class="container">
+    <h3 class="title">Відео Контент "{{title}}"</h3>
+    <form method="POST" action="/admin/{{userid}}/video/{{action_type}}">
+      <div>
+        <label for="title_ua" class="stretch"><B>Назва</B></label>
+        <input type="text" id="title_ua" class="stretch" name="title" placeholder="Назва" value="{{title}}" required>
+      </div>
+       <div>
+        <label for="title_ua" class="stretch"><B>Опис</B></label>
+        <input type="text" id="title_ua" class="stretch" name="description" placeholder="Опис" value="{{description}}" required>
+      </div>
+       <div>
+        <label for="title_ua" class="stretch"><B>Посилання на Відео</B></label>
+        <input type="text" id="title_ua" class="stretch" name="link" placeholder="Посилання" value="{{link}}" required>
+      </div>
+       <div>
+        <label for="title_ua" class="stretch"><B>Дата</B></label>
+        <input type="date" id="title_ua" class="stretch" name="date" placeholder="Дата" value="{{date}}" required>
+      </div>
+     
+      <button class="button secondary-btn">Зберегти</button>
+    </form>
+    <form method="GET" action="/admin/{{userid}}/video" class="inline">
+      <button class="button secondary-btn" >Відмінити</button>
+    </form>
+    <form method="POST" action="/admin/{{userid}}/video/remove/{{id}}" class="inline">
+      <button type="submit" class="button delete-btn" style="visibility:{{parameter}}" type="submit">Видалити</button>
+    </form>
+  </div>
+</body>
+{{!-- views by Vanivskyi --}}

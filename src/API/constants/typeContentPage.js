@@ -1,1 +1,1 @@
-"use strict";module.exports={HISTORY_WAR:"Історія війни",CURRENT:"Актуальне",CASUAL:"Звичайна",CONTACTS:"Контакти",FILES:"Нормативно-правова база"};
+"use strict";module.exports={HISTORY_WAR:"Історія війни",HISTORY:"Історія",CURRENT:"Актуальне",CASUAL:"Звичайна",CONTACTS:"Контакти",FILES:"Нормативно-правова база"};

@@ -1,0 +1,73 @@
+<head>
+  <title>Редагувати Галерею</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/input_form.css" type="text/css">
+  <link rel="stylesheet" href="/css/checkbox_style.css" type="text/css">
+  <link rel="stylesheet" href="/css/menu.css" type="text/css">
+  <link rel="stylesheet" href="/css/resets.css" type="text/css">
+  <script src="/js/galery-fetch.js" defer></script>
+</head>
+<body style = "background-color: #2f2f2f;">
+  {{> menu id=userid}}
+  <div class="container">
+    <h3 class="title">Медіа Категорія "{{title_ua}}"</h3>
+    {{#ifCond mode '===' 'add'}}
+      <form method="POST" action="/admin/{{userid}}/media-category/add">
+    {{/ifCond}}
+    {{#ifCond mode '===' 'edit'}}
+      <form method="POST" action="/admin/{{userid}}/media-category/edit/{{id}}">
+    {{/ifCond}}
+      <div>
+        <label for="title_ua" class="stretch">Назва Українською</label>
+        <input type="text" id="title_ua" class="stretch" name="title_ua" placeholder="Назва Українською" value="{{title_ua}}" required>
+      </div>
+      <div>
+        <label for="title_en" class="stretch">Назва Англійською</label>
+        <input type="text" id="title_en" class="stretch" name="title_en" placeholder="Назва Англійською" value="{{title_en}}" required>
+      </div>
+      <a href="/admin/{{userid}}/media-category" class="button primary-btn" >Назад</a>
+      <button class="button secondary-btn">Зберегти</button>
+      <input name="categoryId" id="photo-category-id" value="{{id}}" type="hidden">
+    </form>
+    {{#ifCond mode '===' 'edit'}}
+      
+    {{/ifCond}}
+    <h3 class="label" style= "display: block">Фото</h3>
+    <form id="galery-new-form">
+      <input id="galery-new-files" type="file" name="galery" accept="image/*" multiple style="display: none;">
+      <button id="browse-galery-new" class="button secondary-btn">Огляд...</button>
+      <button type="submit" id="submit-galery-new" class="button accent-btn" disabled>Зберегти</button>
+    </form>
+    <form id="galery-add-form" style="display: none;">
+      <input id="galery-add-files" type="file" name="galery" accept="image/*" multiple style="display: none;">
+      <button id="browse-galery-add" class="button secondary-btn">Огляд...</button>
+      <button type="submit" id="submit-galery-add" class="button accent-btn" disabled>Додати</button>
+    </form>
+    <div id="galery-current-container" style="display: none;">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th class="text-left">Зображення</th>
+            <th class="text-left">Дії</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover" id="galery-tbody">
+          {{#each galeryCurrent}} 
+            <tr>
+              <td class="text-left">
+                <img src="/image/{{this}}?height=90&width=150" alt="{{this}}"/>
+              </td>
+              <td>
+                <form class="galery-image-delete-form">
+                  <input name="filename" value="{{this}}" type="hidden">
+                  <button type="submit" class="button delete-btn" >Видалити</button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+{{!-- views by Vanivskyi --}}

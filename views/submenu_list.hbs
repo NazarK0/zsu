@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/sidemenu.css">
-    <link rel="stylesheet" href="/css/table.css">
-    <link rel="stylesheet" href="/css/buttons.css">
-    <link rel="stylesheet" href="/css/main_styles.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <h1>Редагування підменю: {{name_of_parent}}</h1>
-      <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
-    </header>
-    {{> sidebar id=user}}
-    <div class="table_container">
-      <form action="/admin/{{user}}/all/{{mainmenu_id}}/submenu/add" method="GET">
-        <button class="button accent-btn">Додати</button>
-      </form>
-      <form action="/admin/{{user}}/mainmenu/ua" method="GET">
-
-           <button class="button accent-btn">До Головного Меню</button>
-
-      </form>
-     
+<head>
+  <title>Редагувати меню</title>
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/main_styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Підменю: {{name_of_parent}}</h1>
+    <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
+  </header>
+  {{> sidebar id=user}}
+  <div class="table_container">
+    <div class="control-panel small">
+      <a href="/admin/{{user}}/mainmenu/lang/{{language}}" class="button primary-btn">Назад</a>
+      <a href="/admin/{{user}}/all/{{mainmenu_id}}/submenu/add" class="button accent-btn">Додати</a>
+    </div>
+    <div class="content-area">
       <table class="table-fill">
         <thead>
           <tr>
@@ -37,27 +27,27 @@
         <tbody class="table-hover">
           {{#each submenu}}
           <tr>
-            <td class="text-left">{{number}}</td>
-            <td class="text-left">{{title}}</td>
-            <td class="text-left">{{lang}}</td>
+            <td class="text-center">{{number}}</td>
+            <td class="text-center">{{title}}</td>
+            <td class="text-center">{{../language}}</td>
             <td class="left-text">
-              <form method="GET" action="/admin/{{../user}}/all/{{../mainmenu_id}}/submenu/edit/{{_id}}">
-                <button class="button primary-btn">Редагувати</button>
+              <a href="/admin/{{../user}}/all/{{../mainmenu_id}}/submenu/edit/{{_id}}" class="button primary-btn">
+                Редагувати
+              </a>
+              <a href="/admin/{{../user}}/all/submenu/{{_id}}/child" class="button primary-btn">
+                Перейти в Підменю
+              </a>
+              <form method="POST" action="/admin/{{../user}}/submenu/setUp/{{_id}}">
+                <button type="submit" class="button secondary-btn">Підняти</button>
               </form>
-              <form action="/admin/{{../user}}/all/submenu/{{_id}}/child">
-                <button class="button secondary-btn">Перейти в Підменю</button>
-              </form>
-                <form method="POST" action="/admin/{{../user}}/submenu/setUp/{{_id}}" class="inline">
-                <button type="submit" class="button secondary-btn">Підняти в гору</button>
-              </form>
-               <form method="POST" action="/admin/{{../user}}/submenu/setDown/{{_id}}" class="inline">
-                <button type="submit" class="button secondary-btn">Спустити вниз</button>
+              <form method="POST" action="/admin/{{../user}}/submenu/setDown/{{_id}}">
+                <button type="submit" class="button secondary-btn">Опустити</button>
               </form>
             </td>
           </tr>
           {{/each}}
         </tbody>
       </table>
-    </div>     
-  </body>
-</html>
+    </div>
+  </div>     
+</body>

@@ -1,19 +1,18 @@
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Редагувати користувача</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/input_form.css">
+  <link rel="stylesheet" href="/css/checkbox_style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/tabs.css">
+  <link rel="stylesheet" href="/css/resets.css">
+  <link rel="stylesheet" href="/css/tree-view.css">
+  <link rel="stylesheet" href="/css/edit_user.css">
   <script src="/js/generate_pass.js" defer></script>
   <script src="/js/jquery-3.0.0.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js" defer></script>
   <script src="/js/tree-view.js" defer></script>
   <script src="/js/edit-user.js" defer></script>
-  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/css/input_form.css">
-  <link rel="stylesheet" href="/css/checkbox_style.css">
-  <link rel="stylesheet" href="/css/menu.css">
-  <link rel="stylesheet" href="/css/tabs.css">
-  <link rel="stylesheet" href="/css/buttons.css">
-  <link rel="stylesheet" href="/css/resets.css">
-  <link rel="stylesheet" href="/css/tree-view.css">
-  <link rel="stylesheet" href="/css/edit_user.css">
 </head>
 <body style = "background-color: #2f2f2f">
   {{> menu id=userid}} 
@@ -22,36 +21,36 @@
       <h3 class="title">Користувач "{{login}}"</h3>
       {{#ifCond action_type '===' "add"}}
         <div>
-          <label for="login"><B>Логін</B></label>
+          <label for="login">Логін</label>
           <input type="text" class="stretch" id="name" name="login" placeholder="Логін" >
         </div>
         <div>
-          <label for="email"><B>Електронна пошта</B></label>
+          <label for="email">Електронна пошта</label>
           <input type="text" id="email" class="stretch" name="email" placeholder="Електронна пошта" >
         </div>
         <div>
-          <label for="password" id="pass"><B>Пароль</B></label>
+          <label for="password" id="pass">Пароль</label>
           <input type="password" id="password" class="stretch" name="password" placeholder="Пароль">
                 
             <a class="button secondary-btn" id="view-pass" style="display: none;"> Показати Пароль </a>
             <a class="button secondary-btn" id="generator-pass" style="display: block;"> Згенерувати Пароль </a>   
         </div>
           <div>
-            <label for="description_user"><B>Опис Користувача</B></label>
+            <label for="description_user">Опис Користувача</label>
             <textarea placeholder="Детальніший опис користувача" name="description_user">{{description_user}}</textarea>
           </div>
       {{else}}
         <div class="with-mb">
           <div>
-            <label for="login"><B>Логін</B></label>
+            <label for="login">Логін</label>
             <input type="text" id="name" class="stretch" name="login" placeholder="Логін" value={{login}}>
           </div>
           <div>
-            <label for="email"><B>Електронна пошта</B></label>
+            <label for="email">Електронна пошта</label>
             <input type="text" id="email" class="stretch" name="email" placeholder="Електронна пошта" value="{{email}}">
           </div>
           <div>
-            <label for="description_user"><B>Опис Користувача</B></label>
+            <label for="description_user">Опис Користувача</label>
             <textarea placeholder="Детальніший опис користувача" name="description_user">{{description_user}}</textarea>
           </div>
           <a id="edit_password" href="./{{userid}}/password" class="button primary-btn">Змінити пароль</a>
@@ -75,9 +74,6 @@
                 </li>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link" id="links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links" aria-selected="false">Посилання</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="false">Контакти</a>
                 </li>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link" id="corps-tab" data-toggle="tab" href="#corps" role="tab" aria-controls="corps" aria-selected="false">Види/Роди військ</a>
@@ -132,19 +128,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-                  <label class="check">Надати доступ
-                    <input id="category-contacts" type="checkbox" name="CONTACTS"{{CONTACTS}}>
-                    <span class="checkmark"></span>
-                  </label>
-                  <div id="content-list-contacts" class="disabled" data-content="list">
-                    <h5>Надати доступ до визначеного контенту</h5>
-                    <div class="user-content-container">
-                      {{#CheckListContacts contactsData}}
-                      {{/CheckListContacts}}
-                    </div>
-                  </div>
-                </div>
                 <div class="tab-pane fade" id="corps" role="tabpanel" aria-labelledby="corps-tab">
                   <label class="check">Надати доступ
                     <input id="category-corps" type="checkbox" name="CORPS"{{CORPS}}>
@@ -193,6 +176,10 @@
                     <input type="checkbox" name="CONTENT" {{CONTENT}}>
                     <span class="checkmark"></span>
                   </label>
+                  <label class="check">Контакти
+                    <input type="checkbox" name="CONTACTS" {{CONTACTS}}>
+                    <span class="checkmark"></span>
+                  </label>
                   {{!-- <label class="check">Бокове Меню
                     <input type="checkbox" name="SIDEMENU"{{SIDEMENU}}>
                     <span class="checkmark"></span>
@@ -203,6 +190,14 @@
                   </label> --}}
                   <label class="check">Історія
                     <input type="checkbox" name="HISTORY"{{HISTORY}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check">Фотогалерея
+                    <input type="checkbox" name="GALERY"{{GALERY}}>
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check">Відео
+                    <input type="checkbox" name="VIDEO"{{VIDEO}}>
                     <span class="checkmark"></span>
                   </label>
                 </div>
@@ -223,4 +218,3 @@
     {{/ifCond}}
   </div>
 </body>
-</html>

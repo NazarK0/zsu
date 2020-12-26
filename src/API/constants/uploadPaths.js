@@ -1,0 +1,1 @@
+"use strict";const e=require("path"),i=e.join(__dirname,"../../..","uploads"),o=e.join(i,"images"),t=e.join(i,"temp"),r=e.join(i,"files");module.exports={imgFolderPath:o,tmpFolderPath:t,filesFolderPath:r};

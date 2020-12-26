@@ -23,23 +23,14 @@ const filterInputHandler = (event) => {
   const options = Array.from(contentList.options);
   contentList.value = null;
   const filteredIndexes = optionsInitial
-    // .slice(2)
     .filter((option) => option.text.toLowerCase().includes(filterText.toLowerCase()))
     .map((option) => option.index);
 
-    console.log(filteredIndexes)
-
   for (let index = options.length - 1; index > 1; index--) {
-    // console.log(options, 'options');
     if (!filteredIndexes.includes(index)) {
-      console.log('remove', index)
       contentList.options.remove(index);
     }
   }
-
-  console.log(contentList.options);
-
-  // 
 }
 
 document.body.onload = () => {
@@ -48,6 +39,6 @@ document.body.onload = () => {
     return;
   }
 
-  optionsInitial = Array.from(contentList.options)
+  optionsInitial = Array.from(contentList.options);
   filterInput.oninput = filterInputHandler;
 }

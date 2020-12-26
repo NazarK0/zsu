@@ -1,11 +1,13 @@
-const currentMainMenuId = document.getElementById('current_main_menu').value;
-const currentSideMenuId = document.getElementById('current_side_menu').value;
+// const currentMainMenuId = document.getElementById('current_main_menu').value;
+// const currentSideMenuId = document.getElementById('current_side_menu').value;
 const currentCategoryId = document.getElementById('current_category').value;
 const currentNewsType = document.getElementById('current_news_type').value;
 const pageTypeRadioBtns = document.getElementsByName('page_type');
 const contentPageSubclassRadioBtns = document.getElementsByName('contentPage_type');
-const historyWarLinkLabelDropdown = document.getElementById('historyWarLinkLabel-dropdown');
-const historyWarLinkLabelNew = document.getElementById('hw-link-lbl');
+// const historyWarLinkLabelDropdown = document.getElementById('historyWarLinkLabel-dropdown');
+// const historyWarLinkLabelNew = document.getElementById('hw-link-lbl');
+// const historyLinkLabelDropdown = document.getElementById('historyLinkLabel-dropdown');
+// const historyLinkLabelNew = document.getElementById('history-link-lbl');
 const pageSubclassFromServer = document.getElementsByName('page-subclass');
 const pageType = document.querySelector('[name="page-type"]');
 const linksForm = document.getElementById('links-form');
@@ -18,14 +20,15 @@ const sliderTab = document.getElementById('slider_photos-tab');
 const filesTab = document.getElementById('files-tab');
 const wysiwygEditor = document.getElementById('html_body-container');
 const hwControls = document.getElementById('history-war-controls');
-const pageTitleLabel = document.getElementById('page_title__label');
-const pageDescriptionLabel = document.getElementById('description__label');
+const historyControls = document.getElementById('history-controls');
+// const pageTitleLabel = document.getElementById('page_title__label');
+// const pageDescriptionLabel = document.getElementById('description__label');
 
-const instance = new dtsel.DTS('input[name="time_to_publish"]', {
+const instance = new dtsel.DTS('input[name="publishDate"]', {
   direction: 'BOTTOM',
   dateFormat: 'dd.mm.yyyy',
   showTime: true,
-  timeFormat: 'HH:MM'
+  timeFormat: 'HH:MM',
 });
 
 const linksCheckboxesToRadio = () => {
@@ -113,8 +116,6 @@ function showHideNewsTypes({ value }) {
       linksRadioToCheckboxes();
       filterPagesLinks();
       usefulLinksMainTab.style.display = 'block';
-      pageTitleLabel.innerText = 'Назва';
-      pageDescriptionLabel.innerText = 'Короткий опис';
       break;
     default:
       // document.getElementById('nav-main-menu-tab').style.display = 'none';
@@ -129,8 +130,6 @@ function showHideNewsTypes({ value }) {
 
 function contentPageSubclassFeatures({ value }) {
   linksRadioToCheckboxes();
-  pageTitleLabel.innerText = 'Назва';
-  pageDescriptionLabel.innerText = 'Короткий опис';
 
   switch (value) {
     case 'casual':
@@ -140,10 +139,21 @@ function contentPageSubclassFeatures({ value }) {
       filesTab.style.display = 'block';
       wysiwygEditor.style.display = 'block';
       hwControls.style.display = 'none';
+      historyControls.style.display = 'none';
       filterPagesLinks();
       break;
     case 'historyWar':
       hwControls.style.display = 'block';
+      usefulLinksMainTab.style.display = 'none';
+      mainPhotoTab.style.display = 'none';
+      sliderTab.style.display = 'block';
+      filesTab.style.display = 'block';
+      wysiwygEditor.style.display = 'block';
+      historyControls.style.display = 'none';
+      break;
+    case 'history':
+      hwControls.style.display = 'none';
+      historyControls.style.display = 'block';
       usefulLinksMainTab.style.display = 'none';
       mainPhotoTab.style.display = 'none';
       sliderTab.style.display = 'block';
@@ -157,6 +167,7 @@ function contentPageSubclassFeatures({ value }) {
       filesTab.style.display = 'none';
       wysiwygEditor.style.display = 'block';
       hwControls.style.display = 'none';
+      historyControls.style.display = 'none';
       linksCheckboxesToRadio();
       filterPagesLinks(['casual', 'contacts', 'files']);
       // linksPagesTab.onclick = () => {
@@ -183,6 +194,7 @@ function contentPageSubclassFeatures({ value }) {
       filesTab.style.display = 'none';
       wysiwygEditor.style.display = 'block';
       hwControls.style.display = 'none';
+      historyControls.style.display = 'none';
       filterPagesLinks('contacts');
       break;
     case 'files':
@@ -192,6 +204,7 @@ function contentPageSubclassFeatures({ value }) {
       filesTab.style.display = 'block';
       wysiwygEditor.style.display = 'none';
       hwControls.style.display = 'none';
+      historyControls.style.display = 'none';
       filterPagesLinks('files');
       break;
     case 'commander':
@@ -201,10 +214,9 @@ function contentPageSubclassFeatures({ value }) {
       filesTab.style.display = 'block';
       wysiwygEditor.style.display = 'block';
       hwControls.style.display = 'none';
-      pageTitleLabel.innerText = "Прізвище, Ім'я, По батькові";
-      pageDescriptionLabel.innerText = 'Посада';
+      historyControls.style.display = 'none';
+      break;
     default:
-      // usefulLinksMainTab.style.display = 'none';
       break;
   }
 }
@@ -217,15 +229,15 @@ contentPageSubclassRadioBtns.forEach((btn) => {
   btn.onchange = () => contentPageSubclassFeatures(btn);
 })
 
-if (currentMainMenuId) {
-  const selected = document.getElementById(`generated-menu_${currentMainMenuId}`);
-  selected.checked = true;
-}
+// if (currentMainMenuId) {
+//   const selected = document.getElementById(`generated-menu_${currentMainMenuId}`);
+//   selected.checked = true;
+// }
 
-if (currentSideMenuId) {
-  const selected = document.getElementById(`generated-sidemenu_${currentSideMenuId}`);
-  selected.checked = true;
-}
+// if (currentSideMenuId) {
+//   const selected = document.getElementById(`generated-sidemenu_${currentSideMenuId}`);
+//   selected.checked = true;
+// }
 
 if (currentCategoryId) {
   const selected = document.getElementById(`generated-category_${currentCategoryId}`);
@@ -267,18 +279,30 @@ if (pageType) {
   }
 }
 
-historyWarLinkLabelNew.oninput = (event) => {
-  const hwListUnchecked = document.getElementById('history-war-list-unselected');
-  hwListUnchecked.selected = event.target.value.trim().length > 0;
-}
+// historyWarLinkLabelNew.oninput = (event) => {
+//   const hwListUnchecked = document.getElementById('history-war-list-unselected');
+//   hwListUnchecked.selected = event.target.value.trim().length > 0;
+// }
 
-if (historyWarLinkLabelDropdown) {
-  historyWarLinkLabelDropdown.onchange = (event) => {
-    if (event.target.value.trim().length > 0) {
-      historyWarLinkLabelNew.value = '';
-    }
-  }
-}
+// if (historyWarLinkLabelDropdown) {
+//   historyWarLinkLabelDropdown.onchange = (event) => {
+//     if (event.target.value.trim().length > 0) {
+//       historyWarLinkLabelNew.value = '';
+//     }
+//   }
+// }
+// historyLinkLabelNew.oninput = (event) => {
+//   const historyListUnchecked = document.getElementById('history-list-unselected');
+//   historyListUnchecked.selected = event.target.value.trim().length > 0;
+// }
+
+// if (historyLinkLabelDropdown) {
+//   historyLinkLabelDropdown.onchange = (event) => {
+//     if (event.target.value.trim().length > 0) {
+//       historyLinkLabelNew.value = '';
+//     }
+//   }
+// }
 
 linksForm.onsubmit = async (e) => {
   e.preventDefault();
