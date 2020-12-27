@@ -140,7 +140,7 @@ document.getElementById('disabled-filter').addEventListener('click',()=>{
     }
    let options_lang= document.getElementById('filter-language').getElementsByTagName('option');
    let options_news_type=document.getElementById('filter-news-parameter').getElementsByTagName('option');
-   document.getElementById('filter-date').value="yyyy-MM-dd";
+   document.getElementById('filter-date').value="";
    document.getElementById('filter-title').value=""
 
    for(let i=0;i<options_lang.length;i++){

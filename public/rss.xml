@@ -119,5 +119,35 @@
       <description>dd</description>
       <guid>1608967165420</guid>
     </item>
+  <item>
+      <title>mainNews</title>
+      <link>https://www.zsu.gov.ua</link>
+      <description>dds</description>
+      <guid>1609056451060</guid>
+    </item>
+  <item>
+      <title>TEST2ddEDIT</title>
+      <link>https://www.zsu.gov.ua</link>
+      <description>descrEDIT</description>
+      <guid>1609058686977</guid>
+    </item>
+  <item>
+      <title>TEST2ddEDIT</title>
+      <link>https://www.zsu.gov.ua</link>
+      <description>descrEDIT</description>
+      <guid>1609058700279</guid>
+    </item>
+  <item>
+      <title>TEST2ddEDIT</title>
+      <link>https://www.zsu.gov.ua</link>
+      <description>descrEDIT</description>
+      <guid>1609058716005</guid>
+    </item>
+  <item>
+      <title>TEST2ddEDIT</title>
+      <link>https://www.zsu.gov.ua</link>
+      <description>descrEDIT</description>
+      <guid>1609058763037</guid>
+    </item>
   </channel>
 </rss>
