@@ -13,7 +13,6 @@
   <div class="table_container">
     <div class="control-panel small">
       <a href="/admin/{{user}}/corps/add" class="button accent-btn">Додати</a>
-      <a href="/admin/{{user}}/corps/photo-editor" class="button secondary-btn">Редактор зображень</a>
     </div>
     <div class="content-area">
       <table class="table-fill">
@@ -28,12 +27,19 @@
         <tbody class="table-hover">
           {{#each corps}}
             <tr>
-              <td class="text-center"><img src="data:image/jpeg;base64,{{sign_base64}}" alt="{{title}}" height="60px"></td>
+              <td class="text-center">
+                {{#ifCond signUrl '!==' ''}}
+                  <img src="{{signUrl}}" alt="{{title_ua}}">
+                  {{else}}
+                  <span>Відсутнє</span>
+                {{/ifCond}}
+              </td>
               <td class="text-left">{{title_ua}}</td>
               <td class="text-left">{{title_en}}</td>
               <td class="text-center">
-                <form method="GET" action="/admin/{{../user}}/corps/edit/{{_id}}">
-                  <button type="submit" class="button primary-btn">Редагувати</button>
+                <a href="/admin/{{../user}}/corps/edit/{{_id}}" class="button primary-btn">Редагувати</a>
+                <form method="POST" action="/admin/{{../user}}/corps/delete/{{_id}}">
+                  <button type="submit" class="button delete-btn">Видалити</button>
                 </form>
               </td>
             </tr>

@@ -43,10 +43,21 @@ mainPhotoForm.onsubmit = async (event) => {
       mainPhotoFiles.value = null;
       mainPhotoCurrentContainer.style.display = 'block';
       mainPhotoCurrentImg.src = `/image/${filename}?height=200&width=300`;
-    }
+    } 
 
     if (id) {
       newsId.value = id;
+    }
+  } else {
+    switch (response.status) {
+      case 413:
+        alert('Файл не завантажено. Максималький розмір 5МБ!');
+        mainPhotoSubmitBtn.disabled = true;
+        mainPhotoBrowseBtn.disabled = false;
+        mainPhotoFiles.value = '';
+        break;
+      default:
+        break;
     }
   }
 };

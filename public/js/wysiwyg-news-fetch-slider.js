@@ -98,7 +98,7 @@ sliderNewForm.onsubmit = async (event) => {
   });
 
   if (response.ok) {
-    const { filenames, contentId: id } = await response.json();
+    const { filenames, contentId: id, oversize } = await response.json();
 
     if (filenames) {
       sliderNewSubmitBtn.disabled = true;
@@ -106,6 +106,12 @@ sliderNewForm.onsubmit = async (event) => {
       sliderNewFiles.value = null;
       sliderCurrentContainer.style.display = 'block';
       renderCurrentSliderImages(filenames, id);
+    }
+
+    if (oversize.length) {
+      alert(`Деякі файли були пропущені. Максимальний розмір файлу 5 МБ.
+      Пропущені файли: 
+      ${oversize.join('\n')}`);
     }
 
     if (id) {
@@ -127,13 +133,19 @@ sliderAddForm.onsubmit = async (event) => {
   });
 
   if (response.ok) {
-    const { filenames } = await response.json();
+    const { filenames, oversize } = await response.json();
 
     if (filenames) {
       sliderAddFiles.value = null;
       sliderAddBrowseBtn.disabled = false;
       sliderAddSubmitBtn.disabled = true;
       renderCurrentSliderImages(filenames, newsId.value);
+    }
+
+    if (oversize.length) {
+      alert(`Деякі файли були пропущені. Максимальний розмір файлу 5 МБ.
+      Пропущені файли: 
+      ${oversize.join('\n')}`);
     }
   }
 };

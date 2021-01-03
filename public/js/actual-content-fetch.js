@@ -1,12 +1,3 @@
-// const linkImgForm = document.getElementById('send-link-img-form');
-// const browseButton = document.getElementById('actual-content-browse-img-btn');
-// const submitButton = document.getElementById('actual-content-submit-img-btn');
-// const fileInput = document.getElementById('actual-content-img-input');
-// const imgDeleteButton = document.getElementById('delete-actual-content-img');
-// const currentImage = document.getElementById('actual-content-image');
-// const currentImgBlock = document.getElementById('current-actual-content-img');
-// const actualContentIdInput = document.getElementById('actual-content-id');
-
 const actualContentId = document.getElementById('actual-content-id');
 const actualContentImgFile = document.getElementById('actual-content-img-input');
 const actualContentImgForm = document.getElementById('actual-content-img-form');
@@ -55,6 +46,17 @@ actualContentImgForm.onsubmit = async (event) => {
 
     if (id) {
       actualContentId.value = id;
+    }
+  } else {
+    switch (response.status) {
+      case 413:
+        alert('Файл не завантажено. Максималький розмір 5МБ!');
+        actualContentImgSubmitBtn.disabled = true;
+        actualContentImgBrowseBtn.disabled = false;
+        actualContentImgFile.value = '';
+        break;
+      default:
+        break;
     }
   }
 };

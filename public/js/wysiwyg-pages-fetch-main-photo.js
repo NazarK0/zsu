@@ -48,6 +48,17 @@ mainPhotoForm.onsubmit = async (event) => {
     if (id) {
       pageId.value = id;
     }
+  } else {
+    switch (response.status) {
+      case 413:
+        alert('Файл не завантажено. Максималький розмір 5МБ!');
+        mainPhotoSubmitBtn.disabled = true;
+        mainPhotoBrowseBtn.disabled = false;
+        mainPhotoFiles.value = '';
+        break;
+      default:
+        break;
+    }
   }
 };
 

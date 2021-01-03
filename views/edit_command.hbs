@@ -1,79 +1,59 @@
 <head>
   <title>Редагувати командування</title>
+  <link rel="stylesheet" href="/css/input_form.css">
   <link rel="stylesheet" href="/css/checkbox_style.css">
   <link rel="stylesheet" href="/css/menu.css">
   <link rel="stylesheet" href="/css/input_form.css">
   <link rel="stylesheet" href="/css/resets.css">
+  <script src="/js/command-fetch.js" defer></script>
 </head>
 <body style = "background-color: #2f2f2f">
   {{> menu id=userid}}
   <div class="container">
-    <h3 class="title">Командування "{{title_ua}}"</h3>
-    <form method="POST" action="/admin/{{userid}}/command/{{action_type}}">
-      <div class="row">
-        <div class="col-45">
-          <label for="corps_title_ua"><B>Назва Українською</B></label>
-        </div>
-        <div class="col-55">
-          <input type="text" name="title_ua" id="corps_title_ua" class="stretch" placeholder="Назва" value="{{title_ua}}" required>
-        </div>
+    {{#ifCond mode '===' 'add'}}
+      <h3 class="title">Створити Командування</h3>
+    {{/ifCond}}
+    {{#ifCond mode '===' 'edit'}}
+      <h3 class="title">Командування "{{title_ua}}"</h3>
+    {{/ifCond}}
+    <form id="command-sign-form">
+      <p class="label">Емблема</p>
+      <input type="file" name="commandSign" id="command-sign-file" accept="image/*" style="display: none;">
+      <button type="button" id="browse-command-sign" class="button secondary-btn">Огляд...</button>
+      <button type="submit" id="submit-command-sign" class="button accent-btn" disabled>Завантажити</button>
+    </form>
+    <div id="command-sign-current-container" style="display: none;">
+      <p class="label">Поточне зображення</p>
+      <div class="text-left">
+        <img id="command-sign-current" src="{{commandSignCurrent}}">
+        <form id="command-sign-current-delete">
+          <button type="submit" class="button delete-btn">Видалити</button>
+        </form>
       </div>
-      <div class="row">
-        <div class="col-45">
-          <label for="corps_title_en"><B>Назва Англійською</B></label>
-        </div>
-        <div class="col-55">
-          <input type="text" name="title_en" id="corps_title_en" class="stretch" placeholder="Назва" value="{{title_en}}" required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-45">
-          <label for="link_title"><B>Посилання</B></label>
-        </div>
-        <div class="col-55">
-          <input type="text" name="link" class="stretch" placeholder="Посилання" value="{{link}}" required>
-        </div>
+    </div>
+    {{#ifCond mode '===' 'add'}}
+      <form method="POST" action="/admin/{{userid}}/command/add">
+    {{/ifCond}}
+    {{#ifCond mode '===' 'edit'}}
+      <form method="POST" action="/admin/{{userid}}/command/edit/{{commandId}}">
+    {{/ifCond}}
+      <div>
+        <label for="command_title_ua">Назва Українською</label>
+        <input type="text" name="title_ua" id="command_title_ua" class="stretch" placeholder="Назва Українською" value="{{title_ua}}" required>
       </div>
       <div>
-        <h2 class="title">Поточні значення</h3>
-        {{#if current_bg_id}}
-          <div class="inline">
-            <label><B>Фон:</B></label>
-            <img src="data:image/jpeg;base64,{{current_bg_base64}}" alt="{{current_bg_name}}" width="300px">
-            <input type="hidden" name="current_bg_id" value="{{current_bg_id}}">
-          </div>
-        {{else}}
-          <p class="label"><B>Фон відсутній</B></p>
-        {{/if}}
-        {{#if current_sign_id}}
-          <div class="inline">
-            <label><B>Емблема:</B></label>
-            <img src="data:image/jpeg;base64,{{current_sign_base64}}" alt="{{current_sign_name}}" width="60px">
-            <input type="hidden" name="current_sign_id" value="{{current_sign_id}}">
-          </div>
-        {{else}}
-          <p class="label">Емблема відсутня</p>
-        {{/if}}
-        <h2 class="title">Галерея</h2>
-        <div>
-          <p class="label"><B>Фон</B></p>
-          {{#BackgroundCommandsList background}}
-          {{/BackgroundCommandsList}}
-        </div>
-        <div>
-          <p class="label"><B>Емблема</B></p>
-          {{#SignCommandsList sign}}
-          {{/SignCommandsList}}
-        </div>
+        <label for="command_title_en">Назва Англійською</label>
+        <input type="text" name="title_en" id="command_title_en" class="stretch" placeholder="Назва Англійською" value="{{title_en}}" required>
       </div>
+      <div>
+        <label for="link_title">Посилання</label>
+        <input type="text" name="link" class="stretch" placeholder="https://test.com" value="{{link}}" required>
+      </div>
+      <a href="/admin/{{userid}}/command/1" class="button primary-btn">Назад</a>
       <button type="submit" class="button secondary-btn">Зберегти</button>
-    </form>
-    <form method="GET" action="/admin/{{userid}}/command/1">
-      <button type="submit" class="button secondary-btn" style="visibility:{{parameter}}">Відмінити</button>
-    </form>
-    <form method="POST" action="/admin/{{userid}}/command/delete/{{commandid}}">
-      <button type="submit" class="button delete-btn" style="visibility:{{parameter}};">Видалити</button>
+      <input name="commandId" id="command-id" value="{{commandId}}" type="hidden">
     </form>
   </div>
+  
 </body>
 {{!-- views by Vanivskyi --}}

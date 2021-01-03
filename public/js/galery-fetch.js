@@ -96,7 +96,7 @@ galeryNewForm.onsubmit = async (event) => {
   });
 
   if (response.ok) {
-    const { filenames, categoryId: id } = await response.json();
+    const { filenames, categoryId: id, oversize } = await response.json();
 
     if (filenames) {
       galeryNewSubmitBtn.disabled = true;
@@ -104,6 +104,12 @@ galeryNewForm.onsubmit = async (event) => {
       galeryNewFiles.value = null;
       galeryCurrentContainer.style.display = 'block';
       renderCurrentSliderImages(filenames, id);
+    }
+
+    if (oversize.length) {
+      alert(`Деякі файли були пропущені. Максимальний розмір файлу 5 МБ.
+      Пропущені файли: 
+      ${oversize.join('\n')}`);
     }
 
     if (id) {
@@ -124,13 +130,19 @@ galeryAddForm.onsubmit = async (event) => {
   });
 
   if (response.ok) {
-    const { filenames } = await response.json();
+    const { filenames, oversize } = await response.json();
 
     if (filenames) {
       galeryAddFiles.value = null;
       galeryAddBrowseBtn.disabled = false;
       galeryAddSubmitBtn.disabled = true;
       renderCurrentSliderImages(filenames, photoCategoryId.value);
+    }
+
+    if (oversize.length) {
+      alert(`Деякі файли були пропущені. Максимальний розмір файлу 5 МБ.
+      Пропущені файли: 
+      ${oversize.join('\n')}`);
     }
   }
 };

@@ -5,7 +5,6 @@
   <link rel="stylesheet" href="/css/menu.css" type="text/css">
   <link rel="stylesheet" href="/css/resets.css" type="text/css">
   <link rel="stylesheet" href="/css/edit_links.css" type="text/css">
-  <script src="/js/edit_links.js" defer></script>
   <script src="/js/links-img-fetch.js" defer></script>
 </head>
 <body style = "background-color: #2f2f2f;">
@@ -14,28 +13,28 @@
     <h3 class="title">Посилання "{{title_ua}}"</h3>
     <form method="POST" action="/admin/{{userid}}/links/{{action_type}}">
       <div>
-        <label for="title_ua" class="stretch"><B>Назва Українською</B></label>
+        <label for="title_ua" class="stretch">Назва Українською</label>
         <input type="text" id="title_ua" class="stretch" name="title_ua" placeholder="Назва Українською" value="{{title_ua}}" required>
       </div>
       <div>
-        <label for="title_en" class="stretch"><B>Назва Англійською</B></label>
+        <label for="title_en" class="stretch">Назва Англійською</label>
         <input type="text" id="title_en" class="stretch" name="title_en" placeholder="Назва Англійською" value="{{title_en}}" required>
       </div>
       <div>
-        <label for="link-description" class="stretch"><b>Короткий опис</b></label>
+        <label for="link-description" class="stretch">Короткий опис</label>
         <textarea id="link-description" name="description" placeholder="Короткий опис">{{description}}</textarea>
       </div>
       <div>
-          <label><B>Тип</B></label>
+          <label>Тип</label>
           {{#LinkCategoriesList categoriesList}}
           {{/LinkCategoriesList}}
       </div>
       <div>
-        <label for="link"><B>Посилання</B></label>
+        <label for="link">Посилання</label>
         <input id="link" class="stretch" name="link" type="text" value="{{link}}" placeholder="https://example.com" required>
       </div>
       <div>
-        <label for="link-img"><b>Зображення</b></label>
+        <label for="link-img">Зображення</label>
         <input type="file" id="link-img-input" accept="image/*" name="link_img" class="block" style="display: none;">
         <div>
           <button type="button" id="send-link-img-btn" class="button secondary-btn">Огляд...</button>

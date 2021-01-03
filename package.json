@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " node index && npm run start-service",
-    "start-service": "node ./src/DefferedPublicationService/index"
+    "start": " node index && npm run start-service && npm run start-render-service",
+    "start-service": "node ./src/DefferedPublicationService/index",
+    "start-render-service": "node ./src/ReactRenderService/index"
   },
   "author": "223 Teams (Rudyak and Vanivskiy)",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
+    "convert-size": "^1.1.5",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
