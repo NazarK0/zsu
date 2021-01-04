@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"CMS3.news"}],"uuid":"955ff7e620b748f4ac3d6182336f60cf"}
