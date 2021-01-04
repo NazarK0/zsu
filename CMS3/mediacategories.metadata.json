@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"CMS3.mediacategories"}],"uuid":"cb9ee2f599e74af2bea7c04d9813dc7d"}
