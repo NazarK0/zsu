@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index",
     "start": " node index && npm run start-service && npm run start-render-service",
     "start-service": "node ./src/DefferedPublicationService/index",
-    "start-render-service": "node ./src/ReactRenderService/index"
+    "start-render-service": "node ./src/ReactRenderService/index",
+    "start-service-test": "node ./src/DefferedPublicationService/index",
+    "build": "gulp build"
   },
   "author": "223 Teams (Rudyak and Vanivskiy)",
   "license": "ISC",
@@ -20,6 +23,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.1",
+    "feed": "^4.2.1",
     "fs": "0.0.1-security",
     "got": "^11.0.2",
     "handlebars-loop": "^1.0.3",
@@ -41,5 +45,19 @@
     "passport-jwt": "^4.0.0",
     "sharp": "^0.25.2",
     "uniqid": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-preset-env": "^1.7.0",
+    "del": "^5.1.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-terser-js": "^5.2.2"
   }
 }
