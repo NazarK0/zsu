@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index",
-    "start": " node index && npm run start-service",
+    "start": " node index && npm run start-service && npm run start-render-service",
     "start-service": "node ./src/DefferedPublicationService/index"
   },
   "author": "223 Teams (Rudyak and Vanivskiy)",
