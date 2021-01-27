@@ -1,0 +1,34 @@
+<head>
+  <title>Редагувати Відео Категорії</title>
+  <link rel="stylesheet" href="/css/input_form.css" type="text/css">
+  <link rel="stylesheet" href="/css/checkbox_style.css" type="text/css">
+  <link rel="stylesheet" href="/css/menu.css" type="text/css">
+  <link rel="stylesheet" href="/css/resets.css" type="text/css">
+  <link rel="stylesheet" href="/css/edit_links.css" type="text/css">
+  <script src="/js/edit_links.js" defer></script>
+  <script src="/js/links-img-fetch.js" defer></script>
+</head>
+<body style = "background-color: #2f2f2f;">
+  {{> menu id=userid}}
+  <div class="container">
+    <h3 class="title">Відео Контент "{{title}}"</h3>
+    <form method="POST" action="/admin/{{userid}}/video-categorys/{{action_type}}">
+      <div>
+        <label for="title_ua" class="stretch"><B>Назва(UA)</B></label>
+        <input type="text" id="title_ua" class="stretch" name="title_ua" placeholder="Назва" value="{{title_ua}}" required>
+      </div>
+        <div>
+        <label for="title_ua" class="stretch"><B>Назва(EN)</B></label>
+        <input type="text" id="title_ua" class="stretch" name="title_en" placeholder="Назва" value="{{title_en}}" required>
+      </div>
+      <button class="button secondary-btn">Зберегти</button>
+    </form>
+    <form method="GET" action="/admin/{{userid}}/video-categorys" class="inline">
+      <button class="button secondary-btn" >Відмінити</button>
+    </form>
+    <form method="POST" action="/admin/{{userid}}/video-categorys/remove/{{selected_category_id}}" class="inline">
+      <button type="submit" class="button delete-btn" style="visibility:{{parameter}}" type="submit">Видалити</button>
+    </form>
+  </div>
+</body>
+{{!-- views by Vanivskyi --}}

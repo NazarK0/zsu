@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
-  <channel>
-    <title>Офіційний портал ЗСУ</title>
-    <link>https://zsu.gov.ua</link>
-    <description>Збройні сили України</description>
-    <language>uk-ua</language>
-    <image>
-      <url>https://zsu.gov.ua/image/mo.png</url>
-      <title>Збройні сили України</title>
-      <link>https://zsu.gov.ua/</link>
-    </image>
-  </channel>
+    <channel>
+        <title>Офіційний портал ЗСУ</title>
+        <link>https://www.zsu.gov.ua</link>
+        <description>Збройні сили України</description>
+        <lastBuildDate>Fri, 22 Jan 2021 10:39:32 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>uk-ua</language>
+        <image>
+            <title>Офіційний портал ЗСУ</title>
+            <url>https://zsu.gov.ua/image/mo.png</url>
+            <link>https://www.zsu.gov.ua</link>
+        </image>
+        <category>Новини</category>
+    </channel>
 </rss>

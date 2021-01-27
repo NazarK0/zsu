@@ -1,0 +1,1 @@
+"use strict";const e=require("mongoose"),{Schema:t}=e,o=new t({title_ua:String,title_en:String});module.exports=e.model("videoCategory",o);

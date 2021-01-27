@@ -5,34 +5,32 @@
 </head>
 <body>
   <header class="header">
-    <h1>Відео Контент Категорії: {{category}}</h1>
+    <h1>Відео Категорії </h1>
     <a id="exit" href="/admin/{{user}}/exit"><i class="fas fa-power-off"></i> ВИХІД</a>
   </header> 
   {{> sidebar id=user}}
    
   <div class="table_container">
     <div class="control-buttons">
-     <a href="/admin/{{user}}/video-categorys/{{id_category}}/video/add" class="button accent-btn">Створити</a>
-      <a href="/admin/{{user}}/video-categorys" class="button accent-btn">Назад</a>
-   </div>  
+     <a href="/admin/{{user}}/video-categorys/add" class="button accent-btn">Створити</a>
+   </div> 
     <div class="content-area">
       <table class="table-fill">
         <thead>
           <tr>
-            <th>Заголовок</th>
-            <th>Опис</th>
-            <th>Посилання</th>
+            <th>Назва(UA)</th>
+            <th>Назва(EN)</th>
             <th>Операції</th>
           </tr>
         </thead>
         <tbody class="table-hover">
           {{#each videos}}
           <tr>
-            <td class="text-left">{{title}}</td>
-            <td class="text-left">{{description}}</td>
-              <td class="text-left">{{link}}</td>
+            <td class="text-left">{{title_ua}}</td>
+            <td class="text-left">{{title_en}}</td>
             <td class="left-center">
-              <a href="/admin/{{../user}}/video-categorys/{{../id_category}}/video/edit/{{_id}}" class="button primary-btn">Редагувати Відео Контент</a>
+              <a href="/admin/{{../user}}/video-categorys/edit/{{_id}}" class="button primary-btn">Редагувати Категорію</a>
+              <a href="/admin/{{../user}}/video-categorys/{{_id}}/video" class="button primary-btn">Перейти до Відео</a>
             </td>
           </tr>
           {{/each}}

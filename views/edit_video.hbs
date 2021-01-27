@@ -12,7 +12,7 @@
   {{> menu id=userid}}
   <div class="container">
     <h3 class="title">Відео Контент "{{title}}"</h3>
-    <form method="POST" action="/admin/{{userid}}/video/{{action_type}}">
+    <form method="POST" action="/admin/{{userid}}/video-categorys/{{id_category}}/video/{{action_type}}">
       <div>
         <label for="title_ua" class="stretch"><B>Назва</B></label>
         <input type="text" id="title_ua" class="stretch" name="title" placeholder="Назва" value="{{title}}" required>
@@ -32,10 +32,10 @@
      
       <button class="button secondary-btn">Зберегти</button>
     </form>
-    <form method="GET" action="/admin/{{userid}}/video" class="inline">
+    <form method="GET" action="/admin/{{userid}}/video-categorys/{{id_category}}/video" class="inline">
       <button class="button secondary-btn" >Відмінити</button>
     </form>
-    <form method="POST" action="/admin/{{userid}}/video/remove/{{id}}" class="inline">
+    <form method="POST" action="/admin/{{userid}}/video-categorys/{{id_category}}/video/remove/{{id}}" class="inline">
       <button type="submit" class="button delete-btn" style="visibility:{{parameter}}" type="submit">Видалити</button>
     </form>
   </div>
