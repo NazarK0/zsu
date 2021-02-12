@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index",
     "start": " node index && npm run start-service && npm run start-render-service",
-    "start-service": "node ./src/DefferedPublicationService/index"
+    "start-service": "node ./src/DefferedPublicationService/index",
+    "start-render-service": "node ./src/ReactRenderService/index",
+    "start-service-test": "node ./src/DefferedPublicationService/index",
+    "build": "gulp build"
   },
   "author": "223 Teams (Rudyak and Vanivskiy)",
   "license": "ISC",
