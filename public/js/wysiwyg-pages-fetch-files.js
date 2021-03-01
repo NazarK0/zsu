@@ -85,6 +85,7 @@ filesAdd.oninput = () => {
 
 filesNewForm.onsubmit = async (event) => {
   event.preventDefault();
+  filesNewSubmitBtn.disabled = true;
 
   const formData = new FormData(filesNewForm);
   formData.set('contentId', pageId.value);
@@ -99,7 +100,6 @@ filesNewForm.onsubmit = async (event) => {
     const { filenames, contentId: id } = await response.json();
 
     if (filenames) {
-      filesNewSubmitBtn.disabled = true;
       filesNewBrowseBtn.disabled = true;
       filesNew.value = null;
       filesCurrentContainer.style.display = 'block';
@@ -114,6 +114,7 @@ filesNewForm.onsubmit = async (event) => {
 
 filesAddForm.onsubmit = async (event) => {
   event.preventDefault();
+  filesAddSubmitBtn.disabled = true;
 
   const formData = new FormData(filesAddForm);
   formData.set('contentId', pageId.value);
@@ -130,7 +131,6 @@ filesAddForm.onsubmit = async (event) => {
     if (filenames) {
       filesAdd.value = null;
       filesAddBrowseBtn.disabled = false;
-      filesAddSubmitBtn.disabled = true;
       renderCurrentFiles(filenames, pageId.value);
     }
   }

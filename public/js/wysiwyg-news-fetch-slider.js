@@ -49,7 +49,7 @@ const renderCurrentSliderImages = (filenames, contentId) => {
   const row = (filename) => (
   `<tr>
     <td class="text-left">
-      <img src="/image/${filename}?height=90&width=150" alt="${filename}"/>
+      <img src="/icon/${filename}?height=90&width=150" alt="${filename}"/>
     </td>
     <td>
       <form class="slider-image-delete-form">
@@ -87,6 +87,7 @@ sliderAddFiles.oninput = () => {
 
 sliderNewForm.onsubmit = async (event) => {
   event.preventDefault();
+  sliderNewSubmitBtn.disabled = true;
 
   const formData = new FormData(sliderNewForm);
   formData.set('contentId', newsId.value);
@@ -101,7 +102,6 @@ sliderNewForm.onsubmit = async (event) => {
     const { filenames, contentId: id, oversize } = await response.json();
 
     if (filenames) {
-      sliderNewSubmitBtn.disabled = true;
       sliderNewBrowseBtn.disabled = true;
       sliderNewFiles.value = null;
       sliderCurrentContainer.style.display = 'block';
@@ -122,6 +122,7 @@ sliderNewForm.onsubmit = async (event) => {
 
 sliderAddForm.onsubmit = async (event) => {
   event.preventDefault();
+  sliderAddSubmitBtn.disabled = true;
 
   const formData = new FormData(sliderAddForm);
   formData.set('contentId', newsId.value);
@@ -138,7 +139,7 @@ sliderAddForm.onsubmit = async (event) => {
     if (filenames) {
       sliderAddFiles.value = null;
       sliderAddBrowseBtn.disabled = false;
-      sliderAddSubmitBtn.disabled = true;
+
       renderCurrentSliderImages(filenames, newsId.value);
     }
 

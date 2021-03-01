@@ -1,10 +1,7 @@
 {
-
-   "db_connect":"mongodb://localhost:27017/CMS4",
-    "port": "1337",
-    "host": "www.zsu.gov.ua",
-    "rssMaxFeeds": 100
+  "db_connect":"mongodb://localhost/CMS",
+  "port": "1337",
+  "host": "www.zsu.gov.ua",
+  "rssMaxFeeds": 100,
+  "uploads": "/home/nazar91/zsuSite/uploads"
 }
-
-
-

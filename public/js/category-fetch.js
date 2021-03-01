@@ -24,6 +24,7 @@ categoryImgFile.oninput = () => {
 
 categoryImgForm.onsubmit = async (event) => {
   event.preventDefault();
+  categoryImgSubmitBtn.disabled = true;
 
   const formData = new FormData(categoryImgForm);
   formData.set('categoryId', categoryId.value);
@@ -37,15 +38,24 @@ categoryImgForm.onsubmit = async (event) => {
     const { filename, categoryId: id } = await response.json();
 
     if (filename) {
-      categoryImgSubmitBtn.disabled = true;
       categoryImgBrowseBtn.disabled = true;
       categoryImgFile.value = null;
       categoryCurrentImgContainer.style.display = 'block';
-      categoryCurrentImg.src = `/image/${filename}?height=200&width=200`;
+      categoryCurrentImg.src = `/icon/${filename}?height=200&width=200`;
     }
 
     if (id) {
       categoryId.value = id;
+    }
+  } else {
+    switch (response.status) {
+      case 413:
+        alert('Файл не завантажено. Максималький розмір 5МБ!');
+        categoryImgBrowseBtn.disabled = false;
+        categoryImgFile.value = '';
+        break;
+      default:
+        break;
     }
   }
 };

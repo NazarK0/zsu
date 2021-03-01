@@ -24,6 +24,7 @@ mainPhotoFiles.oninput = () => {
 
 mainPhotoForm.onsubmit = async (event) => {
   event.preventDefault();
+  mainPhotoSubmitBtn.disabled = true;
 
   const formData = new FormData(mainPhotoForm);
   formData.set('contentId', newsId.value);
@@ -38,12 +39,11 @@ mainPhotoForm.onsubmit = async (event) => {
     const { filename, contentId: id } = await response.json();
 
     if (filename) {
-      mainPhotoSubmitBtn.disabled = true;
       mainPhotoBrowseBtn.disabled = true;
       mainPhotoFiles.value = null;
       mainPhotoCurrentContainer.style.display = 'block';
-      mainPhotoCurrentImg.src = `/image/${filename}?height=200&width=300`;
-    } 
+      mainPhotoCurrentImg.src = `/icon/${filename}?height=200&width=300`;
+    }
 
     if (id) {
       newsId.value = id;

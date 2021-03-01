@@ -25,6 +25,7 @@ linkImgDelete.onclick = async () => {
 };
 
 submitBtn.onclick = async () => {
+  submitBtn.disabled = true;
   const formData = new FormData();
   formData.set('link_img', input.files[0]);
   formData.set('linkId', linkIdInput.value);
@@ -38,7 +39,6 @@ submitBtn.onclick = async () => {
     const { img, id } = await response.json();
 
     linkImage.src = `/image/${img}?width=300&height=200`;
-    submitBtn.disabled = true;
     linkImgBrowseBtn.disabled = true;
     input.value = '';
     linkIdInput.value = id;
@@ -47,7 +47,6 @@ submitBtn.onclick = async () => {
     switch (response.status) {
       case 413:
         alert('Файл не завантажено. Максималький розмір 5МБ!');
-        submitBtn.disabled = true;
         input.value = '';
         break;
       default:

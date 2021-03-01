@@ -24,6 +24,7 @@ actualContentImgFile.oninput = () => {
 
 actualContentImgForm.onsubmit = async (event) => {
   event.preventDefault();
+  actualContentImgSubmitBtn.disabled = true;
 
   const formData = new FormData(actualContentImgForm);
   formData.set('actualContentId', actualContentId.value);
@@ -37,11 +38,10 @@ actualContentImgForm.onsubmit = async (event) => {
     const { filename, actualContentId: id } = await response.json();
 
     if (filename) {
-      actualContentImgSubmitBtn.disabled = true;
       actualContentImgBrowseBtn.disabled = true;
       actualContentImgFile.value = null;
       actualContentCurrentImgContainer.style.display = 'block';
-      actualContentCurrentImg.src = `/image/${filename}?height=200&width=300`;
+      actualContentCurrentImg.src = `/icon/${filename}?height=200&width=300`;
     }
 
     if (id) {
@@ -51,7 +51,6 @@ actualContentImgForm.onsubmit = async (event) => {
     switch (response.status) {
       case 413:
         alert('Файл не завантажено. Максималький розмір 5МБ!');
-        actualContentImgSubmitBtn.disabled = true;
         actualContentImgBrowseBtn.disabled = false;
         actualContentImgFile.value = '';
         break;

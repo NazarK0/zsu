@@ -24,6 +24,7 @@ corpsSignFile.oninput = () => {
 
 corpsSignForm.onsubmit = async (event) => {
   event.preventDefault();
+  corpsSignSubmitBtn.disabled = true;
 
   const formData = new FormData(corpsSignForm);
   formData.set('corpsId', corpsId.value);
@@ -37,12 +38,11 @@ corpsSignForm.onsubmit = async (event) => {
     const { filename, corpsId: id } = await response.json();
 
     if (filename) {
-      corpsSignSubmitBtn.disabled = true;
       corpsSignBrowseBtn.disabled = true;
       corpsSignFile.value = null;
       corpsSignCurrentContainer.style.display = 'block';
-      corpsSignCurrentImg.src = `/image/${filename}?height=200&width=300`;
-    } 
+      corpsSignCurrentImg.src = `/icon/${filename}?height=200&width=300`;
+    }
 
     if (id) {
       corpsId.value = id;
@@ -51,7 +51,6 @@ corpsSignForm.onsubmit = async (event) => {
     switch (response.status) {
       case 413:
         alert('Файл не завантажено. Максималький розмір 5МБ!');
-        corpsSignSubmitBtn.disabled = true;
         corpsSignBrowseBtn.disabled = false;
         corpsSignFile.value = '';
         break;

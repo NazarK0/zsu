@@ -24,6 +24,7 @@ commandSignFile.oninput = () => {
 
 commandSignForm.onsubmit = async (event) => {
   event.preventDefault();
+  commandSignSubmitBtn.disabled = true;
 
   const formData = new FormData(commandSignForm);
   formData.set('commandId', commandId.value);
@@ -37,12 +38,11 @@ commandSignForm.onsubmit = async (event) => {
     const { filename, commandId: id } = await response.json();
 
     if (filename) {
-      commandSignSubmitBtn.disabled = true;
       commandSignBrowseBtn.disabled = true;
       commandSignFile.value = null;
       commandSignCurrentContainer.style.display = 'block';
-      commandSignCurrentImg.src = `/image/${filename}?height=200&width=300`;
-    } 
+      commandSignCurrentImg.src = `/icon/${filename}?height=200&width=300`;
+    }
 
     if (id) {
       commandId.value = id;
@@ -51,7 +51,6 @@ commandSignForm.onsubmit = async (event) => {
     switch (response.status) {
       case 413:
         alert('Файл не завантажено. Максималький розмір 5МБ!');
-        commandSignSubmitBtn.disabled = true;
         commandSignBrowseBtn.disabled = false;
         commandSignFile.value = '';
         break;

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " node index && npm run start-service && npm run start-render-service",
+    "start": " node index && npm run start-service",
     "start-service": "node ./src/DefferedPublicationService/index"
   },
   "author": "223 Teams (Rudyak and Vanivskiy)",
@@ -25,6 +25,12 @@
     "handlebars-loop": "^1.0.3",
     "https": "^1.0.0",
     "image-size": "^0.8.3",
+    "imagemin": "^7.0.1",
+    "imagemin-giflossy": "^5.1.10",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "imagemin-svgo": "^8.0.0",
+    "imagemin-webp": "^6.0.0",
     "jimp": "^0.16.1",
     "json2csv": "^5.0.1",
     "json2xls": "^0.1.2",

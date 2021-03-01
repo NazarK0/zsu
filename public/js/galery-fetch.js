@@ -48,7 +48,7 @@ const renderCurrentSliderImages = (filenames, categoryId) => {
   const row = (filename) => (
   `<tr>
     <td class="text-left">
-      <img src="/image/${filename}?height=90&width=150" alt="${filename}"/>
+      <img src="/icon/${filename}?height=90&width=150" alt="${filename}"/>
     </td>
     <td>
       <form class="galery-image-delete-form">
@@ -86,6 +86,7 @@ galeryAddFiles.oninput = () => {
 
 galeryNewForm.onsubmit = async (event) => {
   event.preventDefault();
+  galeryNewSubmitBtn.disabled = true;
 
   const formData = new FormData(galeryNewForm);
   formData.set('categoryId', photoCategoryId.value);
@@ -99,7 +100,6 @@ galeryNewForm.onsubmit = async (event) => {
     const { filenames, categoryId: id, oversize } = await response.json();
 
     if (filenames) {
-      galeryNewSubmitBtn.disabled = true;
       galeryNewBrowseBtn.disabled = true;
       galeryNewFiles.value = null;
       galeryCurrentContainer.style.display = 'block';
@@ -120,6 +120,7 @@ galeryNewForm.onsubmit = async (event) => {
 
 galeryAddForm.onsubmit = async (event) => {
   event.preventDefault();
+  galeryAddSubmitBtn.disabled = true;
 
   const formData = new FormData(galeryAddForm);
   formData.set('categoryId', photoCategoryId.value);
@@ -135,7 +136,6 @@ galeryAddForm.onsubmit = async (event) => {
     if (filenames) {
       galeryAddFiles.value = null;
       galeryAddBrowseBtn.disabled = false;
-      galeryAddSubmitBtn.disabled = true;
       renderCurrentSliderImages(filenames, photoCategoryId.value);
     }
 

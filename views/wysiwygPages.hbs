@@ -140,7 +140,7 @@
           <div class="tab-pane fade" id="main-photo" role="tabpanel" aria-labelledby="main-photo-tab">
             <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ОСНОВНЕ ФОТО</h3>
             <form id="main-photo-form">
-              <input type="file" name="mainPhoto" id="main-photo-files" accept="image/*" style="display: none;">
+              <input type="file" name="mainPhoto" id="main-photo-files" accept="image/jpeg,image/webp,image/png,image/svg+xml,image/gif" style="display: none;">
               <button type="button" id="browse-main-photo" class="button secondary-btn">Огляд...</button>
               <button type="submit" id="submit-main-photo" class="button accent-btn" disabled>Завантажити</button>
             </form>
@@ -157,12 +157,12 @@
           <div class="tab-pane fade" id="slider" role="tabpanel" aria-labelledby="slider-tab">
             <h3 class="label">ВИБЕРІТЬ ТА ЗАВАНТАЖТЕ ЗОБРАЖЕННЯ ДЛЯ СЛАЙДЕРА</h3>
             <form id="slider-new-form">
-              <input id="slider-new-files" type="file" name="slider" accept="image/*" multiple style="display: none;">
+              <input id="slider-new-files" type="file" name="slider" accept="image/jpeg,image/webp,image/png,image/svg+xml,image/gif" multiple style="display: none;">
               <button id="browse-slider-new" class="button secondary-btn">Огляд...</button>
               <button type="submit" id="submit-slider-new" class="button accent-btn" disabled>Зберегти</button>
             </form>
             <form id="slider-add-form" style="display: none;">
-              <input id="slider-add-files" type="file" name="slider" accept="image/*" multiple style="display: none;">
+              <input id="slider-add-files" type="file" name="slider" accept="image/jpeg,image/webp,image/png,image/svg+xml,image/gif" multiple style="display: none;">
               <button id="browse-slider-add" class="button secondary-btn">Огляд...</button>
               <button type="submit" id="submit-slider-add" class="button accent-btn" disabled>Додати</button>
             </form>

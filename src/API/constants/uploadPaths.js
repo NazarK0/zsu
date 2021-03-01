@@ -1,1 +1,1 @@
-"use strict";const e=require("path"),i=e.join(__dirname,"../../..","uploads"),o=e.join(i,"images"),t=e.join(i,"temp"),r=e.join(i,"files");module.exports={imgFolderPath:o,tmpFolderPath:t,filesFolderPath:r};
+"use strict";const i=require("path"),{uploads:o}=require("../../../settings.json"),e=i.join(o,"images"),s=i.join(e,"compress"),r=i.join(e,"origin"),t=i.join(e,"icons"),n=i.join(o,"temp"),l=i.join(o,"files");module.exports={imgOriginFolderPath:r,imgCompressedFolderPath:s,tmpFolderPath:n,filesFolderPath:l,iconsFolderPath:t};
