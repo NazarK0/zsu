@@ -29,9 +29,9 @@ document.getElementById('filter-button').addEventListener('click',()=>{
         operationInfo:date_operation_Info!==""?date_operation_Info:null
     }
 
-    console.log(filter_option);
+    console.log(filter_option, 'HF OPT');
 
-    if(filter_option.date===null && filter_option.operation_type===null && filter_option.user===null && filter_option.operationInfo===""){
+    if(!filter_option.date && filter_option.operation_type===null && filter_option.user===null && filter_option.operationInfo===""){
        clearStyle();
     }
     else{
@@ -71,7 +71,7 @@ document.getElementById('filter-button').addEventListener('click',()=>{
     
                 }
                 if(column[j].id==='date'){
-                    if(filter_option.date!==null && column[j].innerText!==filter_option.date){
+                    if(filter_option.date && !column[j].innerText.includes(filter_option.date)){
                         row[i].style='display:none'
                         break;
                     }
@@ -105,7 +105,7 @@ for(let i=0;i<row.length;i++){
 }
 let options_user= document.getElementById('filter-users').getElementsByTagName('option');
 let options_operation=document.getElementById('filter-operation').getElementsByTagName('option');
-document.getElementById('filter-date').value="yyyy-MM-dd";
+// document.getElementById('filter-date').value="yyyy-MM-dd";
 
 for(let i=0;i<options_user.length;i++){
     if(options_user[i].id==='all'){

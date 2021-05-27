@@ -1,1 +1,1 @@
-"use strict";const e=require("path"),r=require("moment");module.exports=t=>{const{name:n,ext:s}=e.parse(t);return`${n.replace(/[\W]/gm,"-")}-${r().unix()}${s}`};
+"use strict";const e=require("path"),r=require("moment");module.exports=t=>{const{name:m,ext:a}=e.parse(t);return`${m.replace(/[\W]/gm,"-").replace(/[-]{2,}/gm,"-").replace(/^[-]+/gm,"")}-${r().unix()}${a}`};

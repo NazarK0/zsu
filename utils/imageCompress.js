@@ -1,14 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { compressImages } = require('../src/API/cropImage');
-const ActualContent = require('../src/Models/ActualContent');
-const Category = require('../src/Models/Category');
-const Command = require('../src/Models/Command');
-const Corps = require('../src/Models/Corps');
-const Link = require('../src/Models/Link');
-const MediaCategory = require('../src/Models/MediaCategory');
-const News = require('../src/Models/News');
-const Page = require('../src/Models/Page');
+const filenameProcessor = require('../src/API/filenameProcessor');
 
 const args = process.argv.slice(2);
 
@@ -42,83 +35,40 @@ const isImage = (pathUrl) => {
   return false;
 };
 
-const updateDB = (currentImgNames, newImgNames) => {
-  currentImgNames.forEach(async (currName) => {
-    const currBase = path.parse(currName).name;
-    const imgIndex = newImgNames.findIndex((img) => img.startsWith(currBase));
-
-    await ActualContent.updateMany({ img: currName }, { img: newImgNames[imgIndex] });
-    await Category.updateMany({ signImg: currName }, { signImg: newImgNames[imgIndex] });
-    await Command.updateMany({ signImg: currName }, { signImg: newImgNames[imgIndex] });
-    await Corps.updateMany({ img: currName }, { img: newImgNames[imgIndex] });
-    await Link.updateMany({ img: currName }, { img: newImgNames[imgIndex] });
-    await News.find({ mainPhoto: currName }, { mainPhoto: newImgNames[imgIndex] });
-    await Page.find({ mainPhoto: currName }, { mainPhoto: newImgNames[imgIndex] });
-
-    const imageGalery = await MediaCategory
-      .find({ photos: currName })
-      .select({ _id: 1, photos: 2 })
-      .lean();
-
-    const galeryIndex = imageGalery.photos.indexOf(currName);
-    if (galeryIndex > -1) {
-      const newGaleryImgs = [
-        ...imageGalery.photos.slice(0, galeryIndex),
-        newImgNames[imgIndex],
-        ...imageGalery.photos.slice(galeryIndex + 1),
-      ];
-      await MediaCategory.findByIdAndUpdate(imageGalery._id, { photos: newGaleryImgs });
-    }
-
-    const newsSlider = await News
-      .find({ slider: currName })
-      .select({ _id: 1, slider: 2 })
-      .lean();
-
-    const newsIndex = newsSlider.slider.indexOf(currName);
-    if (newsIndex > -1) {
-      const newsSliderUpdated = [
-        ...newsSlider.photos.slice(0, newsIndex),
-        newImgNames[imgIndex],
-        ...newsSlider.photos.slice(newsIndex + 1),
-      ];
-
-      await News.findByIdAndUpdate(newsSlider._id, { slider: newsSliderUpdated });
-    }
-
-    const pagesSlider = await Page
-      .find({ slider: currName })
-      .select({ _id: 1, slider: 2 })
-      .lean();
-
-    const pagesIndex = pagesSlider.slider.indexOf(currName);
-    if (pagesIndex > -1) {
-      const pagesSliderUpdated = [
-        ...pagesSlider.photos.slice(0, pagesIndex),
-        newImgNames[imgIndex],
-        ...pagesSlider.photos.slice(pagesIndex + 1),
-      ];
-
-      await News.findByIdAndUpdate(pagesSlider._id, { slider: pagesSliderUpdated });
-    }
-  });
-};
-
 const imageCompressUtil = async (sourceDir, outputDir) => {
   if (!sourceDir || !outputDir) return;
 
-  const imageNames = fs.readdirSync(sourceDir);
+  try {
+    const imageNames = fs.readdirSync(sourceDir);
+    const fixedImageWithPathNames = [];
 
-  const imagesWithPath = imageNames
-    .map((item) => path.join(sourceDir, item))
-    .filter((item) => isImage(item));
+    const imagesWithPath = imageNames
+      .map((item) => path.join(sourceDir, item))
+      .filter((item) => isImage(item));
 
-  const compressedNames = await compressImages(imagesWithPath, outputDir);
+    imagesWithPath.forEach((file) => {
+      const { base, dir } = path.parse(file);
+      const newName = filenameProcessor(base);
 
-  updateDB(imageNames, compressedNames);
+      fs.renameSync(
+        path.join(file),
+        path.join(dir, newName),
+      );
+
+      fixedImageWithPathNames.push(path.join(dir, newName));
+    });
+
+    const compressedNames = await compressImages(fixedImageWithPathNames, outputDir);
+    console.log(compressedNames, 'COMP NAMES');
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 imageCompressUtil(sourceDir, outputDir)
   .then(() => {
     console.info('Image Compress Util. Work done!');
+  })
+  .catch((error) => {
+    fs.writeFileSync('imageCompressUtilError.log', error);
   });

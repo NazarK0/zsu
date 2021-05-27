@@ -391,8 +391,8 @@
             var oneDayMilliSecs = 24 * 60 * 60 * 1000;
             var start = new Date(this.year, this.month, 1);
             var adjusted = new Date(start.getTime() - oneDayMilliSecs * start.getDay());
-            console.log(start, 'start');
-            console.log(adjusted, 'adjusted');
+            // console.log(start, 'start');
+            // console.log(adjusted, 'adjusted');
 
             grid.children[6].style.display = "";
             for (var i = 1; i < 7; i++) {
